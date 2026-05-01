@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BarrioAcceso · Control de Acceso Inteligente — ILM 7mo Informática A 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  /* ── BarrioAcceso Brand — paleta cromática original ── */
+  --bg: #F0F7FF; --bg-mid: #FFFFFF; --bg-card: #FFFFFF;
+  --primary: #2563EB; --primary-soft: rgba(37,99,235,0.08); --primary-border: rgba(37,99,235,0.22);
+  --accent: #F97316; --accent-soft: rgba(249,115,22,0.09); --accent-border: rgba(249,115,22,0.28);
+  --text: #0C1A2E; --text-dim: rgba(12,26,46,0.6); --text-muted: rgba(12,26,46,0.35);
+  --border: rgba(12,26,46,0.08); --border-mid: rgba(12,26,46,0.14);
+  --green: #22C55E; --red: #EF4444; --blue: #2563EB;
+  --shadow: 0 2px 12px rgba(37,99,235,0.08);
+  --shadow-md: 0 4px 20px rgba(37,99,235,0.12);
+  --sans: 'Inter', sans-serif; --title: 'Montserrat', sans-serif; --mono: 'DM Mono', monospace;
+  /* aliases de compatibilidad */
+  --white: #0C1A2E;
+  --white-dim: rgba(12,26,46,0.6);
+  --white-faint: rgba(12,26,46,0.35);
+  --white-ghost: rgba(12,26,46,0.04);
+  --navy: #F0F7FF; --navy-mid: #FFFFFF; --navy-light: #FFFFFF;
+  --orange: #F97316;
+}
+html, body { width:100%; height:100%; background:var(--bg); color:var(--text); font-family:var(--sans); overflow:hidden; user-select:none; }
+.deck { position:relative; width:100vw; height:100vh; }
+.slide { position:absolute; inset:0; display:flex; flex-direction:column; opacity:0; pointer-events:none; transition:opacity .35s ease,transform .35s ease; transform:translateX(40px); overflow:hidden; background-color:var(--bg); }
+.slide.active { opacity:1; pointer-events:all; transform:translateX(0); }
+.slide.exit { opacity:0; transform:translateX(-40px); }
+.topbar { display:flex; align-items:center; justify-content:space-between; padding:12px 40px; border-bottom:1px solid var(--border); flex-shrink:0; gap:12px; background:var(--bg-card); box-shadow:0 1px 3px rgba(37,99,235,0.06); }
+.topbar-left { display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
+.topbar-logo { font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; }
+.topbar-sep { width:1px; height:14px; background:var(--border-mid); flex-shrink:0; }
+.topbar-title { font-size:13px; color:var(--text-dim); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.slide-counter { font-family:var(--mono); font-size:11px; color:var(--text-muted); white-space:nowrap; }
+.back-btn { display:flex; align-items:center; gap:5px; padding:5px 12px; background:var(--primary); border:1px solid var(--primary); border-radius:6px; color:#FFFFFF; font-family:var(--sans); font-size:12px; cursor:pointer; text-decoration:none; white-space:nowrap; transition:all .15s; flex-shrink:0; font-weight:500; }
+.back-btn:hover { background:rgba(37,99,235,0.85); border-color:var(--primary); color:#FFFFFF; }
+.slide-body { flex:1; display:flex; flex-direction:column; padding:28px 48px 20px; overflow-y:auto; }
+.slide-body::-webkit-scrollbar { width:4px; } .slide-body::-webkit-scrollbar-track { background:transparent; } .slide-body::-webkit-scrollbar-thumb { background:var(--border-mid); border-radius:2px; }
+.section-label { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:8px; }
+h2.slide-h2 { font-family:var(--title); font-size:clamp(24px,3vw,38px); font-weight:700; line-height:1.2; color:var(--text); letter-spacing:-.015em; margin-bottom:20px; }
+h2.slide-h2 span { color:var(--primary); }
+.divider { height:1px; background:var(--border); margin:16px 0; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.card { background:var(--bg-mid); border:1px solid var(--border); border-radius:12px; padding:20px 22px; box-shadow:var(--shadow); }
+.card.accent-border { border-color:var(--accent-border); background:var(--accent-soft); box-shadow:none; }
+.card-label { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; }
+.card-value { font-size:18px; color:var(--text); line-height:1.6; }
+.avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; flex-shrink:0; border:1px solid var(--border-mid); }
+.av-blue { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
+.av-orange { background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border); }
+.av-green { background:rgba(34,197,94,.12); color:var(--green); border-color:rgba(34,197,94,.30); }
+.av-gray { background:var(--bg-mid); color:var(--text-dim); border-color:var(--border-mid); }
+.person-row { display:flex; align-items:center; gap:10px; }
+.person-info .name { font-size:17px; font-weight:600; color:var(--text); }
+.person-info .role { font-size:14px; color:var(--text-dim); margin-top:2px; }
+.tag { display:inline-flex; align-items:center; padding:2px 9px; border-radius:20px; font-size:11px; font-weight:500; border:1px solid; }
+.tag-blue { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
+.tag-orange { background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border); }
+.tag-green { background:rgba(34,197,94,.09); color:var(--green); border-color:rgba(34,197,94,.28); }
+.tag-red { background:rgba(239,68,68,.09); color:var(--red); border-color:rgba(239,68,68,.28); }
+.tag-gray { background:var(--bg-mid); color:var(--text-dim); border-color:var(--border-mid); }
+.rf-list { display:flex; flex-direction:column; gap:8px; }
+.rf-item { display:flex; align-items:flex-start; gap:12px; padding:12px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); }
+.rf-id { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--primary); letter-spacing:.08em; flex-shrink:0; padding-top:2px; min-width:38px; }
+.rf-body { flex:1; }
+.rf-title { font-size:18px; font-weight:600; color:var(--text); line-height:1.4; }
+.rf-desc { font-size:16px; color:var(--text-dim); margin-top:4px; line-height:1.6; }
+.rf-priority { flex-shrink:0; }
+.data-table { width:100%; border-collapse:collapse; font-size:16px; }
+.data-table th { text-align:left; padding:11px 14px; font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); border-bottom:2px solid var(--border-mid); background:var(--bg-mid); }
+.data-table td { padding:13px 14px; color:var(--text-dim); border-bottom:1px solid var(--border); vertical-align:top; line-height:1.6; }
+.data-table td:first-child { color:var(--text); font-weight:500; }
+.data-table tr:last-child td { border-bottom:none; }
+.data-table tr:hover td { background:var(--bg-mid); }
+.metric-row { display:flex; gap:12px; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:110px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow); }
+.metric-label { font-size:15px; color:var(--text-muted); margin-bottom:8px; line-height:1.4; }
+.metric-value { font-size:28px; font-weight:700; color:var(--text); line-height:1; }
+.metric-arrow { font-size:15px; color:var(--green); margin-top:6px; font-weight:500; }
+.okr-block { margin-bottom:14px; }
+.okr-obj { font-size:16px; font-weight:600; color:var(--primary); margin-bottom:8px; display:flex; align-items:center; gap:7px; }
+.okr-num { font-family:var(--mono); font-size:11px; background:var(--primary-soft); color:var(--primary); border:1px solid var(--primary-border); border-radius:4px; padding:1px 6px; }
+.kr-list { display:flex; flex-direction:column; gap:6px; padding-left:16px; }
+.kr-item { font-size:15px; color:var(--text-dim); line-height:1.6; padding-left:10px; border-left:2px solid var(--border-mid); }
+.kr-item b { color:var(--text); font-weight:600; }
+.gantt { width:100%; border-collapse:collapse; font-size:13px; }
+.gantt th { padding:7px 8px; font-family:var(--mono); font-size:10px; color:var(--text-muted); font-weight:500; letter-spacing:.08em; border-bottom:2px solid var(--border-mid); text-align:center; background:var(--bg-mid); }
+.gantt th:first-child { text-align:left; }
+.gantt td { padding:7px 8px; border-bottom:1px solid var(--border); }
+.gantt td:first-child { color:var(--text); font-weight:500; }
+.gantt-bar { height:20px; border-radius:4px; background:var(--primary); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:600; color:white; letter-spacing:.05em; }
+.gantt-bar.green { background:var(--green); color:white; }
+.gantt-bar.orange { background:var(--accent); color:white; }
+.gantt-bar.gray { background:#CBD5E1; color:#475569; }
+.step-list { display:flex; flex-direction:column; gap:10px; }
+.step-item { display:flex; align-items:flex-start; gap:14px; padding:14px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); }
+.step-num { font-family:var(--mono); font-size:13px; font-weight:700; color:var(--primary); flex-shrink:0; padding-top:1px; min-width:24px; }
+.step-body .step-title { font-size:18px; font-weight:600; color:var(--text); margin-bottom:4px; }
+.step-body .step-desc { font-size:15px; color:var(--text-dim); line-height:1.6; }
+.team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:10px; }
+.team-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; box-shadow:var(--shadow); }
+.team-role { font-size:11px; color:var(--text-muted); font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; }
+.team-name { font-size:17px; font-weight:600; color:var(--text); }
+.team-sub { font-size:14px; color:var(--text-dim); line-height:1.5; }
+.check-list { display:flex; flex-direction:column; gap:8px; }
+.check-item { display:flex; gap:9px; align-items:flex-start; font-size:16px; }
+.check-icon { flex-shrink:0; margin-top:1px; }
+.check-text { color:var(--text-dim); line-height:1.6; }
+.check-text b { color:var(--text); font-weight:600; }
+.budget-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border); font-size:16px; }
+.budget-row:last-child { border-bottom:none; }
+.budget-label { color:var(--text-dim); }
+.budget-value { color:var(--text); font-weight:500; font-family:var(--mono); }
+.budget-total .budget-label { color:var(--text); font-weight:600; }
+.budget-total .budget-value { color:var(--primary); font-size:15px; }
+.slide-cover { justify-content:flex-end; }
+.cover-bg { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+.cover-glow { position:absolute; top:-20%; right:-10%; width:60vw; height:60vh; background:radial-gradient(ellipse,rgba(37,99,235,0.06) 0%,transparent 70%); }
+.cover-body { position:relative; z-index:1; padding:0 48px 48px; }
+.cover-tag { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
+.cover-tag::before { content:''; display:block; width:20px; height:1px; background:var(--text-muted); }
+.cover-h1 { font-family:var(--title); font-size:clamp(32px,5vw,58px); font-weight:700; line-height:1.1; letter-spacing:-.025em; color:var(--text); margin-bottom:8px; }
+.cover-h1 em { font-style:italic; color:var(--primary); }
+.cover-h1 span { display:block; font-size:clamp(16px,2.2vw,24px); color:var(--text-dim); font-weight:400; }
+.cover-sub { font-size:15px; color:var(--text-dim); max-width:520px; line-height:1.7; margin-bottom:28px; }
+.cover-team { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:28px; }
+.cover-member { display:flex; align-items:center; gap:7px; padding:6px 12px; background:var(--bg-card); border:1px solid var(--border-mid); border-radius:6px; font-size:13px; color:var(--text-dim); box-shadow:var(--shadow); }
+.cover-footer { display:flex; align-items:center; justify-content:space-between; padding-top:20px; border-top:1px solid var(--border); }
+.cover-footer-left { font-size:13px; color:var(--text-muted); }
+.cover-footer-right { font-size:12px; color:var(--primary); font-family:var(--mono); font-weight:500; }
+.bottom-nav { display:flex; align-items:center; justify-content:space-between; padding:12px 40px; border-top:1px solid var(--border); flex-shrink:0; background:var(--bg-card); }
+.nav-btn { display:flex; align-items:center; gap:6px; padding:9px 20px; background:var(--bg-mid); border:1px solid var(--border-mid); border-radius:6px; color:var(--text-dim); font-family:var(--sans); font-size:15px; cursor:pointer; transition:all .15s ease; font-weight:500; }
+.nav-btn:hover:not(:disabled) { background:var(--bg-card); color:var(--text); box-shadow:var(--shadow); }
+.nav-btn:disabled { opacity:.3; cursor:default; }
+.nav-btn.primary { background:var(--primary); border-color:var(--primary); color:#FFFFFF; font-weight:600; }
+.nav-btn.primary:hover { background:rgba(37,99,235,0.85); }
+.nav-dots { display:flex; gap:5px; align-items:center; }
+.nav-dot { width:6px; height:6px; border-radius:50%; background:var(--border-mid); cursor:pointer; transition:all .2s ease; border:none; }
+.nav-dot.active { background:var(--primary); width:16px; border-radius:3px; }
+.nav-dot:hover:not(.active) { background:var(--text-muted); }
+.kbd-hint { position:fixed; bottom:60px; right:16px; font-size:10px; color:var(--text-muted); font-family:var(--mono); pointer-events:none; opacity:1; transition:opacity 2s; }
+.kbd-hint.hidden { opacity:0; }
+.slide-close { align-items:center; justify-content:center; text-align:center; }
+/* ── Quote Bubbles ── */
+.quote-bubble {
+  position: relative;
+  background: var(--primary-soft);
+  border: 1px solid var(--primary-border);
+  border-radius: 14px;
+  padding: 10px 15px;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.4;
+  max-width: 75%;
+  margin-bottom: 12px;
+}
+.quote-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px; left: 28px;
+  width: 0; height: 0;
+  border-left: 10px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid var(--primary-border);
+}
+.quote-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -8px; left: 29px;
+  width: 0; height: 0;
+  border-left: 9px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 9px solid var(--primary-soft);
+  z-index: 1;
+}
+.quote-attribution {
+  font-size: 12px; font-style: normal; font-weight: 600;
+  color: var(--text-muted); font-family: var(--mono);
+  letter-spacing: .06em; margin-top: 4px; padding-left: 4px; margin-bottom: 20px;
+}
+/* ── Roadmap / Timeline ── */
+.roadmap-wrapper { display:flex; flex-direction:column; gap:0; flex:1; }
+.roadmap-track { display:flex; align-items:stretch; gap:0; }
+.roadmap-spine { display:flex; flex-direction:column; align-items:center; flex-shrink:0; width:44px; }
+.roadmap-node { width:14px; height:14px; border-radius:50%; flex-shrink:0; border:2px solid; position:relative; z-index:2; margin-top:4px; }
+.roadmap-node.done { background:var(--primary); border-color:var(--primary); }
+.roadmap-node.active { background:#FFFFFF; border-color:var(--accent); box-shadow:0 0 0 3px rgba(249,115,22,0.18); }
+.roadmap-node.pending { background:var(--bg); border-color:var(--border-mid); }
+.roadmap-line { flex:1; width:2px; background:var(--border); margin:0 auto; }
+.roadmap-line.done { background:var(--primary); opacity:.3; }
+.roadmap-card { flex:1; background:var(--bg-mid); border:1px solid var(--border); border-radius:10px; padding:13px 18px 15px; margin-left:10px; margin-bottom:12px; box-shadow:var(--shadow); }
+.roadmap-card.done { border-left:3px solid var(--primary); }
+.roadmap-card.active { border-left:3px solid var(--accent); }
+.roadmap-card.pending { border-left:3px solid var(--border-mid); }
+.roadmap-card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:5px; }
+.roadmap-month { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+.roadmap-month.done { color:var(--primary); }
+.roadmap-month.active { color:var(--accent); }
+.roadmap-month.pending { color:var(--text-muted); }
+.roadmap-status { font-family:var(--mono); font-size:9px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; padding:2px 7px; border-radius:3px; border:1px solid; }
+.roadmap-status.done { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
+.roadmap-status.active-now { background:rgba(249,115,22,0.11); color:var(--accent); border-color:var(--accent-border); font-weight:700; }
+.roadmap-status.pending { background:var(--bg); color:var(--text-muted); border-color:var(--border-mid); }
+.roadmap-title { font-size:14px; font-weight:600; color:var(--text); margin-bottom:7px; line-height:1.4; }
+.roadmap-items { display:flex; flex-direction:column; gap:4px; }
+.roadmap-item { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--text-dim); line-height:1.5; }
+.roadmap-item-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+.roadmap-item-dot.done { background:var(--primary); }
+.roadmap-item-dot.active { background:var(--accent); }
+.roadmap-item-dot.pending { background:var(--border-mid); }
+.roadmap-footnote { font-family:var(--mono); font-size:10px; color:var(--text-muted); letter-spacing:.04em; border-top:1px solid var(--border); padding-top:10px; margin-top:2px; }
+/* ── Rol badges ── */
+.rol-verde { background:rgba(34,197,94,.09); border:1px solid rgba(34,197,94,.28); border-radius:12px; padding:16px 18px; }
+.rol-rojo { background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.22); border-radius:12px; padding:16px 18px; }
+@media (max-width:700px) { .slide-body{padding:20px 20px 14px;} .topbar,.bottom-nav{padding:10px 20px;} .cover-body{padding:0 20px 36px;} .two-col{grid-template-columns:1fr;} .metric-row{flex-wrap:wrap;} }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- ══ SLIDE 1 — COVER ══ -->
+<div class="slide slide-cover active" id="slide-1">
+  <div class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-logo">ILM · 7mo Informática A · 2026</span>
+      <div class="topbar-sep"></div>
+      <span class="topbar-title">Primera presentación de proyecto</span>
+    </div>
+    <a class="back-btn" href="index.html">← Volver al inicio</a>
+    <span class="slide-counter">01 / 12</span>
+  </div>
+  <div class="cover-bg"><div class="cover-glow"></div></div>
+  <div style="flex:1"></div>
+  <div class="cover-body">
+    <div class="cover-tag">Caso 02 · Barrio Altos de Podestá</div>
+    <h1 class="cover-h1"><em>BarrioAcceso</em><span>Sistema de Control de Acceso Inteligente</span></h1>
+    <p class="cover-sub">Cámara IP + ALPR (OCR de patentes) + ESP32 · Verificación automática en menos de 5 segundos · Tres roles: Guardia, Propietario y Administrador · Demo funcional operativa.</p>
+    <div class="cover-team">
+      <div class="cover-member"><div class="avatar av-blue" style="width:24px;height:24px;font-size:9px">EM</div>Ezequiel Morgado</div>
+      <div class="cover-member"><div class="avatar av-orange" style="width:24px;height:24px;font-size:9px">CS</div>Camilo Spinelli</div>
+      <div class="cover-member"><div class="avatar av-green" style="width:24px;height:24px;font-size:9px">SH</div>Sofía Hermosilla</div>
+      <div class="cover-member"><div class="avatar av-gray" style="width:24px;height:24px;font-size:9px">VM</div>Violeta Martini</div>
+    </div>
+    <div class="cover-footer">
+      <span class="cover-footer-left">Instituto Leonardo Murialdo · Mayo 2026</span>
+      <span class="cover-footer-right">7° Informática A</span>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-btn" disabled>← Anterior</button>
+    <div class="nav-dots"></div>
+    <button class="nav-btn primary" onclick="goNext()">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ══ SLIDE 2 — USUARIO ══ -->
+<div class="slide" id="slide-2">
+  <div class="topbar">
+    <div class="topbar-left"><span class="topbar-logo">E01 — Identificación del problema</span><div class="topbar-sep"></div><span class="topbar-title">Caso de uso: Barrio Altos de Podestá</span></div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">02 / 12</span>
+  </div>
+  <div class="slide-body">
+    <div class="section-label">Usuario entrevistado</div>
+    <h2 class="slide-h2">¿Quién tiene el <span>problema</span>?</h2>
+    <div class="two-col" style="margin-bottom:14px">
+      <div class="card">
+        <div class="card-label">Contacto Principal</div>
+        <div class="person-row" style="margin-bottom:10px">
+          <div class="avatar av-blue">AN</div>
+          <div class="person-info"><div class="name">Ariel Nero - Altos de Podestá</div><div class="role">Barrio cerrado · Av. Márquez 2521, Pablo Podestá</div></div>
+        </div>
+        <div class="divider" style="margin:10px 0 8px"></div>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:12px">
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--text-muted)">Rol en el barrio</span><span style="color:var(--text-dim)">Administrador de la junta vecinal</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--text-muted)">Referentes</span><span style="color:var(--text-dim)">Vecinos del barrio</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--text-muted)">Modalidades que participan</span><span class="tag tag-green" style="font-size:10px">Informática-Electrónica-ADO-Multimedios</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Contexto del Cliente</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;margin-bottom:8px"><b style="color:var(--text)">Altos de Podestá</b> es un barrio cerrado de Tres de Febrero, en el que los guardias de seguridad trabajan rotativamente, su trabajo es registrar manualmente cada ingreso vehicular en un cuaderno. El sistema actual genera cuellos de botella en la entrada y falta total de responsabilidad ante personas que entran al barrio sin permiso.</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap">
+          <span class="tag tag-blue">Base de datos</span>
+          <span class="tag tag-orange">IoT</span>
+          <span class="tag tag-gray">Hardware</span>
+        </div>
+      </div>
+    </div>
+    <div class="check-list" style="margin-bottom:14px">
+      <div class="check-item"><span class="check-icon" style="color:var(--primary)">○</span><span class="check-text"><b>El usuario fue entrevistado por primera vez el día 23 de abril con una duración de 50 minutos.</b></span></div>
+      <div class="check-item"><span class="check-icon" style="color:var(--text-muted)">○</span><span class="check-text">Diagnóstico de situación actual: El usuario explicó la necesidad de obtener una solución al problema de las personas que entran sin autorización previa.</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0;margin-top:4px">
+      <div class="quote-bubble">"Mi mayor problema hoy es que no tengo control sobre las visitas; quiero que sean los mismos vecinos quienes validen a sus invitados mediante la App, para que la seguridad solo tenga que intervenir si detectamos algo sospechoso."</div>
+      <div class="quote-bubble">"Los días de lluvia o cuando hay ferias en la plaza, la fila de autos llega hasta la avenida porque el registro manual es lentísimo; automatizar el ingreso de los residentes nos liberaría el acceso principal en horas pico."</div>
+      <div class="quote-bubble">"Necesito que cuando ocurra un incidente, yo pueda entrar al sistema y saber exactamente qué guardia estaba de turno y qué patente dejó pasar, sin depender de si alguien se olvidó de anotar en el cuaderno."</div>
+      <div class="quote-attribution">— Ariel Nero, Dueño y Administrador de la Junta Vecinal.</div>
+    </div>
+  </div>
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+</div>
+
+<!-- ══ SLIDE 3 — SÍNTOMAS ══ -->
+<div class="slide" id="slide-3">
+  <div class="topbar">
+    <div class="topbar-left"><span class="topbar-logo">E01 — Análisis de la entrevista</span><div class="topbar-sep"></div><span class="topbar-title">Del síntoma a la causa real</span></div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">03 / 12</span>
+  </div>
+  <div class="slide-body">
+    <div class="section-label">Síntomas → Causas raíz</div>
+    <h2 class="slide-h2">Lo que el cliente dice vs. <span>lo que realmente es</span></h2>
+    <table class="data-table">
+      <thead><tr><th>Síntoma (Lo que dice Ariel y su equipo administrativo)</th><th>Causa raíz</th><th>Solución técnica</th></tr></thead>
+      <tbody>
+        <tr><td>"En hora pico hay cola de 4 minutos"</td><td>El proceso manual toma 1–2 min por vehículo; no hay validación automática</td><td>RF01 — ALPR: verificación automática en &lt; 5 seg</td></tr>
+        <tr><td>"No sabemos quién entró ni cuándo"</td><td>Registro en papel sin trazabilidad digital ni auditoría</td><td>RF02 — Historial digital con timestamp por cada evento</td></tr>
+        <tr><td>"El guardia deja pasar a cualquiera"</td><td>Sin protocolo definido ni lista de acceso consultable en tiempo real</td><td>RF03 — Panel del guardia: VERDE / ROJO instantáneo</td></tr>
+        <tr><td>"Los vecinos llaman al guardia para autorizar visitas"</td><td>Sin sistema de pre-autorización; propietario debe estar disponible</td><td>RF04 — QR temporal generado por el propietario vía app</td></tr>
+        <tr><td>"La barrera funciona por un botón que ya es viejo y a veces no anda"</td><td>Accionamiento mecánico manual sin integración digital</td><td>RF05 — BD local espejada en la nube con operación offline</td></tr>
+        <tr><td>"No podemos suspender un acceso al instante"</td><td>Sin gestión centralizada de estados de propietarios</td><td>RF06 — Suspensión / activación con un clic desde admin</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+</div>
+
+<!-- ══ SLIDE 4 — DATOS MEDIBLES ══ -->
+<div class="slide" id="slide-4">
+  <div class="topbar">
+    <div class="topbar-left"><span class="topbar-logo">E01 — Datos medibles</span><div class="topbar-sep"></div><span class="topbar-title">Línea de base y perfiles de usuario</span></div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">04 / 12</span>
+  </div>
+  <div class="slide-body">
+    <div class="section-label">Línea de base — Estado actual sin BarrioAcceso</div>
+    <h2 class="slide-h2">Métricas actuales <span>→ objetivos</span></h2>
+    <div class="metric-row" style="margin-bottom:16px">
+      <div class="metric-card"><div class="metric-label">Tiempo por vehículo</div><div class="metric-value">40s–2m</div><div class="metric-arrow">→ objetivo: 5 seg</div></div>
+      <div class="metric-card"><div class="metric-label">Trazabilidad de ingresos</div><div class="metric-value">0 %</div><div class="metric-arrow">→ objetivo: 100 %</div></div>
+      <div class="metric-card"><div class="metric-label">Pre-autorizaciones posibles</div><div class="metric-value">0</div><div class="metric-arrow">→ objetivo: QR por vecino</div></div>
+    </div>
+    <div class="divider"></div>
+    <div class="section-label" style="margin-top:4px">Los tres roles del sistema</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+      <div class="card">
+        <div class="person-row" style="margin-bottom:8px"><div class="avatar av-blue" style="width:30px;height:30px;font-size:10px">GU</div><div class="person-info"><div class="name" style="font-size:15px">Guardia</div><div class="role">Operación en tiempo real</div></div></div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.5">Input de patente · resultado VERDE/ROJO · log del día. Interfaz diseñada para uso bajo presión y baja luminosidad.</div>
+      </div>
+      <div class="card">
+        <div class="person-row" style="margin-bottom:8px"><div class="avatar av-green" style="width:30px;height:30px;font-size:10px">PR</div><div class="person-info"><div class="name" style="font-size:15px">Propietario</div><div class="role">Gestión de visitas</div></div></div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.5">Ver vehículos registrados · generar QR temporal · compartir por WhatsApp · historial propio.</div>
+      </div>
+      <div class="card">
+        <div class="person-row" style="margin-bottom:8px"><div class="avatar av-orange" style="width:30px;height:30px;font-size:10px">AD</div><div class="person-info"><div class="name" style="font-size:15px">Administrador</div><div class="role">Control total</div></div></div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.5">Dashboard completo · gestión de propietarios · Gestión de morosos y suspensiones en tiempo real · historial total · estadísticas.</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+</div>
+
+<!-- ══ SLIDE 5 — RF ══ -->
+<div class="slide" id="slide-5">
+  <div class="topbar">
+    <div class="topbar-left"><span class="topbar-logo">E03 — Requerimientos funcionales</span><div class="topbar-sep"></div><span class="topbar-title">Qué hace el sistema</span></div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">05 / 12</span>
+  </div>
+  <div class="slide-body">
+    <div class="section-label">RF — Qué hace el sistema</div>
+    <h2 class="slide-h2">Requerimientos <span>funcionales</span></h2>
+    <div class="rf-list">
+      <div class="rf-item"><span class="rf-id">RF01</span><div class="rf-body"><div class="rf-title">Verificación automática de patentes (ALPR)</div><div class="rf-desc">Procesamiento y consulta en < 3 seg · resultado: VERDE (propietario activo), VERDE QR (visita válida), ROJO (suspendido/desconocido)</div></div><div class="rf-priority"><span class="tag tag-red" style="font-size:10px">Alta</span></div></div>
+      <div class="rf-item"><span class="rf-id">RF02</span><div class="rf-body"><div class="rf-title">Historial de accesos con registro automático</div><div class="rf-desc">Cada evento: timestamp · patente · nombre · tipo de acceso · resultado. Auditable por admin (total) y propietario (solo los propios)</div></div><div class="rf-priority"><span class="tag tag-red" style="font-size:10px">Alta</span></div></div>
+      <div class="rf-item"><span class="rf-id">RF03</span><div class="rf-body"><div class="rf-title">Panel del guardia optimizado para uso bajo presión</div><div class="rf-desc">Input de patente central · resultado muy visible · botón limpiar · log del día visible sin navegar · modo oscuro / alto contraste</div></div><div class="rf-priority"><span class="tag tag-red" style="font-size:10px">Alta</span></div></div>
+      <div class="rf-item"><span class="rf-id">RF04</span><div class="rf-body"><div class="rf-title">Sistema de QR temporal para visitas</div><div class="rf-desc">Propietario genera QR con nombre, patente, fecha y hora límite · Generación y envío automático de invitación vía WhatsApp · admin puede revocar en tiempo real</div></div><div class="rf-priority"><span class="tag tag-red" style="font-size:10px">Alta</span></div></div>
+      <div class="rf-item"><span class="rf-id">RF05</span><div class="rf-body"><div class="rf-title">Gestión de propietarios con búsqueda en tiempo real</div><div class="rf-desc">Registrar, activar o suspender propietarios · búsqueda por nombre, casa o patente sin recargar página</div></div><div class="rf-priority"><span class="tag tag-orange" style="font-size:10px">Media</span></div></div>
+      <div class="rf-item"><span class="rf-id">RF06</span><div class="rf-body"><div class="rf-title">Dashboard de administración con métricas del día</div><div class="rf-desc">Accesos totales · autorizados · rechazados · propietarios activos · visitas activas · tasa de autorización</div></div><div class="rf-priority"><span class="tag tag-orange" style="font-size:10px">Media</span></div></div>
+      <div class="rf-item"><span class="rf-id">RF07</span><div class="rf-body"><div class="rf-title">Notificaciones en tiempo real al propietario (opcional)</div><div class="rf-desc">Aviso de ingreso al propietario en tiempo real · alerta cuando su vehículo o visita ingresa al barrio</div></div><div class="rf-priority"><span class="tag tag-gray" style="font-size:10px">Baja</span></div></div>
+    </div>
+  </div>
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+</div>
+
+<!-- ══ SLIDE 6 — RNF + ALCANCE ══ -->
+<div class="slide" id="slide-6">
+  <div class="topbar">
+    <div class="topbar-left"><span class="topbar-logo">E03 — Alcance y restricciones</span><div class="topbar-sep"></div><span class="topbar-title">RNF y alcance del proyecto</span></div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">06 / 12</span>
+  </div>
+  <div class="slide-body">
+    <div class="section-label">RNF — Cómo lo hace</div>
+    <h2 class="slide-h2">Requerimientos <span>no funcionales</span></h2>
+    <div class="rf-list" style="margin-bottom:14px">
+      <div class="rf-item"><span class="rf-id">RNF01</span><div class="rf-body"><div class="rf-title">Interfaz HCI optimizada: accesibilidad WCAG AA</div><div class="rf-desc">Modo oscuro / alto contraste para operación nocturna · botones mín. 44px · fuente legible sin zoom · un elemento de acción principal por pantalla</div></div><span class="tag tag-blue" style="font-size:10px;flex-shrink:0">HCI</span></div>
+      <div class="rf-item"><span class="rf-id">RNF02</span><div class="rf-body"><div class="rf-title">Arquitectura Resiliente: Operación Local con Sincronización Remota</div><div class="rf-desc">La base de datos local permite ingresos aunque caiga internet · sincronización automática al reconectar</div></div><span class="tag tag-blue" style="font-size:10px;flex-shrink:0">resiliencia</span></div>
+      <div class="rf-item"><span class="rf-id">RNF03</span><div class="rf-body"><div class="rf-title">Respuesta de verificación en menos de 5 segundos</div><div class="rf-desc">Desde que la cámara captura la patente hasta que se muestra el resultado en pantalla</div></div><span class="tag tag-blue" style="font-size:10px;flex-shrink:0">performance</span></div>
+      <div class="rf-item"><span class="rf-id">RNF04</span><div class="rf-body"><div class="rf-title">Aislamiento de datos por rol en servidor</div><div class="rf-desc">El propietario solo accede a sus propios datos. El guardia no puede modificar el padrón. Control en backend, no solo en frontend</div></div><span class="tag tag-blue" style="font-size:10px;flex-shrink:0">seguridad</span></div>
+    </div>
+    <div class="divider"></div>
+    <div class="two-col" style="margin-top:4px">
+      <div class="rol-verde">
+        <div style="font-size:10px;color:var(--green);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">✓ El sistema HARÁ</div>
+        <div class="check-list">
+          <div class="check-item"><span class="check-icon" style="color:var(--green)">✓</span><span class="check-text">Reconocimiento de patentes mediante OCR local</span></div>
+          <div class="check-item"><span class="check-icon" style="color:var(--green)">✓</span><span class="check-text">QR temporal generado por propietario</span></div>
+          <div class="check-item"><span class="check-icon" style="color:var(--green)">✓</span><span class="check-text">Historial auditable con timestamps</span></div>
+          <div class="check-item"><span class="check-icon" style="color:var(--green)">✓</span><span class="check-text">3 roles con permisos diferenciados</span></div>
+          <div class="check-item"><span class="check-icon" style="color:var(--green)">✓</span><span class="check-text">Arquitectura híbrida (Local-First)</span></div>
+        </div>
+      </div>
+      <div class="rol-rojo">
+        <div style="font-size:10px;color:var(--red);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">✗ El sistema NO HARÁ (v1)</div>
+        <div class="check-list">
+          <div class="check-item"><span class="check-icon" style="color:var(--red)">✗</span><span class="check-text">Reconocimiento facial biométrico</span></div>
+          <div class="check-item"><span class="check-icon" style="color:var(--red)">✗</span><span class="check-text">Integración con cámaras perimetrales</span></div>
+          <div class="check-item"><span class="check-icon" style="color:var(--red)">✗</span><span class="check-text">Control de peatones / torniquetes</span></div>
+          <div class="check-item"><span class="check-icon" style="color:var(--red)">✗</span><span class="check-text">Multi-barrio en una misma instancia</span></div>
+          <div class="check-item"><span class="check-icon" style="color:var(--red)">✗</span><span class="check-text">App nativa iOS / Android (v1)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+</div>
+
+<!-- ══ SLIDE 7 — OKRs ══ -->
+<div class="slide" id="slide-7">
+  <div class="topbar">
+    <div class="topbar-left"><span class="topbar-logo">E01–E03 — Metas medibles</span><div class="topbar-sep"></div><span class="topbar-title">OKRs del proyecto</span></div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">07 / 12</span>
+  </div>
+  <div class="slide-body">
+    <div class="section-label">Objectives & Key Results</div>
+    <h2 class="slide-h2">Métricas de éxito: <span>Transformando Datos en Seguridad</span></h2>
+    <div class="two-col">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="okr-block"><div class="okr-obj"><span class="okr-num">O1</span> Eliminar el cuello de botella en el ingreso</div><div class="kr-list"><div class="kr-item">Tiempo por vehículo de <b>30 seg - 1 min → &lt; 3 seg</b></div><div class="kr-item"><b>0 filas</b> en hora pico en los primeros 30 días</div><div class="kr-item">Tasa de reconocimiento ALPR <b>≥ 90 %</b> en condiciones normales</div></div></div>
+        <div class="okr-block"><div class="okr-obj"><span class="okr-num">O2</span> Trazabilidad total de accesos</div><div class="kr-list"><div class="kr-item"><b>100 %</b> de los ingresos registrados automáticamente</div><div class="kr-item">Errores de carga manuales → <b>0</b></div><div class="kr-item">Historial consultable desde cualquier dispositivo <b>en &lt; 5 seg</b></div></div></div>
+        <div class="okr-block"><div class="okr-obj"><span class="okr-num">O3</span> Gestión de visitas sin fricción</div><div class="kr-list"><div class="kr-item">Propietario genera QR de visita en <b>≤ 3 pasos</b></div><div class="kr-item">Admin revoca un QR activo en <b>1 clic</b></div><div class="kr-item"><b>0 llamadas</b> al guardia para autorizar visitas en la demo</div></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="okr-block"><div class="okr-obj"><span class="okr-num">O4</span> Guardia opera sin capacitación previa</div><div class="kr-list"><div class="kr-item">Tiempo de aprendizaje <b>≤ 20 minutos</b></div><div class="kr-item">Interfaz de alta legibilidad<b> (Día/Noche)</b></div><div class="kr-item">Fatiga visual <b>≤ 2/5</b> (Likert) tras 4 hs de turno nocturno</div></div></div>
+        <div class="okr-block"><div class="okr-obj"><span class="okr-num">O5</span> Viabilidad comercial demostrada</div><div class="kr-list"><div class="kr-item">Sistema funcionando en el barrio antes de <b>10 diciembre</b></div><div class="kr-item">Administración valida el sistema con <b>≥ 4/5</b></div><div class="kr-item">Modelo de negocio: <b>al menos 3 barrios</b> con la misma problemática identificados</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+</div>
+
+<!-- ══ SLIDE 8 — EQUIPO ══ -->
+<div class="slide" id="slide-8">
+  <div class="topbar">
+    <div class="topbar-left"><span class="topbar-logo">Gestión — Equipo</span><div class="topbar-sep"></div><span class="topbar-title">Roles y responsabilidades</span></div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">08 / 12</span>
+  </div>
+  <div class="slide-body">
+    <div class="section-label">Equipo · 7mo Informática A · ILM 2026</div>
+    <h2 class="slide-h2">Roles y <span>responsabilidades</span></h2>
+    <div class="team-grid" style="margin-bottom:16px">
+      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-blue" style="width:28px;height:28px;font-size:10px">EM</div><div><div class="team-role"></div><div class="team-name">Ezequiel Morgado</div></div></div><div class="team-sub"></div></div>
+      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-orange" style="width:28px;height:28px;font-size:10px">CS</div><div><div class="team-role"></div><div class="team-name">Camilo Spinelli</div></div></div><div class="team-sub"></div></div>
+      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-green" style="width:28px;height:28px;font-size:10px">SH</div><div><div class="team-role"></div><div class="team-name">Sofía Hermosilla</div></div></div><div class="team-sub"></div></div>
+      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-gray" style="width:28px;height:28px;font-size:10px">VM</div><div><div class="team-role"></div><div class="team-name">Violeta Martini</div></div></div><div class="team-sub"></div></div>
+    </div>
+  </div>
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+</div>
+
+<!-- ══ SLIDE 9 — PRESUPUESTO ══ -->
+<div class="slide" id="slide-9">
+  <div class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-logo">E02 — Factibilidad</span>
+      <div class="topbar-sep"></div>
+      <span class="topbar-title">BOM y tech stack</span>
+    </div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">09 / 12</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="section-label">Tech stack y costos</div>
+    <h2 class="slide-h2">BOM y <span>factibilidad económica</span></h2>
+    
+    <div class="two-col">
+      <!-- COLUMNA IZQUIERDA: HARDWARE -->
+      <div>
+        <div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Hardware (BOM)</div>
+        <div class="rf-list">
+          <div class="rf-item" style="padding:8px 12px">
+            <span class="rf-id" style="font-size:9px;min-width:46px">Cámara</span>
+            <div class="rf-body"><div class="rf-title" style="font-size:14px">Dahua IPC-HFW1230S1P (Bullet IP 2MP)</div></div>
+            <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$85.000</span>
+          </div>
+          
+          <div class="rf-item" style="padding:8px 12px">
+            <span class="rf-id" style="font-size:9px;min-width:46px">Control</span>
+            <div class="rf-body"><div class="rf-title" style="font-size:14px">ESP32 + ENC28J60 (control de barrera)</div></div>
+            <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$22.000</span>
+          </div>
+          
+          <div class="rf-item" style="padding:8px 12px">
+            <span class="rf-id" style="font-size:9px;min-width:46px">Server</span>
+            <div class="rf-body"><div class="rf-title" style="font-size:14px">Mini-PC Usada (Servidor Local LPR)</div></div>
+            <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$95.000</span>
+          </div>
+          
+          <div class="rf-item" style="padding:8px 12px">
+            <span class="rf-id" style="font-size:9px;min-width:46px">Barrera</span>
+            <div class="rf-body"><div class="rf-title" style="font-size:14px">Relevo eléctrico para barrera existente</div></div>
+            <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$7.000</span>
+          </div>
+          
+          <div class="rf-item" style="padding:8px 12px">
+            <span class="rf-id" style="font-size:9px;min-width:46px">Gabinete</span>
+            <div class="rf-body"><div class="rf-title" style="font-size:14px">Gabinete estanco IP65 para exterior</div></div>
+            <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$18.000</span>
+          </div>
+
+          <!-- CUADRO NARANJA INTEGRADOR -->
+          <div style="margin-top:12px; padding:12px; background:var(--accent-soft); border:1px solid var(--accent-border); border-radius:8px">
+            <div style="display:flex; justify-content:space-between; align-items:center">
+              <span style="font-weight:bold; color:var(--accent-text); font-size:13px">Total BOM estimado</span>
+              <span style="font-weight:bold; color:var(--accent-text); font-family:var(--mono); font-size:15px">$227.000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMNA DERECHA: SOFTWARE Y PROYECCIÓN -->
+      <div>
+        <div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Software stack</div>
+        <div class="rf-list" style="margin-bottom:12px">
+          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:14px">Frontend: HTML5 + CSS3 + JS vanilla</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:14px">Backend: PHP + MySQL (XAMPP/Local)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:14px">BD: MySQL (MariaDB)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:14px">OCR: Librería Local (Tesseract / OpenALPR)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:14px">Hosting: Self-Hosted (Cloudflare Tunnel)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+        </div>
+
+        <div style="font-size:10px;color:var(--white-faint);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Horas hombre estimadas</div>
+        <div class="card" style="padding:10px 12px">
+          <div class="budget-row"><span class="budget-label">Project Manager</span><span class="budget-value">[ completar ]</span></div>
+          <div class="budget-row"><span class="budget-label">Firmware + UI (×2)</span><span class="budget-value">[ completar ]</span></div>
+          <div class="budget-row"><span class="budget-label">Infraestructura / QA</span><span class="budget-value">[ completar ]</span></div>
+          <div class="budget-row budget-total"><span class="budget-label">Total estimado</span><span class="budget-value">[ completar ]</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="goPrev()">← Anterior</button>
+    <div class="nav-dots"></div>
+    <button class="nav-btn primary" onclick="goNext()">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ══ SLIDE 10 — ROADMAP ══ -->
+<div class="slide" id="slide-10">
+  <div class="topbar">
+    <div class="topbar-left"><span class="topbar-logo">Planificación — Roadmap</span><div class="topbar-sep"></div><span class="topbar-title">Cronograma de desarrollo · Abril – Junio 2026</span></div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">10 / 12</span>
+  </div>
+  <div class="slide-body">
+    <div class="section-label">Cronograma de desarrollo</div>
+    <h2 class="slide-h2">Roadmap <span>Abril — Junio</span></h2>
+    <div class="roadmap-wrapper">
+
+      <!-- ABRIL — FINALIZADO -->
+      <div class="roadmap-track">
+        <div class="roadmap-spine">
+          <div class="roadmap-node done"></div>
+          <div class="roadmap-line done"></div>
+        </div>
+        <div class="roadmap-card done">
+          <div class="roadmap-card-top">
+            <span class="roadmap-month done">Abril 2026</span>
+            <span class="roadmap-status done">Finalizado</span>
+          </div>
+          <div class="roadmap-title">Relevamiento, selección de hardware y arquitectura de datos</div>
+          <div class="roadmap-items">
+            <div class="roadmap-item"><div class="roadmap-item-dot done"></div><span>Relevamiento de necesidades en Altos de Podestá y entrevista con la administración.</span></div>
+            <div class="roadmap-item"><div class="roadmap-item-dot done"></div><span>Selección y presupuestación de hardware: Cámara IP Dahua 2MP (Serie Entry) y controladores ESP32</span></div>
+            <div class="roadmap-item"><div class="roadmap-item-dot done"></div><span>Definición de arquitectura de base de datos relacional para auditoría e ingresos.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAYO — EN CURSO -->
+      <div class="roadmap-track">
+        <div class="roadmap-spine">
+          <div class="roadmap-node active"></div>
+          <div class="roadmap-line"></div>
+        </div>
+        <div class="roadmap-card active">
+          <div class="roadmap-card-top">
+            <span class="roadmap-month active">Mayo 2026</span>
+            <span class="roadmap-status active-now">Estado actual</span>
+          </div>
+          <div class="roadmap-title">Motor OCR, integración de Backend, integración de sistemas y pruebas de laboratorio</div>
+          <div class="roadmap-items">
+            <div class="roadmap-item"><div class="roadmap-item-dot active"></div><span>Implementación de OCR Local (OpenALPR / Tesseract) en Mini-PC.</span></div>
+            <div class="roadmap-item"><div class="roadmap-item-dot active"></div><span>Integración de lógica de Backend y creación de APIs para la comunicación Backend-ESP32 para control de barrera.</span></div>
+            <div class="roadmap-item"><div class="roadmap-item-dot active"></div><span>Pruebas de conectividad local y sincronización de base de datos espejada (Modo Offline).</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JUNIO — OBJETIVO -->
+      <div class="roadmap-track">
+        <div class="roadmap-spine">
+          <div class="roadmap-node pending"></div>
+        </div>
+        <div class="roadmap-card pending">
+          <div class="roadmap-card-top">
+            <span class="roadmap-month pending">Junio 2026</span>
+            <span class="roadmap-status pending">Objetivo</span>
+          </div>
+          <div class="roadmap-title">Roles en la App, dashboard de administración y entrega del prototipo V1</div>
+          <div class="roadmap-items">
+            <div class="roadmap-item"><div class="roadmap-item-dot pending"></div><span>Implementación de jerarquía de roles en la App (Residente / Seguridad / Admin).</span></div>
+            <div class="roadmap-item"><div class="roadmap-item-dot pending"></div><span>Dashboard web de administración con historial de logs exportable.</span></div>
+            <div class="roadmap-item"><div class="roadmap-item-dot pending"></div><span>Pruebas de estrés y validación en entorno real (Altos de Podestá)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+</div>
+
+<!-- ══ SLIDE 11 — PRÓXIMOS PASOS ══ -->
+<div class="slide" id="slide-11">
+  <div class="topbar">
+    <div class="topbar-left"><span class="topbar-logo">E01→E03 — Antes de programar</span><div class="topbar-sep"></div><span class="topbar-title">Próximos pasos</span></div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">11 / 12</span>
+  </div>
+  <div class="slide-body">
+    <div class="section-label">Pendientes inmediatos</div>
+    <h2 class="slide-h2">Qué hacemos <span>ahora</span></h2>
+    <div class="step-list" style="margin-bottom:14px">
+      <div class="step-item"><span class="step-num">01</span><div class="step-body"><div class="step-title">Acuerdo de Implementación con la Administración</div><div class="step-desc">Presentar la demo funcional con el objetivo de obtener la conformidad final sobre el plan de trabajo y coordinar los tiempos de instalación del hardware en el acceso principal.</div></div></div>
+      <div class="step-item"><span class="step-num">02</span><div class="step-body"><div class="step-title">Adquisición y Testing de Equipamiento Crítico</div><div class="step-desc">Proceder con la compra de la cámara Dahua, la Mini-PC y el controlador ESP32 según el presupuesto estimado. Se realizarán pruebas de laboratorio previas para asegurar que todo el hardware interactúe correctamente antes de llevarlo a la guardia.</div></div></div>
+      <div class="step-item"><span class="step-num">03</span><div class="step-body"><div class="step-title">Estandarización de Desarrollo y Control de Versiones</div><div class="step-desc">Consolidar el repositorio central en GitHub con acceso para todo el equipo. Esto permitirá un flujo de trabajo organizado por ramas (backend/frontend/hardware) para asegurar la integridad del código en cada avance</div></div></div>
+      <div class="step-item"><span class="step-num">04</span><div class="step-body"><div class="step-title">Gestión de Calidad y Seguimiento de Hitos</div><div class="step-desc">Establecer una rutina de seguimiento semanal para auditar el cumplimiento de cada rol. El objetivo es garantizar que no se avance al siguiente hito técnico sin haber cerrado y validado el anterior, asegurando la robustez del sistema final.</div></div></div>
+    </div>
+    <div class="card accent-border"><div style="font-size:13px;color:var(--text-dim);line-height:1.7"><b style="color:var(--accent)">Por decisión del equipo</b> el sistema completo debe estar validado por la administración del barrio antes de instalar cualquier tipo de hardware. <b style="color:var(--text)"></b></div></div>
+  </div>
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+</div>
+
+<!-- ══ SLIDE 12 — CIERRE ══ -->
+<div class="slide slide-close" id="slide-12">
+  <div class="topbar">
+    <div class="topbar-left"><span class="topbar-logo">ILM · 7mo Informática A · 2026</span><div class="topbar-sep"></div><span class="topbar-title">Primera presentación de proyecto</span></div>
+    <a class="back-btn" href="index.html">← Inicio</a>
+    <span class="slide-counter">12 / 12</span>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+    <div class="cover-bg"><div class="cover-glow"></div></div>
+    <div style="position:relative;z-index:1;text-align:center;padding:0 40px">
+      <div style="font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px">BarrioAcceso · Barrio Altos de Podestá · Caso 2</div>
+      <div style="font-size:clamp(40px,6vw,68px);font-weight:300;letter-spacing:-.03em;font-style:italic;color:var(--primary);margin-bottom:10px">Gracias</div>
+      <div style="font-size:clamp(20px,3vw,32px);font-weight:300;color:var(--text-dim);letter-spacing:-.02em;margin-bottom:14px">Preguntas y consultas</div>
+      <div style="font-size:13px;color:var(--text-dim);margin-bottom:24px">Instituto Leonardo Murialdo · 7mo Informática A · Mayo 2026</div>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn" disabled>Siguiente →</button></div>
+</div>
+
+</div>
+<div class="kbd-hint" id="hint">← → navegar · Esc inicio</div>
+<script>
+const TOTAL=12; let current=1;
+function buildDots(){document.querySelectorAll('.nav-dots').forEach(nav=>{nav.innerHTML='';for(let i=1;i<=TOTAL;i++){const b=document.createElement('button');b.className='nav-dot'+(i===current?' active':'');b.title='Diapositiva '+i;b.onclick=()=>goTo(i);nav.appendChild(b);}});}
+function goTo(n){if(n<1||n>TOTAL)return;const p=document.getElementById('slide-'+current);p.classList.remove('active');p.classList.add('exit');setTimeout(()=>p.classList.remove('exit'),380);current=n;document.getElementById('slide-'+current).classList.add('active');buildDots();}
+function goNext(){if(current<TOTAL)goTo(current+1);}
+function goPrev(){if(current>1)goTo(current-1);}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')goNext();if(e.key==='ArrowLeft'||e.key==='ArrowUp')goPrev();if(e.key==='Escape')goTo(1);});
+setTimeout(()=>document.getElementById('hint').classList.add('hidden'),4000);
+buildDots();
+</script>
+</body>
+</html>

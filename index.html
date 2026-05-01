@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyecto Interdisciplinario · 7mo Informática A · ILM 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ── Violeta / Índigo institucional ── */
+  --bg:         #F0F4F8;
+  --bg-mid:     #E8EDF4;
+  --bg-card:    #FFFFFF;
+  --accent:     #6366F1;
+  --accent-dim: rgba(99,102,241,0.1);
+  --accent-bdr: rgba(99,102,241,0.25);
+  --text:       #0F172A;
+  --text-dim:   rgba(15,23,42,0.6);
+  --text-muted: rgba(15,23,42,0.35);
+  --border:     rgba(15,23,42,0.08);
+  --border-mid: rgba(15,23,42,0.14);
+  --green:      #16A34A;
+  --green-dim:  rgba(22,163,74,0.11);
+  --green-bdr:  rgba(22,163,74,0.35);
+  --blue:       #3B82F6;
+  --blue-dim:   rgba(59,130,246,0.11);
+  --blue-bdr:   rgba(59,130,246,0.35);
+  --shadow:     0 1px 3px rgba(15,23,42,0.10), 0 1px 2px rgba(15,23,42,0.06);
+  --shadow-md:  0 4px 16px rgba(15,23,42,0.13), 0 2px 6px rgba(15,23,42,0.08);
+  --sans: 'DM Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── GLOW ── */
+.glow { display: block; position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+.glow-1 { top: -15%; right: -10%; width: 70vw; height: 70vw; background: radial-gradient(ellipse, rgba(99,102,241,0.06) 0%, transparent 65%); }
+.glow-2 { bottom: -20%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(ellipse, rgba(99,102,241,0.04) 0%, transparent 65%); }
+
+/* ── WRAPPER ── */
+.wrap {
+  position: relative; z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ══ HEADER ══ */
+header {
+  position: relative; z-index: 1;
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0;
+  background: rgba(232,237,244,0.96);
+  backdrop-filter: blur(8px);
+}
+.header-inner {
+  display: flex;
+  /* Cambiamos de space-between a flex-end para agrupar todo a la derecha */
+  justify-content: flex-end; 
+  align-items: center;
+  padding: 20px 15%; /* Ajusta este % para mover el bloque entero más al centro */
+  gap: 60px; /* Esta es la distancia exacta entre el texto gris y el cuadro violeta */
+}
+.header-logo {
+  color: #666; /* El gris que ya tenías */
+  font-weight: 500;
+  text-align: right; /* Alinea el texto a la derecha dentro de su propio bloque */
+  flex-shrink: 0;
+}
+.header-badge {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  padding: 6px 15px;             /* Un poco más de padding para que respire el texto */
+  border: 1px solid var(--accent-bdr);
+  background: var(--accent-dim);
+  border-radius: 20px;
+  font-weight: 500;
+  text-align: center;            /* Centra las materias dentro del cuadro */
+  line-height: 1.5;              /* Mejora la lectura si el texto salta de renglón */
+  max-width: 750px;              /* Evita que el cuadro sea infinito y lo hace más prolijo */
+}
+
+/* ══ HERO ══ */
+.hero {
+  padding: 80px 0 64px;
+}
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 22px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 24px; height: 1px; background: var(--text-muted);
+}
+.hero-h1 {
+  font-size: clamp(34px, 5.5vw, 60px);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.hero-h1 em { font-style: italic; color: var(--accent); }
+.hero-h1 span { display: block; color: var(--text-dim); font-size: 0.65em; font-weight: 400; margin-top: 4px; }
+
+.hero-desc {
+  font-size: 15px; line-height: 1.7;
+  color: var(--text-dim); max-width: 560px;
+  margin: 22px 0 40px;
+}
+
+/* ── EQUIPO ── */
+.equipo-row {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-bottom: 16px;
+}
+.equipo-chip {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px; color: var(--text-dim);
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.equipo-chip:hover { border-color: var(--accent-bdr); box-shadow: var(--shadow-md); }
+.eq-init {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 600; flex-shrink: 0;
+}
+.eq-a { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-bdr); }
+.eq-b { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue-bdr); }
+.eq-c { background: var(--green-dim); color: var(--green); border: 1px solid var(--green-bdr); }
+.eq-d { background: var(--bg-mid); color: var(--text-dim); border: 1px solid var(--border-mid); }
+
+.hero-meta {
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--text-muted); letter-spacing: 0.08em;
+}
+.hero-meta-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--border-mid); }
+
+/* ══ DIVIDER ══ */
+.section-div {
+  border: none; border-top: 1px solid var(--border);
+  margin: 0;
+}
+.section-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--accent-bdr); max-width: 60px; }
+
+/* ══ CASES SECTION ══ */
+.cases-section { padding: 64px 0 100px; }
+.cases-intro { margin-bottom: 44px; }
+.cases-intro h2 {
+  font-size: clamp(22px, 3.5vw, 34px);
+  font-weight: 700; letter-spacing: -0.02em;
+  color: var(--text); line-height: 1.2; margin-bottom: 10px;
+}
+.cases-intro h2 span { color: var(--accent); }
+.cases-intro p {
+  font-size: 15px; color: var(--text-dim); line-height: 1.7; max-width: 520px;
+}
+
+/* ── CARDS GRID ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
+
+/* ── CASE CARD ── */
+.case-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  display: flex; flex-direction: column;
+  gap: 20px;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+  cursor: pointer;
+}
+.case-card:hover {
+  border-color: var(--accent-bdr);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.case-card.c2:hover { border-color: var(--blue-bdr); }
+
+/* card top */
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.card-num {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border: 1px solid var(--border-mid);
+  border-radius: 20px;
+  background: var(--bg-mid);
+}
+.card-avatar {
+  width: 42px; height: 42px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; flex-shrink: 0;
+}
+.av-1 { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-bdr); }
+.av-2 { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue-bdr); }
+
+/* card identity */
+.card-identity { display: flex; flex-direction: column; gap: 4px; }
+.card-name { font-size: 19px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; line-height: 1.2; }
+.card-org { font-size: 13px; color: var(--text-muted); }
+
+/* card tags */
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 500;
+  border: 1px solid;
+}
+.tag-o { background: var(--accent-dim); color: var(--accent); border-color: var(--accent-bdr); }
+.tag-b { background: var(--blue-dim); color: var(--blue); border-color: var(--blue-bdr); }
+.tag-g { background: var(--green-dim); color: var(--green); border-color: var(--green-bdr); }
+.tag-n { background: var(--bg-mid); color: var(--text-dim); border-color: var(--border-mid); }
+
+/* card problem */
+.card-problem {
+  padding: 14px 16px;
+  background: var(--bg-mid);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.card-problem-label {
+  font-family: var(--mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 6px;
+}
+.card-problem-text {
+  font-size: 14px; color: var(--text-dim); line-height: 1.7;
+  font-style: italic;
+}
+.card-problem-text b { color: var(--text); font-style: normal; font-weight: 600; }
+
+/* card data rows */
+.card-data { display: flex; flex-direction: column; gap: 0; }
+.data-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+}
+.data-row:last-child { border-bottom: none; }
+.data-key { color: var(--text-muted); }
+.data-val { color: var(--text-dim); text-align: right; }
+
+/* card cta */
+.card-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+.cta-text {
+  font-size: 13px; font-weight: 600; color: var(--accent);
+  display: flex; align-items: center; gap: 6px;
+}
+.c2 .cta-text { color: var(--blue); }
+.cta-arrow {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--accent-dim); border: 1px solid var(--accent-bdr);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: var(--accent);
+  transition: background 0.2s, transform 0.15s;
+}
+.c2 .cta-arrow { background: var(--blue-dim); border-color: var(--blue-bdr); color: var(--blue); }
+.case-card:hover .cta-arrow { transform: translateX(3px); }
+
+/* ── PRINCIPLE BOX ── */
+.principle {
+  margin-top: 36px;
+  padding: 22px 26px;
+  border: 1px solid var(--accent-bdr);
+  background: var(--accent-dim);
+  border-radius: 10px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.principle-icon {
+  font-size: 16px; flex-shrink: 0; margin-top: 2px;
+  color: var(--accent);
+}
+.principle-text { font-size: 14px; color: var(--text-dim); line-height: 1.7; }
+.principle-text b { color: var(--text); font-weight: 600; }
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+  background: var(--bg-mid);
+}
+.footer-inner {
+  max-width: 900px; margin: 0 auto; padding: 0 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+}
+.footer-left { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+.footer-right { font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 500; }
+
+/* ── FADE IN ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero          { animation: fadeUp 0.6s ease both; }
+.cases-intro   { animation: fadeUp 0.6s 0.15s ease both; }
+.case-card:nth-child(1) { animation: fadeUp 0.5s 0.25s ease both; }
+.case-card:nth-child(2) { animation: fadeUp 0.5s 0.35s ease both; }
+.principle     { animation: fadeUp 0.5s 0.45s ease both; }
+</style>
+</head>
+<body>
+
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+    <span class="header-logo">7mo Informática A · 2026</span>
+    <span class="header-badge">Evaluación de Proyectos - IMRRI - Base de Datos - IMRSC - Modelos y Sistemas - Emprendimientos Productivos - Proy. Diseño e Implementación de Sistemas Computacionales </span>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-eyebrow">Proyecto Tecnológico Interdisciplinario</div>
+
+    <h1 class="hero-h1">
+      Del problema real
+      <em>al proyecto</em>
+      <span>tecnológico.</span>
+    </h1>
+
+    <p class="hero-desc">
+      Dos casos de uso reales en los que se aplicó el mismo método: transformar necesidades complejas en soluciones técnicas de alta precisión. A través de un relevamiento crítico con entrevistas estructuradas y el análisis de causas raíz, garantizamos que el desarrollo no sea solo funcional, sino que responda con exactitud a los objetivos estratégicos del cliente y del mercado.
+    </p>
+
+    <div class="equipo-row">
+      <div class="equipo-chip">
+        <div class="eq-init eq-a">EM</div>
+        Ezequiel Morgado
+      </div>
+      <div class="equipo-chip">
+        <div class="eq-init eq-b">CS</div>
+        Camilo Spinelli
+      </div>
+      <div class="equipo-chip">
+        <div class="eq-init eq-c">SH</div>
+        Sofía Hermosilla
+      </div>
+      <div class="equipo-chip">
+        <div class="eq-init eq-d">VM</div>
+        Violeta Martini
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <span>Instituto Leonardo Murialdo</span>
+      <div class="hero-meta-sep"></div>
+      <span>7° Informática A</span>
+      <div class="hero-meta-sep"></div>
+      <span>2026</span>
+    </div>
+  </section>
+</div>
+
+<hr class="section-div">
+
+<!-- ══ CASOS ══ -->
+<div class="wrap">
+  <section class="cases-section">
+
+    <div class="cases-intro">
+      <div class="section-label">Portafolio de Proyectos</div>
+      <h2>Dos casos de estudio.<br><span>Una metodología.</span></h2>
+      <p>
+        Cada proyecto se originó a partir de una problemática real y específica. Nuestro equipo diagnosticó la situación actual de cada caso, identificó los síntomas y determinó las causas raíz mediante un análisis técnico. A partir de estos cimientos, diseñamos y construimos soluciones integrales desde cero.
+      </p>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- ── CASO 01 — AucaTek ── -->
+      <a class="case-card c1" href="aucatek.html">
+        <div class="card-top">
+          <span class="card-num">CASO 1</span>
+          <div class="card-avatar av-1">AU</div>
+        </div>
+
+        <div class="card-identity">
+          <div class="card-name">AucaTek</div>
+          <div class="card-org">Empresa de tecnología · Av. Corrientes 1386, CABA</div>
+        </div>
+
+        <div class="card-tags">
+          <span class="tag tag-o">Hardware + Firmware</span>
+          <span class="tag tag-n">IoT Industrial</span>
+          <span class="tag tag-n">Dual Mode (Local/Cloud)</span>
+        </div>
+
+        <div class="card-problem">
+          <div class="card-problem-label">Necesidad del cliente</div>
+          <div class="card-problem-text">
+           "Nuestros clientes en centros de datos necesitan gestionar la energía de forma remota y segura, pero las soluciones importadas son costosas y rígidas, lo que le dificulta a las PyMes comprarlas. Necesitamos desarrollar una PDU inteligente de fabricación nacional que sea robusta, priorizando la conexión cableada (Ethernet) para evitar interferencias y que nos permita ofrecer un modelo de valor agregado mediante seguimiento en la nube."<b></b> 
+            
+          </div>
+        </div>
+
+        <div class="card-data">
+          <div class="data-row">
+            <span class="data-key">Solución</span>
+            <span class="data-val">SmartRACK - Gestión inteligente</span>
+          </div>
+          <div class="data-row">
+            <span class="data-key">Tipo de proyecto</span>
+            <span class="data-val">Hardware + Firmware + IoT</span>
+          </div>
+          <div class="data-row">
+            <span class="data-key">Problema raíz</span>
+            <span class="data-val" style="color:var(--accent)">Infraestructura expuesta y falta de control sobre el hardware.</span>  
+          </div>
+        </div>
+
+        <div class="card-cta">
+          <span class="cta-text">Ver caso completo →</span>
+          <div class="cta-arrow">→</div>
+        </div>
+      </a>
+
+      <!-- ── CASO 02 — BarrioAcceso ── -->
+      <a class="case-card c2" href="podesta.html">
+        <div class="card-top">
+          <span class="card-num">Caso 2</span>
+          <div class="card-avatar av-2">AP</div>
+        </div>
+
+        <div class="card-identity">
+          <div class="card-name">Altos de Podestá</div>
+          <div class="card-org">Barrio cerrado · Tres de Febrero, Buenos Aires </div>
+        </div>
+
+        <div class="card-tags">
+          <span class="tag tag-b">Web App · OCR</span>
+          <span class="tag tag-n">Control de acceso</span>
+          <span class="tag tag-n">3 roles · QR</span>
+        </div>
+
+        <div class="card-problem">
+          <div class="card-problem-label">Necesidad del cliente</div>
+          <div class="card-problem-text">
+            "El guardia anota todo <b>a mano en un cuaderno</b>. No sabemos quién
+            entró ni cuándo. Cuando hay cola, el proceso toma hasta 1 minuto
+            por vehículo, este mismo problema en hora pico puede llegar a tardar el doble, mucho más en los días de lluvia."
+          </div>
+        </div>
+
+        <div class="card-data">
+          <div class="data-row">
+            <span class="data-key">Solución</span>
+            <span class="data-val">BarrioAcceso – Gestión de seguridad integrada</span>
+          </div>
+          <div class="data-row">
+            <span class="data-key">Tipo de proyecto</span>
+            <span class="data-val">Software · BD relacional · Hardware</span>
+          </div>
+          <div class="data-row">
+            <span class="data-key">Problema Raíz</span>
+            <span class="data-val" style="color:var(--green)">Latencia operativa y brecha de seguridad generada por el registro manual de ingresos.</span>
+          </div>
+        </div>
+
+        <div class="card-cta">
+          <span class="cta-text">Ver caso completo →</span>
+          <div class="cta-arrow">→</div>
+        </div>
+      </a>
+
+    </div>
+
+
+  </section>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      Evaluación de Proyectos · 7mo Informática A · Instituto Leonardo Murialdo<br>
+      Prof. Pedaci, Lourdes · Proyecto Tecnológico Interdisciplinario 2026
+    </div>
+    <div class="footer-right">2 casos · 1 método</div>
+  </div>
+</footer>
+
+</body>
+</html>
+    
