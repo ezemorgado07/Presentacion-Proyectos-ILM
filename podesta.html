@@ -104,11 +104,17 @@ h2.slide-h2 span { color:var(--primary); }
 .step-num { font-family:var(--mono); font-size:13px; font-weight:700; color:var(--primary); flex-shrink:0; padding-top:1px; min-width:24px; }
 .step-body .step-title { font-size:18px; font-weight:600; color:var(--text); margin-bottom:4px; }
 .step-body .step-desc { font-size:15px; color:var(--text-dim); line-height:1.6; }
+/* ── Team Grid (modelo Aucatek) ── */
 .team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:10px; }
-.team-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; box-shadow:var(--shadow); }
-.team-role { font-size:11px; color:var(--text-muted); font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; }
-.team-name { font-size:17px; font-weight:600; color:var(--text); }
-.team-sub { font-size:14px; color:var(--text-dim); line-height:1.5; }
+.team-grid-centered { display:flex; justify-content:center; gap:15px; margin:0 0 24px 0; }
+.team-card { background:white; border:1px solid #eee; border-radius:12px; padding:15px; box-shadow:0 4px 12px rgba(0,0,0,0.05); flex:1; max-width:240px; text-align:left; transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1); cursor:pointer; position:relative; z-index:1; }
+.team-card:hover { transform:scale(1.1); z-index:100; box-shadow:0 10px 25px rgba(0,0,0,0.15); background:white; }
+.team-card:hover .team-sub { color:#333; font-size:13px; }
+.team-card:hover .team-role { letter-spacing:1px; }
+.card-header { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.team-role { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+.team-name { font-weight:700; font-size:14px; color:#333; }
+.team-sub { font-size:12px; color:#666; line-height:1.4; }
 .check-list { display:flex; flex-direction:column; gap:8px; }
 .check-item { display:flex; gap:9px; align-items:flex-start; font-size:16px; }
 .check-icon { flex-shrink:0; margin-top:1px; }
@@ -221,6 +227,44 @@ h2.slide-h2 span { color:var(--primary); }
 .rol-verde { background:rgba(34,197,94,.09); border:1px solid rgba(34,197,94,.28); border-radius:12px; padding:16px 18px; }
 .rol-rojo { background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.22); border-radius:12px; padding:16px 18px; }
 @media (max-width:700px) { .slide-body{padding:20px 20px 14px;} .topbar,.bottom-nav{padding:10px 20px;} .cover-body{padding:0 20px 36px;} .two-col{grid-template-columns:1fr;} .metric-row{flex-wrap:wrap;} }
+/* ── Partners estilo Aucatek ── */
+.partners-section-label { font-size:11px; letter-spacing:1.5px; font-weight:800; color:#bbb; margin-top:20px; padding-bottom:10px; border-bottom:1px solid #f0f0f0; text-align:left; text-transform:uppercase; }
+.partners-container { display:flex; justify-content:center; gap:12px; margin-top:14px; }
+.partner-card { background:#f9f9f9; border:1px solid #eee; border-radius:10px; padding:22px 15px; flex:1; max-width:190px; display:flex; flex-direction:column; align-items:center; text-align:center; transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1); cursor:pointer; position:relative; z-index:1; }
+.partner-card:hover { transform:scale(1.1); z-index:100; box-shadow:0 10px 25px rgba(0,0,0,0.15); background:white; border-color:#ddd; }
+.partner-card:hover .p-desc { color:#333; font-size:13px; }
+.partner-card:hover .p-modal { letter-spacing:1px; }
+.p-avatar { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; margin-bottom:12px; color:white; }
+.p-avatar.ado { background:#ff6b00; }
+.p-avatar.electro { background:#2563EB; }
+.p-avatar.multi { background:#6f42c1; }
+.p-name { font-weight:700; color:#222; font-size:14px; margin-bottom:4px; }
+.p-modal { font-size:10px; font-weight:800; text-transform:uppercase; margin-bottom:10px; letter-spacing:0.5px; }
+.p-modal.ado { color:#ff6b00; }
+.p-modal.electro { color:#2563EB; }
+.p-modal.multi { color:#6f42c1; }
+.p-desc { font-size:11px; color:#888; line-height:1.3; }
+/* Clases legacy sin usar pero mantenidas para no romper nada */
+.partner-avatar { display:none; }
+.partner-name { display:none; }
+.partner-modal { display:none; }
+.partner-desc { display:none; }
+/* ── Horas Hombre Cards ── */
+.horas-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+.horas-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; box-shadow:var(--shadow); transition:transform .2s cubic-bezier(0.25,0.8,0.25,1), box-shadow .2s ease; cursor:default; position:relative; z-index:1; }
+.horas-card:hover { transform:scale(1.1); box-shadow:0 10px 25px rgba(37,99,235,0.15); z-index:100; }
+.horas-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex-shrink:0; border:1px solid; }
+.horas-body { flex:1; min-width:0; }
+.horas-name { font-size:11px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.horas-role { font-size:10px; color:var(--text-muted); font-family:var(--mono); margin-top:1px; }
+.horas-nums { text-align:right; flex-shrink:0; }
+.horas-total { font-size:12px; font-weight:700; color:var(--primary); font-family:var(--mono); }
+.horas-rate { font-size:10px; color:var(--text-muted); font-family:var(--mono); }
+.horas-bubble { background:var(--accent-soft); border:1px solid var(--accent-border); border-radius:10px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center; margin-top:2px; }
+.horas-bubble-left { display:flex; flex-direction:column; gap:2px; }
+.horas-bubble-label { font-size:10px; font-weight:600; color:var(--accent); font-family:var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.horas-bubble-sub { font-size:10px; color:var(--text-muted); font-family:var(--mono); }
+.horas-bubble-value { font-size:18px; font-weight:700; color:var(--accent); font-family:var(--mono); }
 </style>
 </head>
 <body>
@@ -470,12 +514,89 @@ h2.slide-h2 span { color:var(--primary); }
   <div class="slide-body">
     <div class="section-label">Equipo · 7mo Informática A · ILM 2026</div>
     <h2 class="slide-h2">Roles y <span>responsabilidades</span></h2>
-    <div class="team-grid" style="margin-bottom:16px">
-      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-blue" style="width:28px;height:28px;font-size:10px">EM</div><div><div class="team-role"></div><div class="team-name">Ezequiel Morgado</div></div></div><div class="team-sub"></div></div>
-      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-orange" style="width:28px;height:28px;font-size:10px">CS</div><div><div class="team-role"></div><div class="team-name">Camilo Spinelli</div></div></div><div class="team-sub"></div></div>
-      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-green" style="width:28px;height:28px;font-size:10px">SH</div><div><div class="team-role"></div><div class="team-name">Sofía Hermosilla</div></div></div><div class="team-sub"></div></div>
-      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-gray" style="width:28px;height:28px;font-size:10px">VM</div><div><div class="team-role"></div><div class="team-name">Violeta Martini</div></div></div><div class="team-sub"></div></div>
+
+    <div class="team-grid-centered">
+
+      <div class="team-card">
+        <div class="card-header">
+          <div class="avatar av-blue" style="width:36px;height:36px;font-size:12px">EM</div>
+          <div>
+            <div class="team-name">Ezequiel Morgado</div>
+            <div class="team-role" style="color:#2563EB">Project Manager &amp; Dev Backend</div>
+          </div>
+        </div>
+        <div class="team-sub">Gestión del repositorio GitHub, arquitectura de APIs, integración del motor OCR (Tesseract/OpenALPR) y lógica de servidores.</div>
+      </div>
+
+      <div class="team-card">
+        <div class="card-header">
+          <div class="avatar av-green" style="width:36px;height:36px;font-size:12px">SH</div>
+          <div>
+            <div class="team-name">Sofía Hermosilla</div>
+            <div class="team-role" style="color:#22C55E">Developer Frontend</div>
+          </div>
+        </div>
+        <div class="team-sub">Interfaz HCI para guardia (modo oscuro), panel de administrador y generación de QRs para propietarios.</div>
+      </div>
+
+      <div class="team-card">
+        <div class="card-header">
+          <div class="avatar av-orange" style="width:36px;height:36px;font-size:12px">CS</div>
+          <div>
+            <div class="team-name">Camilo Spinelli</div>
+            <div class="team-role" style="color:#F97316">Especialista Hardware</div>
+          </div>
+        </div>
+        <div class="team-sub">Integración del ESP32 con la cámara Dahua, control de relevos para la barrera y montaje del gabinete IP65.</div>
+      </div>
+
+      <div class="team-card">
+        <div class="card-header">
+          <div class="avatar av-gray" style="width:36px;height:36px;font-size:12px">VM</div>
+          <div>
+            <div class="team-name">Violeta Martini</div>
+            <div class="team-role" style="color:#64748B">Especialista BD</div>
+          </div>
+        </div>
+        <div class="team-sub">Modelado SQL para auditoría de ingresos, gestión de morosos y sincronización local-nube.</div>
+      </div>
+
     </div>
+
+    <div class="partners-section-label">Partners — Otras Modalidades</div>
+    <div class="partners-container">
+      <div class="partner-card">
+        <div class="p-avatar ado">C1</div>
+        <div class="p-name">Completar</div>
+        <div class="p-modal ado">Modalidad ADO</div>
+        <div class="p-desc">Gestión de Costos y Suministros (BOM &amp; Procurement)</div>
+      </div>
+      <div class="partner-card">
+        <div class="p-avatar ado">C2</div>
+        <div class="p-name">Completar</div>
+        <div class="p-modal ado">Modalidad ADO</div>
+        <div class="p-desc">Marco Legal, Comercial y Relación con el Cliente</div>
+      </div>
+      <div class="partner-card">
+        <div class="p-avatar electro">SV</div>
+        <div class="p-name">Santiago Villarosa</div>
+        <div class="p-modal electro">Modalidad Electrónica</div>
+        <div class="p-desc">Especialista en Hardware y Potencia</div>
+      </div>
+      <div class="partner-card">
+        <div class="p-avatar electro">FS</div>
+        <div class="p-name">Federico Sparta</div>
+        <div class="p-modal electro">Modalidad Electrónica</div>
+        <div class="p-desc">Especialista en Adquisición de Datos e Instrumentación</div>
+      </div>
+      <div class="partner-card">
+        <div class="p-avatar multi">IM</div>
+        <div class="p-name">Ignacio Marticorena</div>
+        <div class="p-modal multi">Modalidad Multimedios</div>
+        <div class="p-desc">Identidad Visual y Branding del Producto</div>
+      </div>
+    </div>
+
   </div>
   <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
 </div>
@@ -503,40 +624,37 @@ h2.slide-h2 span { color:var(--primary); }
         <div class="rf-list">
           <div class="rf-item" style="padding:8px 12px">
             <span class="rf-id" style="font-size:9px;min-width:46px">Cámara</span>
-            <div class="rf-body"><div class="rf-title" style="font-size:14px">Dahua IPC-HFW1230S1P (Bullet IP 2MP)</div></div>
+            <div class="rf-body"><div class="rf-title" style="font-size:12px">Dahua IPC-HFW1230S1P (Bullet IP 2MP)</div></div>
             <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$85.000</span>
           </div>
           
           <div class="rf-item" style="padding:8px 12px">
             <span class="rf-id" style="font-size:9px;min-width:46px">Control</span>
-            <div class="rf-body"><div class="rf-title" style="font-size:14px">ESP32 + ENC28J60 (control de barrera)</div></div>
+            <div class="rf-body"><div class="rf-title" style="font-size:12px">ESP32 + ENC28J60 (control de barrera)</div></div>
             <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$22.000</span>
           </div>
           
           <div class="rf-item" style="padding:8px 12px">
             <span class="rf-id" style="font-size:9px;min-width:46px">Server</span>
-            <div class="rf-body"><div class="rf-title" style="font-size:14px">Mini-PC Usada (Servidor Local LPR)</div></div>
+            <div class="rf-body"><div class="rf-title" style="font-size:12px">Mini-PC Usada (Servidor Local LPR)</div></div>
             <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$95.000</span>
           </div>
           
           <div class="rf-item" style="padding:8px 12px">
             <span class="rf-id" style="font-size:9px;min-width:46px">Barrera</span>
-            <div class="rf-body"><div class="rf-title" style="font-size:14px">Relevo eléctrico para barrera existente</div></div>
+            <div class="rf-body"><div class="rf-title" style="font-size:12px">Relevo eléctrico para barrera existente</div></div>
             <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$7.000</span>
           </div>
           
           <div class="rf-item" style="padding:8px 12px">
             <span class="rf-id" style="font-size:9px;min-width:46px">Gabinete</span>
-            <div class="rf-body"><div class="rf-title" style="font-size:14px">Gabinete estanco IP65 para exterior</div></div>
+            <div class="rf-body"><div class="rf-title" style="font-size:12px">Gabinete estanco IP65 para exterior</div></div>
             <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$18.000</span>
           </div>
 
           <!-- CUADRO NARANJA INTEGRADOR -->
-          <div style="margin-top:12px; padding:12px; background:var(--accent-soft); border:1px solid var(--accent-border); border-radius:8px">
-            <div style="display:flex; justify-content:space-between; align-items:center">
-              <span style="font-weight:bold; color:var(--accent-text); font-size:13px">Total BOM estimado</span>
-              <span style="font-weight:bold; color:var(--accent-text); font-family:var(--mono); font-size:15px">$227.000</span>
-            </div>
+          <div style="margin-top:8px;padding:8px 12px;background:var(--accent-soft);border:1px solid var(--accent-border);border-radius:8px">
+            <div class="budget-row budget-total" style="border:none;padding:0"><span class="budget-label">Total BOM estimado</span><span class="budget-value">$227.000</span></div>
           </div>
         </div>
       </div>
@@ -545,19 +663,69 @@ h2.slide-h2 span { color:var(--primary); }
       <div>
         <div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Software stack</div>
         <div class="rf-list" style="margin-bottom:12px">
-          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:14px">Frontend: HTML5 + CSS3 + JS vanilla</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:14px">Backend: PHP + MySQL (XAMPP/Local)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:14px">BD: MySQL (MariaDB)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:14px">OCR: Librería Local (Tesseract / OpenALPR)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:14px">Hosting: Self-Hosted (Cloudflare Tunnel)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:12px">Frontend: HTML5 + CSS3 + JS vanilla</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:12px">Backend: PHP + MySQL (XAMPP/Local)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:12px">BD: MySQL (MariaDB)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:12px">OCR: Librería Local (Tesseract / OpenALPR)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:12px">Hosting: Self-Hosted (Cloudflare Tunnel)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
         </div>
-
-        <div style="font-size:10px;color:var(--white-faint);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Horas hombre estimadas</div>
-        <div class="card" style="padding:10px 12px">
-          <div class="budget-row"><span class="budget-label">Project Manager</span><span class="budget-value">[ completar ]</span></div>
-          <div class="budget-row"><span class="budget-label">Firmware + UI (×2)</span><span class="budget-value">[ completar ]</span></div>
-          <div class="budget-row"><span class="budget-label">Infraestructura / QA</span><span class="budget-value">[ completar ]</span></div>
-          <div class="budget-row budget-total"><span class="budget-label">Total estimado</span><span class="budget-value">[ completar ]</span></div>
+        <div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Horas hombre estimadas</div>
+        <div class="horas-grid">
+          <div class="horas-card">
+            <div class="horas-avatar av-blue" style="width:32px;height:32px;font-size:10px">EM</div>
+            <div class="horas-body">
+              <div class="horas-name">Ezequiel Morgado</div>
+              <div class="horas-role">Project Manager</div>
+            </div>
+            <div class="horas-nums">
+              <div class="horas-total">$22.720</div>
+              <div class="horas-rate">Valor x hora</div>
+            </div>
+          </div>
+          <div class="horas-card">
+            <div class="horas-avatar av-blue" style="width:32px;height:32px;font-size:10px">EM</div>
+            <div class="horas-body">
+              <div class="horas-name">Ezequiel Morgado</div>
+              <div class="horas-role">Backend</div>
+            </div>
+            <div class="horas-nums">
+              <div class="horas-total">$22.010</div>
+              <div class="horas-rate">Valor x hora</div>
+            </div>
+          </div>
+          <div class="horas-card">
+            <div class="horas-avatar av-green" style="width:32px;height:32px;font-size:10px">SH</div>
+            <div class="horas-body">
+              <div class="horas-name">Sofía Hermosilla</div>
+              <div class="horas-role">Frontend</div>
+            </div>
+            <div class="horas-nums">
+              <div class="horas-total">$17.750</div>
+              <div class="horas-rate">Valor x hora</div>
+            </div>
+          </div>
+          <div class="horas-card">
+            <div class="horas-avatar av-orange" style="width:32px;height:32px;font-size:10px">CS</div>
+            <div class="horas-body">
+              <div class="horas-name">Camilo Spinelli</div>
+              <div class="horas-role">Hardware</div>
+            </div>
+            <div class="horas-nums">
+              <div class="horas-total">$24.140</div>
+              <div class="horas-rate">Valor x hora</div>
+            </div>
+          </div>
+          <div class="horas-card">
+            <div class="horas-avatar av-gray" style="width:32px;height:32px;font-size:10px">VM</div>
+            <div class="horas-body">
+              <div class="horas-name">Violeta Martini</div>
+              <div class="horas-role">Base de Datos</div>
+            </div>
+            <div class="horas-nums">
+              <div class="horas-total">$22.720</div>
+              <div class="horas-rate">Valor x hora</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

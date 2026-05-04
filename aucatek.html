@@ -269,6 +269,181 @@ h2.slide-h2 span { color:var(--primary); }
 .roadmap-item-dot.active { background:var(--accent); }
 .roadmap-item-dot.pending { background:var(--border-mid); }
 .roadmap-footnote { font-family:var(--mono); font-size:10px; color:var(--text-muted); letter-spacing:.04em; border-top:1px solid var(--border); padding-top:10px; margin-top:2px; }
+/* ── Partners ── */
+.partners-section-label { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; padding-top:2px; border-top:1px solid var(--border); padding-top:10px; }
+.partners-container { display:flex; flex-direction:row; gap:10px; }
+.partner-card { flex:1; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:12px 14px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:5px; box-shadow:var(--shadow); min-width:0; }
+.partner-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; flex-shrink:0; border:1px solid; margin-bottom:2px; }
+.partner-avatar.ado { background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border); }
+.partner-avatar.electro { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
+.partner-avatar.multi { background:rgba(22,163,74,.10); color:var(--green); border-color:rgba(22,163,74,.30); }
+.partner-name { font-size:12px; font-weight:600; color:var(--text); line-height:1.3; }
+.partner-modal { font-size:11px; font-weight:500; }
+.partner-modal.ado { color:var(--accent); }
+.partner-modal.electro { color:var(--primary); }
+.partner-modal.multi { color:var(--green); }
+.partner-desc { font-size:11px; color:var(--text-muted); line-height:1.4; }
+/* Centrado del equipo principal (Slide 8) */
+.team-grid-centered {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0 40px 0;
+}
+
+.team-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  flex: 1;
+  max-width: 240px; /* Evita que se estiren de más */
+  text-align: left;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.team-role {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent); /* O el color azul que uses */
+  text-transform: uppercase;
+}
+
+.team-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #333;
+}
+
+.team-sub {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Estilo de Partners (Verticales y Simétricos) */
+.partners-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.partner-card {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 25px 15px; /* Más aire arriba y abajo */
+  flex: 1;
+  max-width: 180px; /* Controla el ancho para que entren los 5 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.partner-card:hover {
+  transform: translateY(-5px);
+  border-color: #ddd;
+}
+
+.p-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+/* Colores de modalidades */
+.p-avatar.ado { background: #ff6b00; }
+.p-avatar.electro { background: #007bff; }
+.p-avatar.multi { background: #6f42c1; }
+
+.p-name { font-weight: 700; color: #222; font-size: 14px; margin-bottom: 4px; }
+
+.p-modal {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+.p-modal.ado { color: #ff6b00; }
+.p-modal.electro { color: #007bff; }
+.p-modal.multi { color: #6f42c1; }
+
+.p-desc {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.3;
+}
+
+.partners-section-label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+  color: #bbb;
+  margin-top: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: left;
+}
+/* EFECTO DE EXPANSIÓN PARA TODAS LAS TARJETAS */
+.team-card, .partner-card {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Movimiento suave */
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+/* Cuando pasas el mouse por arriba */
+.team-card:hover, .partner-card:hover {
+  transform: scale(1.1); /* Agranda la tarjeta un 10% */
+  z-index: 100; /* La trae al frente de todo */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Sombra más profunda para dar relieve */
+  background: white; /* Asegura que el fondo sea sólido al expandirse */
+}
+
+/* Ajuste específico para que el texto se vea mejor al expandirse */
+.team-card:hover .team-sub, 
+.partner-card:hover .p-desc {
+  color: #333; /* Oscurece un poco el texto para que sea más legible */
+  font-size: 13px; /* Aumenta un punto el tamaño de la descripción */
+}
+
+.team-card:hover .team-role,
+.partner-card:hover .p-modal {
+  letter-spacing: 1px; /* Espacia un poco más las letras del rol */
+}
+/* ── Horas Hombre Cards ── */
+.horas-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+.horas-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; box-shadow:var(--shadow); transition:transform .2s cubic-bezier(0.25,0.8,0.25,1), box-shadow .2s ease; cursor:default; position:relative; z-index:1; }
+.horas-card:hover { transform:scale(1.1); box-shadow:0 10px 25px rgba(0,0,0,0.15); z-index:100; }
+.horas-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex-shrink:0; border:1px solid; }
+.horas-body { flex:1; min-width:0; }
+.horas-name { font-size:11px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.horas-role { font-size:10px; color:var(--text-muted); font-family:var(--mono); margin-top:1px; }
+.horas-nums { text-align:right; flex-shrink:0; }
+.horas-total { font-size:12px; font-weight:700; color:var(--primary); font-family:var(--mono); }
+.horas-rate { font-size:10px; color:var(--text-muted); font-family:var(--mono); }
+.horas-bubble { background:var(--accent-soft); border:1px solid var(--accent-border); border-radius:10px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center; margin-top:2px; }
+.horas-bubble-left { display:flex; flex-direction:column; gap:2px; }
+.horas-bubble-label { font-size:10px; font-weight:600; color:var(--accent); font-family:var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.horas-bubble-sub { font-size:10px; color:var(--text-muted); font-family:var(--mono); }
+.horas-bubble-value { font-size:18px; font-weight:700; color:var(--accent); font-family:var(--mono); }
 </style>
 </head>
 <body>
@@ -573,16 +748,92 @@ h2.slide-h2 span { color:var(--primary); }
     <span class="slide-counter">08 / 12</span>
   </div>
   <div class="slide-body">
-    <div class="section-label">Equipo · 7mo Informática A · ILM 2026</div>
-    <h2 class="slide-h2">Roles y <span>responsabilidades</span></h2>
-    <div class="team-grid" style="margin-bottom:16px">
-      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-orange" style="width:28px;height:28px;font-size:10px">EM</div><div><div class="team-role"></div><div class="team-name">Ezequiel Morgado</div></div></div><div class="team-sub">DEFINIR</div></div>
-      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-blue" style="width:28px;height:28px;font-size:10px">CS</div><div><div class="team-role"></div><div class="team-name">Camilo Spinelli</div></div></div><div class="team-sub">DEFINIR</div></div>
-      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-green" style="width:28px;height:28px;font-size:10px">SH</div><div><div class="team-role"></div><div class="team-name">Sofía Hermosilla</div></div></div><div class="team-sub">DEFINIR</div></div>
-      <div class="team-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="avatar av-gray" style="width:28px;height:28px;font-size:10px">VM</div><div><div class="team-role"></div><div class="team-name">Violeta Martini</div></div></div><div class="team-sub">DEFINIR</div></div>
+  <div class="section-label">Equipo · 7mo Informática A · ILM 2026</div>
+  <h2 class="slide-h2">Roles y <span>responsabilidades</span></h2>
+  
+  <!-- EQUIPO PRINCIPAL CENTRADO -->
+  <div class="team-grid-centered">
+    <div class="team-card">
+      <div class="card-header">
+        <div class="avatar av-orange">EM</div>
+        <div>
+          <div class="team-name">Ezequiel Morgado</div>
+          <div class="team-role">Project Manager & Dev Backend</div>
+        </div>
+      </div>
+      <div class="team-sub">Planificación del GANTT, Desarrollo de la API y lógica del ESP32, Implementación de protocolos de seguridad y conectividad de red</div>
     </div>
+    <div class="team-card">
+      <div class="card-header">
+        <div class="avatar av-blue">CS</div>
+        <div>
+          <div class="team-name">Violeta Martini</div>
+          <div class="team-role">Especialista BD</div>
+        </div>
+      </div>
+      <div class="team-sub">Estructurar el modelo de datos para el almacenamiento histórico, Optimizar consultas SQL para el análisis de consumo eficiente</div>
+    </div>
+    <div class="team-card">
+      <div class="card-header">
+        <div class="avatar av-green">SH</div>
+        <div>
+          <div class="team-name">Sofía Hermosilla</div>
+          <div class="team-role">Developer Frontend</div>
+        </div>
+      </div>
+      <div class="team-sub">Diseño del prototipo de alta fidelidad y la UX en Figma, Programar el dashboard interactivo para el monitoreo en tiempo real</div>
+    </div>
+    <div class="team-card">
+      <div class="card-header">
+        <div class="avatar av-gray">CS</div>
+        <div>
+          <div class="team-name">Camilo Spinelli</div>
+          <div class="team-role">Especialista Hardware</div>
+        </div>
+      </div>
+      <div class="team-sub">Diseño del esquema eléctrico y de la PCB, Integración de sensores y módulos de potencia, Garantizar la integridad física y eléctrica</div>
     </div>
   </div>
+
+  <div class="partners-section-label">PARTNERS — OTRAS MODALIDADES</div>
+  
+  <!-- CONTENEDOR DE PARTNERS ESTILO PEDACI -->
+  <div class="partners-container">
+    <!-- ADO -->
+    <div class="partner-card">
+      <div class="p-avatar ado">C1</div>
+      <div class="p-name">Completar</div>
+      <div class="p-modal ado">Modalidad ADO</div>
+      <div class="p-desc">Gestión de Costos y Suministros (BOM & Procurement)</div>
+    </div>
+    <div class="partner-card">
+      <div class="p-avatar ado">C2</div>
+      <div class="p-name">Completar</div>
+      <div class="p-modal ado">Modalidad ADO</div>
+      <div class="p-desc">Marco Legal, Comercial y Relación con el Cliente</div>
+    </div>
+    <!-- ELECTRO -->
+    <div class="partner-card">
+      <div class="p-avatar electro">SV</div>
+      <div class="p-name">Santiago Villarosa</div>
+      <div class="p-modal electro">Modalidad Electrónica</div>
+      <div class="p-desc">Especialista en Hardware y Potencia</div>
+    </div>
+    <div class="partner-card">
+      <div class="p-avatar electro">FS</div>
+      <div class="p-name">Federico Sparta</div>
+      <div class="p-modal electro">Modalidad Electrónica</div>
+      <div class="p-desc">Especialista en Adquisición de Datos e Instrumentación</div>
+    </div>
+    <!-- MULTI -->
+    <div class="partner-card">
+      <div class="p-avatar multi">IM</div>
+      <div class="p-name">Ignacio Marticorena</div>
+      <div class="p-modal multi">Modalidad Multimedios</div>
+      <div class="p-desc">Identidad Visual y Branding del Producto</div>
+    </div>
+  </div>
+</div>
   <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
 </div>
 
@@ -600,15 +851,15 @@ h2.slide-h2 span { color:var(--primary); }
       <div>
         <div style="font-size:10px;color:var(--white-faint);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Hardware (BOM)</div>
         <div class="rf-list">
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Control</span><div class="rf-body"><div class="rf-title" style="font-size:12px">ESP32 DevKit + ENC28J60 (SPI)</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">[ $? ]</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Medición</span><div class="rf-body"><div class="rf-title" style="font-size:12px">PZEM-004T (V / I / P / Hz).</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">[ $? ]</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Potencia</span><div class="rf-body"><div class="rf-title" style="font-size:12px">5× Relés 10A + Driver ULN2003.</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">[ $? ]</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Protección</span><div class="rf-body"><div class="rf-title" style="font-size:12px">MCB + Filtro EMI + MOV + NTC</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">[ $? ]</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Fuente</span><div class="rf-body"><div class="rf-title" style="font-size:12px">PSU 5V + 3.3V · 5× Fichas IEC C13 + caja</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">[ $? ]</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Infraestructura</span><div class="rf-body"><div class="rf-title" style="font-size:12px">PCB a medida (FR4 2oz), Gabinete, 5× Fichas IEC C13 y cableado interno.</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">[ $? ]</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Control</span><div class="rf-body"><div class="rf-title" style="font-size:12px">ESP32 DevKit + ENC28J60 (SPI)</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$20.000</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Medición</span><div class="rf-body"><div class="rf-title" style="font-size:12px">PZEM-004T (V / I / P / Hz).</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$50.000</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Potencia</span><div class="rf-body"><div class="rf-title" style="font-size:12px">5× Relés 10A + Driver ULN2003.</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$75.000</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Protección</span><div class="rf-body"><div class="rf-title" style="font-size:12px">MCB + Filtro EMI + MOV + NTC</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$80.000</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Fuente</span><div class="rf-body"><div class="rf-title" style="font-size:12px">PSU 5V + 3.3V · 5× Fichas IEC C13 + caja</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$45.000</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Infraestructura</span><div class="rf-body"><div class="rf-title" style="font-size:12px">PCB a medida (FR4 2oz), Gabinete, 5× Fichas IEC C13 y cableado interno.</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$100.000</span></div>
         </div>
         <div style="margin-top:8px;padding:8px 12px;background:var(--accent-soft);border:1px solid var(--accent-border);border-radius:8px">
-          <div class="budget-row budget-total" style="border:none;padding:0"><span class="budget-label">Total BOM estimado</span><span class="budget-value">[ completar ]</span></div>
+          <div class="budget-row budget-total" style="border:none;padding:0"><span class="budget-label">Total BOM estimado</span><span class="budget-value">$370.000</span></div>
         </div>
       </div>
       <div>
@@ -621,11 +872,62 @@ h2.slide-h2 span { color:var(--primary); }
           <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Testing</span><div class="rf-body"><div class="rf-title" style="font-size:12px">Postman (para probar las peticiones de las APIs).</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
         </div>
         <div style="font-size:10px;color:var(--white-faint);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Horas hombre estimadas</div>
-        <div class="card" style="padding:10px 12px">
-          <div class="budget-row"><span class="budget-label">Project Manager</span><span class="budget-value">[ completar ]</span></div>
-          <div class="budget-row"><span class="budget-label">Firmware + UI (×2)</span><span class="budget-value">[ completar ]</span></div>
-          <div class="budget-row"><span class="budget-label">Infraestructura / QA</span><span class="budget-value">[ completar ]</span></div>
-          <div class="budget-row budget-total"><span class="budget-label">Total estimado</span><span class="budget-value">[ completar ]</span></div>
+        <div class="horas-grid">
+          <div class="horas-card">
+            <div class="horas-avatar av-orange" style="width:32px;height:32px;font-size:10px">EM</div>
+            <div class="horas-body">
+              <div class="horas-name">Ezequiel Morgado</div>
+              <div class="horas-role">Project Manager</div>
+            </div>
+            <div class="horas-nums">
+              <div class="horas-total">$22.720</div>
+              <div class="horas-rate">Valor x hora</div>
+            </div>
+          </div>
+          <div class="horas-card">
+            <div class="horas-avatar av-orange" style="width:32px;height:32px;font-size:10px">EM</div>
+            <div class="horas-body">
+              <div class="horas-name">Ezequiel Morgado</div>
+              <div class="horas-role">Backend</div>
+            </div>
+            <div class="horas-nums">
+              <div class="horas-total">$22.010</div>
+              <div class="horas-rate">Valor x hora</div>
+            </div>
+          </div>
+          <div class="horas-card">
+            <div class="horas-avatar av-green" style="width:32px;height:32px;font-size:10px">SH</div>
+            <div class="horas-body">
+              <div class="horas-name">Sofía Hermosilla</div>
+              <div class="horas-role">Frontend</div>
+            </div>
+            <div class="horas-nums">
+              <div class="horas-total">$17.750</div>
+              <div class="horas-rate">Valor x hora</div>
+            </div>
+          </div>
+          <div class="horas-card">
+            <div class="horas-avatar av-blue" style="width:32px;height:32px;font-size:10px">CS</div>
+            <div class="horas-body">
+              <div class="horas-name">Camilo Spinelli</div>
+              <div class="horas-role">Hardware</div>
+            </div>
+            <div class="horas-nums">
+              <div class="horas-total">$24.140</div>
+              <div class="horas-rate">Valor x hora</div>
+            </div>
+          </div>
+          <div class="horas-card">
+            <div class="horas-avatar av-gray" style="width:32px;height:32px;font-size:10px">VM</div>
+            <div class="horas-body">
+              <div class="horas-name">Violeta Martini</div>
+              <div class="horas-role">Base de Datos</div>
+            </div>
+            <div class="horas-nums">
+              <div class="horas-total">$22.720</div>
+              <div class="horas-rate">Valor x hora</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
