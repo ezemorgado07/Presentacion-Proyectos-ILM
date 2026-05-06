@@ -217,7 +217,8 @@ header {
 .case-card.c2:hover { border-color: var(--blue-bdr); }
 
 /* card top */
-.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-direction: column;align-items: center;justify-content: center;text-align: center;padding: 20px 0;padding-top: 10px;    /* Reduce este valor a gusto (antes quizás tenías 20px o 40px) */
+  padding-bottom: 0px; }
 .card-num {
   font-family: var(--mono); font-size: 10px; font-weight: 500;
   letter-spacing: 0.12em; text-transform: uppercase;
@@ -285,7 +286,7 @@ header {
 /* card cta */
 .card-cta {
   display: flex; align-items: center; justify-content: space-between;
-  padding-top: 16px;
+  padding-top: 10px;
   border-top: 1px solid var(--border);
   margin-top: auto;
 }
@@ -421,10 +422,9 @@ footer {
     <div class="cards-grid">
 
       <!-- ── CASO 01 — AucaTek ── -->
-      <a class="case-card c1" href="aucatek.html">
+      <a class="case-card c2" href="aucatek.html">
         <div class="card-top">
-          <span class="card-num">CASO 1</span>
-          <div class="card-avatar av-1">AU</div>
+          <img src="logo.png" style="width: 200px; height: 180px; object-fit: contain;">
         </div>
 
         <div class="card-identity">
@@ -470,8 +470,7 @@ footer {
       <!-- ── CASO 02 — BarrioAcceso ── -->
       <a class="case-card c2" href="podesta.html">
         <div class="card-top">
-          <span class="card-num">Caso 2</span>
-          <div class="card-avatar av-2">AP</div>
+          <img src="podesta.png" style="width: 200px; height: 180px; object-fit: contain;">
         </div>
 
         <div class="card-identity">

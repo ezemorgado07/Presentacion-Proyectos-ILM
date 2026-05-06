@@ -37,32 +37,32 @@ html, body { width:100%; height:100%; background:var(--bg); color:var(--text); f
 .slide.exit { opacity:0; transform:translateX(-40px); }
 .topbar { display:flex; align-items:center; justify-content:space-between; padding:12px 40px; border-bottom:1px solid var(--border); flex-shrink:0; gap:12px; background:var(--bg-card); box-shadow:0 1px 3px rgba(0,84,166,0.06); }
 .topbar-left { display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
-.topbar-logo { font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; }
+.topbar-logo { font-size:13px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; }
 .topbar-sep { width:1px; height:14px; background:var(--border-mid); flex-shrink:0; }
-.topbar-title { font-size:13px; color:var(--text-dim); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.slide-counter { font-family:var(--mono); font-size:11px; color:var(--text-muted); white-space:nowrap; }
-.back-btn { display:flex; align-items:center; gap:5px; padding:5px 12px; background:var(--primary); border:1px solid var(--primary); border-radius:6px; color:#FFFFFF; font-family:var(--sans); font-size:12px; cursor:pointer; text-decoration:none; white-space:nowrap; transition:all .15s; flex-shrink:0; font-weight:500; }
+.topbar-title { font-size:15px; color:var(--text-dim); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.slide-counter { font-family:var(--mono); font-size:13px; color:var(--text-muted); white-space:nowrap; }
+.back-btn { display:flex; align-items:center; gap:5px; padding:5px 12px; background:var(--primary); border:1px solid var(--primary); border-radius:6px; color:#FFFFFF; font-family:var(--sans); font-size:13px; cursor:pointer; text-decoration:none; white-space:nowrap; transition:all .15s; flex-shrink:0; font-weight:500; }
 .back-btn:hover { background:rgba(0,84,166,0.85); border-color:var(--primary); color:#FFFFFF; }
 .slide-body { flex:1; display:flex; flex-direction:column; padding:28px 48px 20px; overflow-y:auto; }
 .slide-body::-webkit-scrollbar { width:4px; } .slide-body::-webkit-scrollbar-track { background:transparent; } .slide-body::-webkit-scrollbar-thumb { background:var(--border-mid); border-radius:2px; }
-.section-label { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:8px; }
-h2.slide-h2 { font-family:var(--title); font-size:clamp(24px,3vw,38px); font-weight:700; line-height:1.2; color:var(--text); letter-spacing:-.015em; margin-bottom:20px; }
+.section-label { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:8px; }
+h2.slide-h2 { font-family:var(--title); font-size:clamp(26px,3.2vw,42px); font-weight:700; line-height:1.2; color:var(--text); letter-spacing:-.015em; margin-bottom:20px; }
 h2.slide-h2 span { color:var(--primary); }
 .divider { height:1px; background:var(--border); margin:16px 0; }
 .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .card { background:var(--bg-mid); border:1px solid var(--border); border-radius:12px; padding:20px 22px; box-shadow:var(--shadow); }
 .card.accent-border { border-color:var(--accent-border); background:var(--accent-soft); box-shadow:none; }
-.card-label { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; }
-.card-value { font-size:18px; color:var(--text); line-height:1.6; }
+.card-label { font-family:var(--mono); font-size:13px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; }
+.card-value { font-size:19px; color:var(--text); line-height:1.6; }
 .avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; flex-shrink:0; border:1px solid var(--border-mid); }
 .av-orange { background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border); }
 .av-blue { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
 .av-green { background:rgba(22,163,74,.10); color:var(--green); border-color:rgba(22,163,74,.30); }
 .av-gray { background:var(--bg-mid); color:var(--text-dim); border-color:var(--border-mid); }
 .person-row { display:flex; align-items:center; gap:10px; }
-.person-info .name { font-size:17px; font-weight:600; color:var(--text); }
-.person-info .role { font-size:14px; color:var(--text-dim); margin-top:2px; }
-.tag { display:inline-flex; align-items:center; padding:2px 9px; border-radius:20px; font-size:11px; font-weight:500; border:1px solid; }
+.person-info .name { font-size:19px; font-weight:600; color:var(--text); }
+.person-info .role { font-size:15px; color:var(--text-dim); margin-top:2px; }
+.tag { display:inline-flex; align-items:center; padding:2px 9px; border-radius:20px; font-size:12px; font-weight:500; border:1px solid; }
 .tag-orange { background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border); }
 .tag-green { background:rgba(22,163,74,.09); color:var(--green); border-color:rgba(22,163,74,.28); }
 .tag-red { background:rgba(220,38,38,.09); color:var(--red); border-color:rgba(220,38,38,.28); }
@@ -70,58 +70,58 @@ h2.slide-h2 span { color:var(--primary); }
 .tag-gray { background:var(--bg-mid); color:var(--text-dim); border-color:var(--border-mid); }
 .rf-list { display:flex; flex-direction:column; gap:8px; }
 .rf-item { display:flex; align-items:flex-start; gap:12px; padding:12px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); }
-.rf-id { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--primary); letter-spacing:.08em; flex-shrink:0; padding-top:2px; min-width:38px; }
+.rf-id { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--primary); letter-spacing:.08em; flex-shrink:0; padding-top:2px; min-width:38px; }
 .rf-body { flex:1; }
-.rf-title { font-size:18px; font-weight:600; color:var(--text); line-height:1.4; }
-.rf-desc { font-size:16px; color:var(--text-dim); margin-top:4px; line-height:1.6; }
+.rf-title { font-size:17px; font-weight:600; color:var(--text); line-height:1.4; }
+.rf-desc { font-size:15px; color:var(--text-dim); margin-top:4px; line-height:1.6; }
 .rf-priority { flex-shrink:0; }
-.data-table { width:100%; border-collapse:collapse; font-size:16px; }
-.data-table th { text-align:left; padding:11px 14px; font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); border-bottom:2px solid var(--border-mid); background:var(--bg-mid); }
+.data-table { width:100%; border-collapse:collapse; font-size:15px; }
+.data-table th { text-align:left; padding:11px 14px; font-family:var(--mono); font-size:13px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); border-bottom:2px solid var(--border-mid); background:var(--bg-mid); }
 .data-table td { padding:13px 14px; color:var(--text-dim); border-bottom:1px solid var(--border); vertical-align:top; line-height:1.6; }
 .data-table td:first-child { color:var(--text); font-weight:500; }
 .data-table tr:last-child td { border-bottom:none; }
 .data-table tr:hover td { background:var(--bg-mid); }
 .metric-row { display:flex; gap:12px; flex-wrap:wrap; }
 .metric-card { flex:1; min-width:110px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow); }
-.metric-label { font-size:15px; color:var(--text-muted); margin-bottom:8px; line-height:1.4; }
-.metric-value { font-size:28px; font-weight:700; color:var(--text); line-height:1; }
-.metric-arrow { font-size:15px; color:var(--green); margin-top:6px; font-weight:500; }
+.metric-label { font-size:16px; color:var(--text-muted); margin-bottom:8px; line-height:1.4; }
+.metric-value { font-size:30px; font-weight:700; color:var(--text); line-height:1; }
+.metric-arrow { font-size:16px; color:var(--green); margin-top:6px; font-weight:500; }
 .okr-block { margin-bottom:14px; }
-.okr-obj { font-size:16px; font-weight:600; color:var(--primary); margin-bottom:8px; display:flex; align-items:center; gap:7px; }
-.okr-num { font-family:var(--mono); font-size:11px; background:var(--primary-soft); color:var(--primary); border:1px solid var(--primary-border); border-radius:4px; padding:1px 6px; }
+.okr-obj { font-size:17px; font-weight:600; color:var(--primary); margin-bottom:8px; display:flex; align-items:center; gap:7px; }
+.okr-num { font-family:var(--mono); font-size:12px; background:var(--primary-soft); color:var(--primary); border:1px solid var(--primary-border); border-radius:4px; padding:1px 6px; }
 .kr-list { display:flex; flex-direction:column; gap:6px; padding-left:16px; }
 .kr-item { font-size:15px; color:var(--text-dim); line-height:1.6; padding-left:10px; border-left:2px solid var(--border-mid); }
 .kr-item b { color:var(--text); font-weight:600; }
-.gantt { width:100%; border-collapse:collapse; font-size:13px; }
-.gantt th { padding:7px 8px; font-family:var(--mono); font-size:10px; color:var(--text-muted); font-weight:500; letter-spacing:.08em; border-bottom:2px solid var(--border-mid); text-align:center; background:var(--bg-mid); }
+.gantt { width:100%; border-collapse:collapse; font-size:14px; }
+.gantt th { padding:7px 8px; font-family:var(--mono); font-size:11px; color:var(--text-muted); font-weight:500; letter-spacing:.08em; border-bottom:2px solid var(--border-mid); text-align:center; background:var(--bg-mid); }
 .gantt th:first-child { text-align:left; }
 .gantt td { padding:7px 8px; border-bottom:1px solid var(--border); }
 .gantt td:first-child { color:var(--text); font-weight:500; }
-.gantt-bar { height:20px; border-radius:4px; background:var(--primary); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:600; color:white; letter-spacing:.05em; }
+.gantt-bar { height:20px; border-radius:4px; background:var(--primary); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:white; letter-spacing:.05em; }
 .gantt-bar.blue { background:var(--primary); color:white; }
 .gantt-bar.green { background:var(--green); color:white; }
 .gantt-bar.gray { background:#CBD5E1; color:#475569; }
 .step-list { display:flex; flex-direction:column; gap:10px; }
 .step-item { display:flex; align-items:flex-start; gap:14px; padding:14px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); }
-.step-num { font-family:var(--mono); font-size:13px; font-weight:700; color:var(--primary); flex-shrink:0; padding-top:1px; min-width:24px; }
-.step-body .step-title { font-size:18px; font-weight:600; color:var(--text); margin-bottom:4px; }
+.step-num { font-family:var(--mono); font-size:14px; font-weight:700; color:var(--primary); flex-shrink:0; padding-top:1px; min-width:24px; }
+.step-body .step-title { font-size:17px; font-weight:600; color:var(--text); margin-bottom:4px; }
 .step-body .step-desc { font-size:15px; color:var(--text-dim); line-height:1.6; }
 .team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:10px; }
-.team-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; box-shadow:var(--shadow); }
-.team-role { font-size:11px; color:var(--text-muted); font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; }
-.team-name { font-size:17px; font-weight:600; color:var(--text); }
-.team-sub { font-size:14px; color:var(--text-dim); line-height:1.5; }
+.team-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; box-shadow:var(--shadow); flex:1; max-width:240px; }
+.team-role { font-size:13px; font-weight:700; color:var(--text-muted); font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; }
+.team-name { font-size:16px; font-weight:700; color:var(--text); }
+.team-sub { font-size:14px; color:var(--text-dim); line-height:1.4; }
 .check-list { display:flex; flex-direction:column; gap:8px; }
 .check-item { display:flex; gap:9px; align-items:flex-start; font-size:16px; }
 .check-icon { flex-shrink:0; margin-top:1px; }
-.check-text { color:var(--text-dim); line-height:1.6; }
+.check-text { color:var(--text-dim); line-height:1.6; font-size:15px; }
 .check-text b { color:var(--text); font-weight:600; }
 .budget-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border); font-size:16px; }
 .budget-row:last-child { border-bottom:none; }
 .budget-label { color:var(--text-dim); }
 .budget-value { color:var(--text); font-weight:500; font-family:var(--mono); }
 .budget-total .budget-label { color:var(--text); font-weight:600; }
-.budget-total .budget-value { color:var(--primary); font-size:15px; }
+.budget-total .budget-value { color:var(--primary); font-size:16px; }
 .slide-cover { justify-content:flex-end; }
 .cover-bg { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
 .cover-glow { position:absolute; top:-20%; right:-10%; width:60vw; height:60vh; background:radial-gradient(ellipse,rgba(0,84,166,0.06) 0%,transparent 70%); }
@@ -131,14 +131,14 @@ h2.slide-h2 span { color:var(--primary); }
 .cover-h1 { font-family:var(--title); font-size:clamp(32px,5vw,58px); font-weight:700; line-height:1.1; letter-spacing:-.025em; color:var(--text); margin-bottom:8px; }
 .cover-h1 em { font-style:italic; color:var(--primary); }
 .cover-h1 span { display:block; font-size:clamp(16px,2.2vw,24px); color:var(--text-dim); font-weight:400; }
-.cover-sub { font-size:15px; color:var(--text-dim); max-width:500px; line-height:1.7; margin-bottom:28px; }
+.cover-sub { font-size:16px; color:var(--text-dim); max-width:500px; line-height:1.7; margin-bottom:28px; }
 .cover-team { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:28px; }
-.cover-member { display:flex; align-items:center; gap:7px; padding:6px 12px; background:var(--bg-card); border:1px solid var(--border-mid); border-radius:6px; font-size:13px; color:var(--text-dim); box-shadow:var(--shadow); }
+.cover-member { display:flex; align-items:center; gap:7px; padding:6px 12px; background:var(--bg-card); border:1px solid var(--border-mid); border-radius:6px; font-size:14px; color:var(--text-dim); box-shadow:var(--shadow); }
 .cover-footer { display:flex; align-items:center; justify-content:space-between; padding-top:20px; border-top:1px solid var(--border); }
-.cover-footer-left { font-size:13px; color:var(--text-muted); }
-.cover-footer-right { font-size:12px; color:var(--primary); font-family:var(--mono); font-weight:500; }
+.cover-footer-left { font-size:14px; color:var(--text-muted); }
+.cover-footer-right { font-size:13px; color:var(--primary); font-family:var(--mono); font-weight:500; }
 .bottom-nav { display:flex; align-items:center; justify-content:space-between; padding:12px 40px; border-top:1px solid var(--border); flex-shrink:0; background:var(--bg-card); }
-.nav-btn { display:flex; align-items:center; gap:6px; padding:9px 20px; background:var(--bg-mid); border:1px solid var(--border-mid); border-radius:6px; color:var(--text-dim); font-family:var(--sans); font-size:15px; cursor:pointer; transition:all .15s ease; font-weight:500; }
+.nav-btn { display:flex; align-items:center; gap:6px; padding:9px 20px; background:var(--bg-mid); border:1px solid var(--border-mid); border-radius:6px; color:var(--text-dim); font-family:var(--sans); font-size:16px; cursor:pointer; transition:all .15s ease; font-weight:500; }
 .nav-btn:hover:not(:disabled) { background:var(--bg-card); color:var(--text); box-shadow:var(--shadow); }
 .nav-btn:disabled { opacity:.3; cursor:default; }
 .nav-btn.primary { background:var(--primary); border-color:var(--primary); color:#FFFFFF; font-weight:600; }
@@ -147,7 +147,7 @@ h2.slide-h2 span { color:var(--primary); }
 .nav-dot { width:6px; height:6px; border-radius:50%; background:var(--border-mid); cursor:pointer; transition:all .2s ease; border:none; }
 .nav-dot.active { background:var(--primary); width:16px; border-radius:3px; }
 .nav-dot:hover:not(.active) { background:var(--text-muted); }
-.kbd-hint { position:fixed; bottom:60px; right:16px; font-size:10px; color:var(--text-muted); font-family:var(--mono); pointer-events:none; opacity:1; transition:opacity 2s; }
+.kbd-hint { position:fixed; bottom:60px; right:16px; font-size:12px; color:var(--text-muted); font-family:var(--mono); pointer-events:none; opacity:1; transition:opacity 2s; }
 .kbd-hint.hidden { opacity:0; }
 .slide-close { align-items:center; justify-content:center; text-align:center; }
 /* ── Role Cards ── */
@@ -162,18 +162,18 @@ h2.slide-h2 span { color:var(--primary); }
 .role-svg-wrap.admin { background:var(--primary-soft); border:1px solid var(--primary-border); }
 .role-svg-wrap.operator { background:rgba(46,125,197,0.08); border:1px solid rgba(46,125,197,0.22); }
 .role-svg-wrap.viewer { background:rgba(26,26,46,0.05); border:1px solid var(--border-mid); }
-.role-name { font-family:var(--mono); font-size:13px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; }
+.role-name { font-family:var(--mono); font-size:14px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; }
 .role-name.admin { color:var(--primary); }
 .role-name.operator { color:#2E7DC5; }
 .role-name.viewer { color:var(--text-dim); }
-.role-badge { display:inline-flex; align-items:center; padding:2px 7px; border-radius:3px; font-family:var(--mono); font-size:9px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; border:1px solid; }
+.role-badge { display:inline-flex; align-items:center; padding:2px 7px; border-radius:3px; font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; border:1px solid; }
 .role-badge.admin { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
 .role-badge.operator { background:rgba(46,125,197,0.07); color:#2E7DC5; border-color:rgba(46,125,197,0.22); }
 .role-badge.viewer { background:rgba(26,26,46,0.04); color:var(--text-muted); border-color:var(--border-mid); }
-.role-desc { font-size:12px; color:var(--text-dim); line-height:1.55; padding:10px 18px 12px; border-bottom:1px solid var(--border); }
+.role-desc { font-size:13px; color:var(--text-dim); line-height:1.55; padding:10px 18px 12px; border-bottom:1px solid var(--border); }
 .role-perms { display:flex; flex-direction:column; padding:10px 18px 14px; gap:6px; flex:1; }
-.role-perm { display:flex; align-items:center; gap:8px; font-size:12px; }
-.role-perm-mark { font-family:var(--mono); font-size:11px; font-weight:700; flex-shrink:0; width:14px; text-align:center; }
+.role-perm { display:flex; align-items:center; gap:8px; font-size:13px; }
+.role-perm-mark { font-family:var(--mono); font-size:12px; font-weight:700; flex-shrink:0; width:14px; text-align:center; }
 .role-perm-mark.yes { color:var(--green); }
 .role-perm-mark.no { color:rgba(220,38,38,.45); }
 .role-perm-label { color:var(--text-dim); line-height:1.4; }
@@ -185,7 +185,7 @@ h2.slide-h2 span { color:var(--primary); }
 .role-footer-line.viewer { background:linear-gradient(90deg,var(--border-mid),transparent); }
 .security-bar { display:flex; align-items:center; gap:10px; padding:10px 16px; background:var(--bg-mid); border:1px solid var(--border-mid); border-radius:8px; }
 .security-bar-icon { flex-shrink:0; }
-.security-bar-text { font-size:12px; color:var(--text-dim); line-height:1.5; }
+.security-bar-text { font-size:13px; color:var(--text-dim); line-height:1.5; }
 .security-bar-text b { color:var(--text); font-weight:600; }
 /* ── Quote Bubbles ── */
 .quote-bubble { 
@@ -193,13 +193,13 @@ h2.slide-h2 span { color:var(--primary); }
   background: var(--accent-soft); 
   border: 1px solid var(--accent-border); 
   border-radius: 14px; 
-  padding: 10px 15px;      /* ACHICADO (Antes 16px 20px) */
-  font-size: 15px;         /* ACHICADO (Antes 18px) */
+  padding: 10px 15px;
+  font-size: 16px;
   font-style: italic; 
   color: var(--text); 
-  line-height: 1.4;        /* MÁS COMPACTO */
-  max-width: 75%;          /* NUEVO: No ocupa todo el ancho */
-  margin-bottom: 12px;     /* Espacio entre globos */
+  line-height: 1.4;
+  max-width: 75%;
+  margin-bottom: 12px;
 }
 
 .quote-bubble::after { 
@@ -228,13 +228,13 @@ h2.slide-h2 span { color:var(--primary); }
 }
 
 .quote-attribution { 
-  font-size: 12px; 
+  font-size: 13px; 
   font-style: normal; 
   font-weight: 600; 
   color: var(--text-muted); 
   font-family: var(--mono); 
   letter-spacing: .06em; 
-  margin-top: 4px;         /* Más pegado al último globo */
+  margin-top: 4px;
   padding-left: 4px;
   margin-bottom: 20px;
 }
@@ -253,52 +253,42 @@ h2.slide-h2 span { color:var(--primary); }
 .roadmap-card.active { border-left:3px solid var(--accent); }
 .roadmap-card.pending { border-left:3px solid var(--border-mid); }
 .roadmap-card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:5px; }
-.roadmap-month { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+.roadmap-month { font-family:var(--mono); font-size:13px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
 .roadmap-month.done { color:var(--primary); }
 .roadmap-month.active { color:var(--accent); }
 .roadmap-month.pending { color:var(--text-muted); }
-.roadmap-status { font-family:var(--mono); font-size:9px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; padding:2px 7px; border-radius:3px; border:1px solid; }
+.roadmap-status { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; padding:2px 7px; border-radius:3px; border:1px solid; }
 .roadmap-status.done { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
 .roadmap-status.active-now { background:rgba(249,115,22,0.11); color:var(--accent); border-color:var(--accent-border); font-weight:700; }
 .roadmap-status.pending { background:var(--bg); color:var(--text-muted); border-color:var(--border-mid); }
-.roadmap-title { font-size:14px; font-weight:600; color:var(--text); margin-bottom:7px; line-height:1.4; }
+.roadmap-title { font-size:15px; font-weight:600; color:var(--text); margin-bottom:7px; line-height:1.4; }
 .roadmap-items { display:flex; flex-direction:column; gap:4px; }
-.roadmap-item { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--text-dim); line-height:1.5; }
+.roadmap-item { display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--text-dim); line-height:1.5; }
 .roadmap-item-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; margin-top:5px; }
 .roadmap-item-dot.done { background:var(--primary); }
 .roadmap-item-dot.active { background:var(--accent); }
 .roadmap-item-dot.pending { background:var(--border-mid); }
-.roadmap-footnote { font-family:var(--mono); font-size:10px; color:var(--text-muted); letter-spacing:.04em; border-top:1px solid var(--border); padding-top:10px; margin-top:2px; }
+.roadmap-footnote { font-family:var(--mono); font-size:11px; color:var(--text-muted); letter-spacing:.04em; border-top:1px solid var(--border); padding-top:10px; margin-top:2px; }
 /* ── Partners ── */
-.partners-section-label { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; padding-top:2px; border-top:1px solid var(--border); padding-top:10px; }
+.partners-section-label { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; padding-top:2px; border-top:1px solid var(--border); padding-top:10px; }
 .partners-container { display:flex; flex-direction:row; gap:10px; }
 .partner-card { flex:1; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:12px 14px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:5px; box-shadow:var(--shadow); min-width:0; }
 .partner-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; flex-shrink:0; border:1px solid; margin-bottom:2px; }
 .partner-avatar.ado { background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border); }
 .partner-avatar.electro { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
 .partner-avatar.multi { background:rgba(22,163,74,.10); color:var(--green); border-color:rgba(22,163,74,.30); }
-.partner-name { font-size:12px; font-weight:600; color:var(--text); line-height:1.3; }
-.partner-modal { font-size:11px; font-weight:500; }
+.partner-name { font-size:13px; font-weight:600; color:var(--text); line-height:1.3; }
+.partner-modal { font-size:12px; font-weight:500; }
 .partner-modal.ado { color:var(--accent); }
 .partner-modal.electro { color:var(--primary); }
 .partner-modal.multi { color:var(--green); }
-.partner-desc { font-size:11px; color:var(--text-muted); line-height:1.4; }
+.partner-desc { font-size:12px; color:var(--text-muted); line-height:1.4; }
 /* Centrado del equipo principal (Slide 8) */
 .team-grid-centered {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin: 20px 0 40px 0;
-}
-
-.team-card {
-  background: white;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  flex: 1;
-  max-width: 240px; /* Evita que se estiren de más */
-  text-align: left;
+  margin: 0 0 16px 0;
 }
 
 .card-header {
@@ -308,125 +298,87 @@ h2.slide-h2 span { color:var(--primary); }
   margin-bottom: 8px;
 }
 
-.team-role {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent); /* O el color azul que uses */
-  text-transform: uppercase;
-}
-
-.team-name {
-  font-weight: 700;
-  font-size: 14px;
-  color: #333;
-}
-
-.team-sub {
-  font-size: 12px;
-  color: #666;
-  line-height: 1.4;
-}
-
-/* Estilo de Partners (Verticales y Simétricos) */
+/* Estilo de Partners */
 .partners-container {
   display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 20px;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .partner-card {
-  background: #f9f9f9;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 25px 15px; /* Más aire arriba y abajo */
   flex: 1;
-  max-width: 180px; /* Controla el ancho para que entren los 5 */
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: transform 0.2s ease;
+  gap: 5px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+  cursor: default;
+  position: relative;
+  z-index: 1;
 }
 
 .partner-card:hover {
-  transform: translateY(-5px);
-  border-color: #ddd;
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,84,166,0.15);
+  z-index: 10;
 }
 
 .p-avatar {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 15px;
-  margin-bottom: 15px;
-  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+  border: 1px solid;
+  margin-bottom: 2px;
 }
 
-/* Colores de modalidades */
-.p-avatar.ado { background: #ff6b00; }
-.p-avatar.electro { background: #007bff; }
-.p-avatar.multi { background: #6f42c1; }
+.p-avatar.ado { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-border); }
+.p-avatar.electro { background: var(--primary-soft); color: var(--primary); border-color: var(--primary-border); }
+.p-avatar.multi { background: rgba(22,163,74,.10); color: var(--green); border-color: rgba(22,163,74,.30); }
 
-.p-name { font-weight: 700; color: #222; font-size: 14px; margin-bottom: 4px; }
+.p-name { font-weight: 600; color: var(--text); font-size: 13px; line-height: 1.3; margin-bottom: 0; }
 
 .p-modal {
-  font-size: 10px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 500;
   text-transform: uppercase;
-  margin-bottom: 12px;
-  letter-spacing: 0.5px;
+  margin-bottom: 0;
+  letter-spacing: 0.05em;
 }
-.p-modal.ado { color: #ff6b00; }
-.p-modal.electro { color: #007bff; }
-.p-modal.multi { color: #6f42c1; }
+.p-modal.ado { color: var(--accent); }
+.p-modal.electro { color: var(--primary); }
+.p-modal.multi { color: var(--green); }
 
 .p-desc {
-  font-size: 11px;
-  color: #888;
-  line-height: 1.3;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
 }
 
-.partners-section-label {
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  font-weight: 800;
-  color: #bbb;
-  margin-top: 30px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #f0f0f0;
-  text-align: left;
-}
 /* EFECTO DE EXPANSIÓN PARA TODAS LAS TARJETAS */
 .team-card, .partner-card {
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Movimiento suave */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
   position: relative;
   z-index: 1;
 }
 
-/* Cuando pasas el mouse por arriba */
 .team-card:hover, .partner-card:hover {
-  transform: scale(1.1); /* Agranda la tarjeta un 10% */
-  z-index: 100; /* La trae al frente de todo */
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Sombra más profunda para dar relieve */
-  background: white; /* Asegura que el fondo sea sólido al expandirse */
-}
-
-/* Ajuste específico para que el texto se vea mejor al expandirse */
-.team-card:hover .team-sub, 
-.partner-card:hover .p-desc {
-  color: #333; /* Oscurece un poco el texto para que sea más legible */
-  font-size: 13px; /* Aumenta un punto el tamaño de la descripción */
-}
-
-.team-card:hover .team-role,
-.partner-card:hover .p-modal {
-  letter-spacing: 1px; /* Espacia un poco más las letras del rol */
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(0,84,166,0.15);
+  background: var(--bg-card);
 }
 /* ── Horas Hombre Cards ── */
 .horas-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
@@ -434,16 +386,37 @@ h2.slide-h2 span { color:var(--primary); }
 .horas-card:hover { transform:scale(1.1); box-shadow:0 10px 25px rgba(0,0,0,0.15); z-index:100; }
 .horas-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex-shrink:0; border:1px solid; }
 .horas-body { flex:1; min-width:0; }
-.horas-name { font-size:11px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.horas-role { font-size:10px; color:var(--text-muted); font-family:var(--mono); margin-top:1px; }
+.horas-name { font-size:13px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.horas-role { font-size:12px; color:var(--text-muted); font-family:var(--mono); margin-top:1px; }
 .horas-nums { text-align:right; flex-shrink:0; }
-.horas-total { font-size:12px; font-weight:700; color:var(--primary); font-family:var(--mono); }
-.horas-rate { font-size:10px; color:var(--text-muted); font-family:var(--mono); }
+.horas-total { font-size:14px; font-weight:700; color:var(--primary); font-family:var(--mono); }
+.horas-rate { font-size:11px; color:var(--text-muted); font-family:var(--mono); }
 .horas-bubble { background:var(--accent-soft); border:1px solid var(--accent-border); border-radius:10px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center; margin-top:2px; }
 .horas-bubble-left { display:flex; flex-direction:column; gap:2px; }
-.horas-bubble-label { font-size:10px; font-weight:600; color:var(--accent); font-family:var(--mono); letter-spacing:.08em; text-transform:uppercase; }
-.horas-bubble-sub { font-size:10px; color:var(--text-muted); font-family:var(--mono); }
-.horas-bubble-value { font-size:18px; font-weight:700; color:var(--accent); font-family:var(--mono); }
+.horas-bubble-label { font-size:11px; font-weight:600; color:var(--accent); font-family:var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.horas-bubble-sub { font-size:11px; color:var(--text-muted); font-family:var(--mono); }
+.horas-bubble-value { font-size:20px; font-weight:700; color:var(--accent); font-family:var(--mono); }
+/* Nuevo contenedor de foto para reemplazar el avatar de iniciales */
+.avatar-photo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--border-mid);
+}
+
+.avatar-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mantener el color temático en el borde si querés */
+.team-card:nth-child(1) .avatar-photo { border-color: var(--accent-border); }
+.team-card:nth-child(2) .avatar-photo { border-color: var(--primary-border); }
+.team-card:nth-child(3) .avatar-photo { border-color: rgba(22,163,74,.30); }
+.team-card:nth-child(4) .avatar-photo { border-color: var(--border-mid); }
 </style>
 </head>
 <body>
@@ -463,6 +436,10 @@ h2.slide-h2 span { color:var(--primary); }
   <div class="cover-bg"><div class="cover-glow"></div></div>
   <div style="flex:1"></div>
   <div class="cover-body">
+    <!-- LOGO DEL CLIENTE -->
+<div style="margin-bottom: 25px;">
+  <img src="logo.png" alt="AucaTek Logo" style="max-height: 110px; width: auto;">
+</div>
     <div class="cover-tag">Caso 01 · AucaTek</div>
     <h1 class="cover-h1"><em>SmartRACK</em> · ePDU Autónoma<span>Control inteligente de energía en rack</span></h1>
     <p class="cover-sub">Desarrollado para garantizar la continuidad operativa en centros de datos. Este sistema integra control remoto de 5 tomas independientes, telemetría eléctrica de precisión y sensores de entorno bajo una arquitectura híbrida: gestión local para máxima seguridad y conectividad cloud para análisis predictivo de consumo.</p>
@@ -477,6 +454,7 @@ h2.slide-h2 span { color:var(--primary); }
       <span class="cover-footer-right">7° Informática A</span>
     </div>
   </div>
+  <!-- Navegación Inferior -->
   <div class="bottom-nav">
     <button class="nav-btn" disabled>← Anterior</button>
     <div class="nav-dots"></div>
@@ -495,19 +473,33 @@ h2.slide-h2 span { color:var(--primary); }
     <div class="section-label">Usuario entrevistado</div>
     <h2 class="slide-h2">¿Quién tiene el <span>problema</span>?</h2>
     <div class="two-col" style="margin-bottom:14px">
-      <div class="card">
-        <div class="card-label">Contacto principal</div>
-        <div class="person-row" style="margin-bottom:10px">
-          <div class="avatar av-orange">AU</div>
-          <div class="person-info"><div class="name">Diego Martini - Aucatek </div><div class="role">Empresa de tecnología · Av. Corrientes 1386, CABA</div></div>
-        </div>
-        <div class="divider" style="margin:10px 0 8px"></div>
-        <div style="display:flex;flex-direction:column;gap:5px;font-size:12px">
-          <div style="display:flex;justify-content:space-between"><span style="color:var(--white-faint)">Rol en la empresa</span><span style="color:var(--white-dim)">CEO</span></div>
-          <div style="display:flex;justify-content:space-between"><span style="color:var(--white-faint)">Socio</span><span style="color:var(--white-dim)">Marcos Wojtasik</span></div>
-          <div style="display:flex;justify-content:space-between"><span style="color:var(--white-faint)">Modalidades que participan</span><span class="tag tag-orange" style="font-size:10px">Informática-Electrónica-ADO-Multimedios</span></div>
-        </div>
-      </div>
+     <div class="card">
+  <div class="card-label">Contacto principal</div>
+  <div class="person-row" style="margin-bottom:10px; display: flex; align-items: center;">
+    
+    <!-- IMAGEN CIRCULAR -->
+    <img src="diego.png" 
+         style="width: 80px; 
+                height: 80px; 
+                border-radius: 50%; 
+                object-fit: cover; 
+                border: 2px solid var(--white-faint); 
+                margin-right: 15px;">
+    
+    <div class="person-info">
+      <div class="name">Diego Martini - Aucatek </div>
+      <div class="role">Empresa de tecnología · Av. Corrientes 1386, CABA</div>
+    </div>
+  </div>
+  
+  <div class="divider" style="margin:10px 0 8px"></div>
+  
+  <div style="display:flex;flex-direction:column;gap:5px;font-size:12px">
+    <div style="display:flex;justify-content:space-between"><span style="color:var(--white-faint)">Rol en la empresa</span><span style="color:var(--white-dim)">CEO</span></div>
+    <div style="display:flex;justify-content:space-between"><span style="color:var(--white-faint)">Socio</span><span style="color:var(--white-dim)">Marcos Wojtasik</span></div>
+    <div style="display:flex;justify-content:space-between"><span style="color:var(--white-faint)">Modalidades que participan</span><span class="tag tag-orange" style="font-size:10px">Informática-Electrónica-ADO-Multimedios</span></div>
+  </div>
+</div>
       <div class="card">
         <div class="card-label">Contexto</div>
         <div style="font-size:12px;color:var(--white-dim);line-height:1.6;margin-bottom:8px"><b style="color:var(--white)">AucaTek</b> es una empresa de tecnología que necesita gestionar de forma inteligente la alimentación eléctrica de racks en salas tecnológicas o centros de datos. El problema surgió de incidentes reales: sobrecargas, equipos que requieren reinicio físico y falta total de visibilidad del consumo.</div>
@@ -748,111 +740,145 @@ h2.slide-h2 span { color:var(--primary); }
     <span class="slide-counter">08 / 12</span>
   </div>
   <div class="slide-body">
-  <div class="section-label">Equipo · 7mo Informática A · ILM 2026</div>
-  <h2 class="slide-h2">Roles y <span>responsabilidades</span></h2>
-  
-  <!-- EQUIPO PRINCIPAL CENTRADO -->
-  <div class="team-grid-centered">
-    <div class="team-card">
-      <div class="card-header">
-        <div class="avatar av-orange">EM</div>
-        <div>
-          <div class="team-name">Ezequiel Morgado</div>
-          <div class="team-role">Project Manager & Dev Backend</div>
-        </div>
-      </div>
-      <div class="team-sub">Planificación del GANTT, Desarrollo de la API y lógica del ESP32, Implementación de protocolos de seguridad y conectividad de red</div>
-    </div>
-    <div class="team-card">
-      <div class="card-header">
-        <div class="avatar av-blue">CS</div>
-        <div>
-          <div class="team-name">Violeta Martini</div>
-          <div class="team-role">Especialista BD</div>
-        </div>
-      </div>
-      <div class="team-sub">Estructurar el modelo de datos para el almacenamiento histórico, Optimizar consultas SQL para el análisis de consumo eficiente</div>
-    </div>
-    <div class="team-card">
-      <div class="card-header">
-        <div class="avatar av-green">SH</div>
-        <div>
-          <div class="team-name">Sofía Hermosilla</div>
-          <div class="team-role">Developer Frontend</div>
-        </div>
-      </div>
-      <div class="team-sub">Diseño del prototipo de alta fidelidad y la UX en Figma, Programar el dashboard interactivo para el monitoreo en tiempo real</div>
-    </div>
-    <div class="team-card">
-      <div class="card-header">
-        <div class="avatar av-gray">CS</div>
-        <div>
-          <div class="team-name">Camilo Spinelli</div>
-          <div class="team-role">Especialista Hardware</div>
-        </div>
-      </div>
-      <div class="team-sub">Diseño del esquema eléctrico y de la PCB, Integración de sensores y módulos de potencia, Garantizar la integridad física y eléctrica</div>
-    </div>
-  </div>
+    <div class="section-label">Equipo · 7mo Informática A · ILM 2026</div>
+    <h2 class="slide-h2">Roles y <span>responsabilidades</span></h2>
 
-  <div class="partners-section-label">PARTNERS — OTRAS MODALIDADES</div>
-  
-  <!-- CONTENEDOR DE PARTNERS ESTILO PEDACI -->
-  <div class="partners-container">
-    <!-- ADO -->
-    <div class="partner-card">
-      <div class="p-avatar ado">SC</div>
-      <div class="p-name">Santiago Cusato</div>
-      <div class="p-modal ado">Modalidad ADO</div>
-      <div class="p-desc">Gestión de Costos y Suministros (BOM & Procurement)</div>
-    </div>
-    <div class="partner-card">
-        <div class="p-avatar ado">CR</div>
-        <div class="p-name">Catalina La Regina</div>
-        <div class="p-modal ado">Modalidad ADO</div>
-        <div class="p-desc">Marco Legal, Comercial y Relación con el Cliente</div>
+    <!-- EQUIPO PRINCIPAL CENTRADO -->
+    <div class="team-grid-centered" style="margin:0 0 20px 0;">
+
+      <!-- Ezequiel -->
+      <div class="team-card" style="max-width:260px;">
+        <div class="card-header" style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
+          <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid var(--accent-border);flex-shrink:0;">
+            <img src="ezequiel.png" alt="EM" style="width:100%;height:100%;object-fit:cover;object-position:100% 35%;">
+          </div>
+          <div>
+            <div class="team-name" style="font-size:15px;font-weight:700;color:var(--text);">Ezequiel Morgado</div>
+            <div class="team-role" style="font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;">Project Manager & Dev Backend</div>
+          </div>
+        </div>
+        <div class="team-sub">Planificación del GANTT, Desarrollo de la API y lógica del ESP32, Implementación de protocolos de seguridad</div>
       </div>
-    <div class="partner-card">
-      <div class="p-avatar ado">AC</div>
-      <div class="p-name">Ariana Corbo</div>
-      <div class="p-modal ado">Modalidad ADO</div>
-      <div class="p-desc">Marketing, Branding y Comunicación Institucional</div>
+
+      <!-- Violeta -->
+      <div class="team-card" style="max-width:260px;">
+        <div class="card-header" style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
+          <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid var(--primary-border);flex-shrink:0;">
+            <img src="violeta.png" alt="VM" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div>
+            <div class="team-name" style="font-size:15px;font-weight:700;color:var(--text);">Violeta Martini</div>
+            <div class="team-role" style="font-size:11px;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;">Especialista BD</div>
+          </div>
+        </div>
+        <div class="team-sub">Estructurar el modelo de datos para el almacenamiento histórico, Optimizar consultas SQL</div>
+      </div>
+
+      <!-- Sofía -->
+      <div class="team-card" style="max-width:260px;">
+        <div class="card-header" style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
+          <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid rgba(22,163,74,.35);flex-shrink:0;">
+            <img src="sofia.png" alt="SH" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div>
+            <div class="team-name" style="font-size:15px;font-weight:700;color:var(--text);">Sofía Hermosilla</div>
+            <div class="team-role" style="font-size:11px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;">Developer Frontend</div>
+          </div>
+        </div>
+        <div class="team-sub">Diseño del prototipo de alta fidelidad y la UX en Figma, Programar el dashboard interactivo</div>
+      </div>
+
+      <!-- Camilo -->
+      <div class="team-card" style="max-width:260px;">
+        <div class="card-header" style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
+          <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid var(--border-mid);flex-shrink:0;">
+            <img src="camilo.png" alt="CS" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div>
+            <div class="team-name" style="font-size:15px;font-weight:700;color:var(--text);">Camilo Spinelli</div>
+            <div class="team-role" style="font-size:11px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;">Especialista Hardware</div>
+          </div>
+        </div>
+        <div class="team-sub">Diseño del esquema eléctrico y de la PCB, Integración de sensores y módulos de potencia</div>
+      </div>
+
     </div>
-    <!-- ELECTRO -->
-    <div class="partner-card">
-      <div class="p-avatar electro">SV</div>
-      <div class="p-name">Santiago Villarosa</div>
-      <div class="p-modal electro">Modalidad Electrónica</div>
-      <div class="p-desc">Especialista en Hardware y Potencia</div>
-    </div>
-    <div class="partner-card">
-      <div class="p-avatar electro">FS</div>
-      <div class="p-name">Federico Sparta</div>
-      <div class="p-modal electro">Modalidad Electrónica</div>
-      <div class="p-desc">Especialista en Adquisición de Datos e Instrumentación</div>
-    </div>
-    <!-- MULTI -->
-    <div class="partner-card">
-      <div class="p-avatar multi">IM</div>
-      <div class="p-name">Ignacio Marticorena</div>
-      <div class="p-modal multi">Modalidad Multimedios</div>
-      <div class="p-desc">Identidad Visual y Branding del Producto</div>
+
+    <!-- PARTNERS -->
+    <div class="partners-section-label" style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);border-top:1px solid var(--border);padding-top:10px;margin-bottom:12px;">PARTNERS — OTRAS MODALIDADES</div>
+
+    <div class="partners-container" style="display:flex;justify-content:center;gap:12px;">
+
+      <!-- ELECTRO 1 — Cusato (con foto) -->
+      <div class="partner-card" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 14px;flex:1;max-width:190px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;box-shadow:var(--shadow);transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1);cursor:pointer;position:relative;z-index:1;">
+        <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;margin-bottom:12px;border:2px solid var(--primary-border);">
+          <img src="cusato.png" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="p-name" style="font-weight:700;color:var(--text);font-size:14px;margin-bottom:4px;">Santiago Cusato</div>
+        <div class="p-modal electro" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Modalidad Electrónica</div>
+        <div class="p-desc" style="font-size:11px;color:var(--text-muted);line-height:1.3;">Gestión de Costos y Suministros (BOM & Procurement)</div>
+      </div>
+
+      <!-- ADO 2 — Cala (con foto) -->
+      <div class="partner-card" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 14px;flex:1;max-width:190px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;box-shadow:var(--shadow);transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1);cursor:pointer;position:relative;z-index:1;">
+        <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;margin-bottom:12px;border:2px solid var(--primary-border);">
+          <img src="cala.png" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="p-name" style="font-weight:700;color:var(--text);font-size:14px;margin-bottom:4px;">Catalina La Regina</div>
+        <div class="p-modal ado" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Modalidad ADO</div>
+        <div class="p-desc" style="font-size:11px;color:var(--text-muted);line-height:1.3;">Marco Legal, Comercial y Relación con el Cliente</div>
+      </div>
+
+      <!-- ELECTRO 1 — Villarosa (con foto) -->
+      <div class="partner-card" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 14px;flex:1;max-width:190px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;box-shadow:var(--shadow);transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1);cursor:pointer;position:relative;z-index:1;">
+        <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;margin-bottom:12px;border:2px solid var(--primary-border);">
+          <img src="villarosa.png" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="p-name" style="font-weight:700;color:var(--text);font-size:14px;margin-bottom:4px;">Santiago Villarosa</div>
+        <div class="p-modal electro" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Modalidad Electrónica</div>
+        <div class="p-desc" style="font-size:11px;color:var(--text-muted);line-height:1.3;">Especialista en Hardware y Potencia</div>
+      </div>
+
+      <!-- ELECTRO 2 — Sparta (con foto) -->
+      <div class="partner-card" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 14px;flex:1;max-width:190px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;box-shadow:var(--shadow);transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1);cursor:pointer;position:relative;z-index:1;">
+        <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;margin-bottom:12px;border:2px solid var(--primary-border);">
+          <img src="sparta.png" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="p-name" style="font-weight:700;color:var(--text);font-size:14px;margin-bottom:4px;">Federico Sparta</div>
+        <div class="p-modal electro" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Modalidad Electrónica</div>
+        <div class="p-desc" style="font-size:11px;color:var(--text-muted);line-height:1.3;">Especialista en Adquisición de Datos e Instrumentación</div>
+      </div>
+
+      <!-- MULTI — Marticorena (con foto) -->
+      <div class="partner-card" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 14px;flex:1;max-width:190px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;box-shadow:var(--shadow);transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1);cursor:pointer;position:relative;z-index:1;">
+        <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;margin-bottom:12px;border:2px solid rgba(22,163,74,.30);">
+          <img src="marticorena.png" style="width:100%;height:120%;object-fit:cover;">
+        </div>
+        <div class="p-name" style="font-weight:700;color:var(--text);font-size:14px;margin-bottom:4px;">Ignacio Marticorena</div>
+        <div class="p-modal multi" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Modalidad Multimedios</div>
+        <div class="p-desc" style="font-size:11px;color:var(--text-muted);line-height:1.3;">Especialista en Identidad Visual y Branding del Producto</div>
+      </div>
+
     </div>
   </div>
-</div>
   <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
 </div>
 
-<!-- ══ SLIDE 9 — PRESUPUESTO ══ -->
 <div class="slide" id="slide-9">
   <div class="topbar">
-    <div class="topbar-left"><span class="topbar-logo">E02 — Factibilidad</span><div class="topbar-sep"></div><span class="topbar-title">BOM y tech stack</span></div>
+    <div class="topbar-left">
+      <span class="topbar-logo">E02 — Factibilidad</span>
+      <div class="topbar-sep"></div>
+      <span class="topbar-title">BOM y Tech Stack</span>
+    </div>
     <a class="back-btn" href="index.html">← Inicio</a>
     <span class="slide-counter">09 / 12</span>
   </div>
+
   <div class="slide-body">
     <div class="section-label">Tech stack y costos</div>
     <h2 class="slide-h2">BOM y <span>factibilidad económica</span></h2>
+    
     <div class="two-col">
       <div>
         <div style="font-size:10px;color:var(--white-faint);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Hardware (BOM)</div>
@@ -861,85 +887,83 @@ h2.slide-h2 span { color:var(--primary); }
           <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Medición</span><div class="rf-body"><div class="rf-title" style="font-size:12px">PZEM-004T (V / I / P / Hz).</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$50.000</span></div>
           <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Potencia</span><div class="rf-body"><div class="rf-title" style="font-size:12px">5× Relés 10A + Driver ULN2003.</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$75.000</span></div>
           <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Protección</span><div class="rf-body"><div class="rf-title" style="font-size:12px">MCB + Filtro EMI + MOV + NTC</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$80.000</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Fuente</span><div class="rf-body"><div class="rf-title" style="font-size:12px">PSU 5V + 3.3V · 5× Fichas IEC C13 + caja</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$45.000</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Infraestructura</span><div class="rf-body"><div class="rf-title" style="font-size:12px">PCB a medida (FR4 2oz), Gabinete, 5× Fichas IEC C13 y cableado interno.</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$100.000</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Infraestructura</span><div class="rf-body"><div class="rf-title" style="font-size:12px">PCB a medida (FR4 2oz) + Gabinete e IECs</div></div><span style="font-size:11px;color:var(--white-dim);font-family:var(--mono)">$145.000</span></div>
         </div>
-        <div style="margin-top:8px;padding:8px 12px;background:var(--accent-soft);border:1px solid var(--accent-border);border-radius:8px">
-          <div class="budget-row budget-total" style="border:none;padding:0"><span class="budget-label">Total BOM estimado</span><span class="budget-value">$370.000</span></div>
+
+        <div style="margin-top:8px;padding:8px 12px;background:var(--accent-soft);border:1px solid var(--accent-border);border-radius:8px; margin-bottom:16px">
+          <div class="budget-row budget-total" style="border:none;padding:0; display:flex; justify-content:space-between; align-items:center;">
+            <span class="budget-label" style="font-weight:700; color:var(--accent)">Total BOM estimado</span>
+            <span class="budget-value" style="font-weight:700; color:var(--accent)">$370.000</span>
+          </div> 
+        </div>
+
+        <div style="font-size:10px;color:var(--white-faint);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Infraestructura — Hosting & Respaldo</div>
+        <div class="rf-list">
+          <div class="rf-item" style="padding:8px 12px; border-left: 3px solid var(--green);">
+            <div class="rf-body">
+              <div class="rf-title" style="font-size:12px">Fase Desarrollo (Servidor ILM)</div>
+              <div style="font-size:10px; color:var(--white-faint)"><b>Backup:</b> Dumps SQL semanales en nube redundante.</div>
+            </div>
+            <span class="tag tag-green" style="font-size:10px">Gratis</span>
+          </div>
+
+          <div class="rf-item" style="padding:8px 12px; border-left: 3px solid var(--primary);">
+            <div class="rf-body">
+              <div class="rf-title" style="font-size:12px">Fase Final (Hosting Claro Corporativo)</div>
+              <div style="font-size:10px; color:var(--white-faint)"><b>Backup:</b> Automatización diaria vía Cron Jobs.</div>
+            </div>
+            <span class="tag tag-blue" style="font-size:10px">Propio</span>
+          </div>
         </div>
       </div>
+
       <div>
-        <div style="font-size:10px;color:var(--white-faint);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Software — Todo open source</div>
-        <div class="rf-list" style="margin-bottom:12px">
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Desarrollo</span><div class="rf-body"><div class="rf-title" style="font-size:12px">Visual Studio Code + PlatformIO.</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Diseño de Hardware</span><div class="rf-body"><div class="rf-title" style="font-size:12px">EasyEDA o Altium (para el diseño del PCB).</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Control de Versiones</span><div class="rf-body"><div class="rf-title" style="font-size:12px">GitHub + Git.</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Diseño de Interfaz</span><div class="rf-body"><div class="rf-title" style="font-size:12px">Figma o Canva (para los mockups de la web).</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Testing</span><div class="rf-body"><div class="rf-title" style="font-size:12px">Postman (para probar las peticiones de las APIs).</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+        <div style="font-size:10px;color:var(--white-faint);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Software — Tech Stack</div>
+        <div class="rf-list" style="margin-bottom:16px">
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">IDE</span><div class="rf-body"><div class="rf-title" style="font-size:12px">VS Code + PlatformIO / Arduino IDE</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Diseño</span><div class="rf-body"><div class="rf-title" style="font-size:12px">EasyEDA (PCB) + Figma (UI/UX)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Versionado</span><div class="rf-body"><div class="rf-title" style="font-size:12px">GitHub (Repositorio de Código)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
         </div>
-        <div style="font-size:10px;color:var(--white-faint);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Horas hombre estimadas</div>
+
+        <div style="font-size:10px;color:var(--white-faint);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Inversión Horas Hombre (Estimado)</div>
         <div class="horas-grid">
           <div class="horas-card">
             <div class="horas-avatar av-orange" style="width:32px;height:32px;font-size:10px">EM</div>
-            <div class="horas-body">
-              <div class="horas-name">Ezequiel Morgado</div>
-              <div class="horas-role">Project Manager</div>
-            </div>
-            <div class="horas-nums">
-              <div class="horas-total">$22.720</div>
-              <div class="horas-rate">Valor x hora</div>
-            </div>
+            <div class="horas-body"><div class="horas-name">Ezequiel Morgado</div><div class="horas-role">Project Manager</div></div>
+            <div class="horas-nums"><div class="horas-total">$22.720</div><div class="horas-rate">Valor x hora</div></div>
           </div>
           <div class="horas-card">
             <div class="horas-avatar av-orange" style="width:32px;height:32px;font-size:10px">EM</div>
-            <div class="horas-body">
-              <div class="horas-name">Ezequiel Morgado</div>
-              <div class="horas-role">Backend</div>
-            </div>
-            <div class="horas-nums">
-              <div class="horas-total">$22.010</div>
-              <div class="horas-rate">Valor x hora</div>
-            </div>
+            <div class="horas-body"><div class="horas-name">Ezequiel Morgado</div><div class="horas-role">Backend</div></div>
+            <div class="horas-nums"><div class="horas-total">$22.720</div><div class="horas-rate">Valor x hora</div></div>
           </div>
           <div class="horas-card">
             <div class="horas-avatar av-green" style="width:32px;height:32px;font-size:10px">SH</div>
-            <div class="horas-body">
-              <div class="horas-name">Sofía Hermosilla</div>
-              <div class="horas-role">Frontend</div>
-            </div>
-            <div class="horas-nums">
-              <div class="horas-total">$17.750</div>
-              <div class="horas-rate">Valor x hora</div>
-            </div>
+            <div class="horas-body"><div class="horas-name">Sofia Hermosilla</div><div class="horas-role">Frontend & UX</div></div>
+            <div class="horas-nums"><div class="horas-total">$17.750</div><div class="horas-rate">Valor x hora</div></div>
           </div>
           <div class="horas-card">
             <div class="horas-avatar av-blue" style="width:32px;height:32px;font-size:10px">CS</div>
-            <div class="horas-body">
-              <div class="horas-name">Camilo Spinelli</div>
-              <div class="horas-role">Hardware</div>
-            </div>
-            <div class="horas-nums">
-              <div class="horas-total">$24.140</div>
-              <div class="horas-rate">Valor x hora</div>
-            </div>
+            <div class="horas-body"><div class="horas-name">Camilo Spinelli</div><div class="horas-role">Hardware Spec.</div></div>
+            <div class="horas-nums"><div class="horas-total">$24.140</div><div class="horas-rate">Valor x hora</div></div>
           </div>
           <div class="horas-card">
             <div class="horas-avatar av-gray" style="width:32px;height:32px;font-size:10px">VM</div>
-            <div class="horas-body">
-              <div class="horas-name">Violeta Martini</div>
-              <div class="horas-role">Base de Datos</div>
-            </div>
-            <div class="horas-nums">
-              <div class="horas-total">$22.720</div>
-              <div class="horas-rate">Valor x hora</div>
-            </div>
+            <div class="horas-body"><div class="horas-name">Violeta Martini</div><div class="horas-role">DB & Security</div></div>
+            <div class="horas-nums"><div class="horas-total">$22.720</div><div class="horas-rate">Valor x hora</div></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="goPrev()">← Anterior</button>
+    <div class="nav-dots"></div>
+    <button class="nav-btn primary" onclick="goNext()">Siguiente →</button>
+  </div>
 </div>
+
 
 <!-- ══ SLIDE 10 — ROADMAP ══ -->
 <div class="slide" id="slide-10">
@@ -1049,18 +1073,27 @@ h2.slide-h2 span { color:var(--primary); }
     <a class="back-btn" href="index.html">← Inicio</a>
     <span class="slide-counter">12 / 12</span>
   </div>
+  
   <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
     <div class="cover-bg"><div class="cover-glow"></div></div>
+    
     <div style="position:relative;z-index:1;text-align:center;padding:0 40px">
+      
+      <!-- LOGO DE AUCATEK PARA CIERRE -->
+      <img src="logo.png" alt="AucaTek Logo" style="width: 250px; margin-bottom: 50px; opacity: 0.9;">
+
       <div style="font-family:var(--mono);font-size:11px;color:var(--white-faint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px">SmartRACK · AucaTek · Caso 1</div>
       <div style="font-size:clamp(40px,6vw,68px);font-weight:300;letter-spacing:-.03em;color:var(--white);font-style:italic;color:var(--accent);margin-bottom:10px">Gracias</div>
       <div style="font-size:clamp(20px,3vw,32px);font-weight:300;color:var(--white-dim);letter-spacing:-.02em;margin-bottom:14px">Preguntas y consultas</div>
       <div style="font-size:13px;color:var(--white-dim);margin-bottom:24px">Instituto Leonardo Murialdo · 7mo Informática A · Mayo 2026</div>
+      
       <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+        <!-- Aquí podrías agregar algún botón de contacto o redes si quisieras -->
       </div>
     </div>
   </div>
-  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn" disabled>Siguiente →</button></div>
+  
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn disabled" disabled>Siguiente →</button></div>
 </div>
 
 </div>

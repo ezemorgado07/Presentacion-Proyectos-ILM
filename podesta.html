@@ -3,202 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BarrioAcceso · Control de Acceso Inteligente — ILM 7mo Informática A 2026</title>
+<title>Altos de Podestá · Control de Acceso Inteligente — ILM 7mo Informática A 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  /* ── BarrioAcceso Brand — paleta cromática original ── */
-  --bg: #F0F7FF; --bg-mid: #FFFFFF; --bg-card: #FFFFFF;
-  --primary: #2563EB; --primary-soft: rgba(37,99,235,0.08); --primary-border: rgba(37,99,235,0.22);
-  --accent: #F97316; --accent-soft: rgba(249,115,22,0.09); --accent-border: rgba(249,115,22,0.28);
-  --text: #0C1A2E; --text-dim: rgba(12,26,46,0.6); --text-muted: rgba(12,26,46,0.35);
-  --border: rgba(12,26,46,0.08); --border-mid: rgba(12,26,46,0.14);
-  --green: #22C55E; --red: #EF4444; --blue: #2563EB;
-  --shadow: 0 2px 12px rgba(37,99,235,0.08);
-  --shadow-md: 0 4px 20px rgba(37,99,235,0.12);
+  /* ── Altos de Podestá — Verde Bosque · Gris Piedra · Blanco Hueso ── */
+  --bg: #F5F5F2; --bg-mid: #FAFAF8; --bg-card: #FFFFFF;
+  --primary: #2D5016; --primary-soft: rgba(45,80,22,0.07); --primary-border: rgba(45,80,22,0.20);
+  --accent: #7A8C6E; --accent-soft: rgba(122,140,110,0.10); --accent-border: rgba(122,140,110,0.28);
+  --text: #1C2116; --text-dim: rgba(28,33,22,0.60); --text-muted: rgba(28,33,22,0.38);
+  --border: rgba(28,33,22,0.08); --border-mid: rgba(28,33,22,0.13);
+  --green: #3A6B1A; --red: #B84040; --blue: #2D5016;
+  --shadow: 0 2px 14px rgba(45,80,22,0.07);
+  --shadow-md: 0 4px 22px rgba(45,80,22,0.11);
   --sans: 'Inter', sans-serif; --title: 'Montserrat', sans-serif; --mono: 'DM Mono', monospace;
-  /* aliases de compatibilidad */
-  --white: #0C1A2E;
-  --white-dim: rgba(12,26,46,0.6);
-  --white-faint: rgba(12,26,46,0.35);
-  --white-ghost: rgba(12,26,46,0.04);
-  --navy: #F0F7FF; --navy-mid: #FFFFFF; --navy-light: #FFFFFF;
-  --orange: #F97316;
+  --white: #1C2116; --white-dim: rgba(28,33,22,0.60); --white-faint: rgba(28,33,22,0.38);
+  --white-ghost: rgba(28,33,22,0.04);
+  --navy: #F5F5F2; --navy-mid: #FAFAF8; --navy-light: #FFFFFF; --orange: #7A8C6E;
 }
 html, body { width:100%; height:100%; background:var(--bg); color:var(--text); font-family:var(--sans); overflow:hidden; user-select:none; }
 .deck { position:relative; width:100vw; height:100vh; }
-.slide { position:absolute; inset:0; display:flex; flex-direction:column; opacity:0; pointer-events:none; transition:opacity .35s ease,transform .35s ease; transform:translateX(40px); overflow:hidden; background-color:var(--bg); }
+
+/* ── Slides — fixed nav, overflow hidden ── */
+.slide { position:absolute; inset:0; display:flex; flex-direction:column; opacity:0; pointer-events:none; transition:opacity .35s ease,transform .35s ease; transform:translateX(40px); height:100vh; overflow:hidden; background-color:var(--bg); }
 .slide.active { opacity:1; pointer-events:all; transform:translateX(0); }
 .slide.exit { opacity:0; transform:translateX(-40px); }
-.topbar { display:flex; align-items:center; justify-content:space-between; padding:12px 40px; border-bottom:1px solid var(--border); flex-shrink:0; gap:12px; background:var(--bg-card); box-shadow:0 1px 3px rgba(37,99,235,0.06); }
+
+/* ── Topbar ── */
+.topbar { display:flex; align-items:center; justify-content:space-between; padding:12px 40px; border-bottom:1px solid var(--border); flex-shrink:0; gap:12px; background:var(--bg-card); box-shadow:0 1px 3px rgba(45,80,22,0.06); z-index:10; }
 .topbar-left { display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
-.topbar-logo { font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; }
+.topbar-logo { font-size:13px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; }
 .topbar-sep { width:1px; height:14px; background:var(--border-mid); flex-shrink:0; }
-.topbar-title { font-size:13px; color:var(--text-dim); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.slide-counter { font-family:var(--mono); font-size:11px; color:var(--text-muted); white-space:nowrap; }
-.back-btn { display:flex; align-items:center; gap:5px; padding:5px 12px; background:var(--primary); border:1px solid var(--primary); border-radius:6px; color:#FFFFFF; font-family:var(--sans); font-size:12px; cursor:pointer; text-decoration:none; white-space:nowrap; transition:all .15s; flex-shrink:0; font-weight:500; }
-.back-btn:hover { background:rgba(37,99,235,0.85); border-color:var(--primary); color:#FFFFFF; }
+.topbar-title { font-size:15px; color:var(--text-dim); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.slide-counter { font-family:var(--mono); font-size:13px; color:var(--text-muted); white-space:nowrap; }
+.back-btn { display:flex; align-items:center; gap:5px; padding:5px 12px; background:var(--primary); border:1px solid var(--primary); border-radius:6px; color:#FFFFFF; font-family:var(--sans); font-size:13px; cursor:pointer; text-decoration:none; white-space:nowrap; transition:all .15s; flex-shrink:0; font-weight:500; }
+.back-btn:hover { background:rgba(45,80,22,0.82); border-color:var(--primary); color:#FFFFFF; }
+
+/* ── Slide body ── */
 .slide-body { flex:1; display:flex; flex-direction:column; padding:28px 48px 20px; overflow-y:auto; }
 .slide-body::-webkit-scrollbar { width:4px; } .slide-body::-webkit-scrollbar-track { background:transparent; } .slide-body::-webkit-scrollbar-thumb { background:var(--border-mid); border-radius:2px; }
-.section-label { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:8px; }
-h2.slide-h2 { font-family:var(--title); font-size:clamp(24px,3vw,38px); font-weight:700; line-height:1.2; color:var(--text); letter-spacing:-.015em; margin-bottom:20px; }
+
+/* ── Section label — applied consistently across all slides ── */
+.section-label { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:8px; }
+
+h2.slide-h2 { font-family:var(--title); font-size:clamp(26px,3.2vw,42px); font-weight:700; line-height:1.2; color:var(--text); letter-spacing:-.015em; margin-bottom:20px; }
 h2.slide-h2 span { color:var(--primary); }
 .divider { height:1px; background:var(--border); margin:16px 0; }
 .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+/* ── Cards ── */
 .card { background:var(--bg-mid); border:1px solid var(--border); border-radius:12px; padding:20px 22px; box-shadow:var(--shadow); }
 .card.accent-border { border-color:var(--accent-border); background:var(--accent-soft); box-shadow:none; }
-.card-label { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; }
-.card-value { font-size:18px; color:var(--text); line-height:1.6; }
+.card.primary-border { border-color:var(--primary-border); background:var(--primary-soft); box-shadow:none; }
+.card-label { font-family:var(--mono); font-size:13px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; }
+.card-value { font-size:19px; color:var(--text); line-height:1.6; }
+
+/* ── Avatars ── */
 .avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; flex-shrink:0; border:1px solid var(--border-mid); }
 .av-blue { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
 .av-orange { background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border); }
 .av-green { background:rgba(34,197,94,.12); color:var(--green); border-color:rgba(34,197,94,.30); }
 .av-gray { background:var(--bg-mid); color:var(--text-dim); border-color:var(--border-mid); }
+
+/* ── Person row ── */
 .person-row { display:flex; align-items:center; gap:10px; }
-.person-info .name { font-size:17px; font-weight:600; color:var(--text); }
-.person-info .role { font-size:14px; color:var(--text-dim); margin-top:2px; }
-.tag { display:inline-flex; align-items:center; padding:2px 9px; border-radius:20px; font-size:11px; font-weight:500; border:1px solid; }
+.person-info .name { font-size:19px; font-weight:600; color:var(--text); }
+.person-info .role { font-size:15px; color:var(--text-dim); margin-top:2px; }
+
+/* ── Tags ── */
+.tag { display:inline-flex; align-items:center; padding:2px 9px; border-radius:20px; font-size:12px; font-weight:500; border:1px solid; }
 .tag-blue { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
 .tag-orange { background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border); }
 .tag-green { background:rgba(34,197,94,.09); color:var(--green); border-color:rgba(34,197,94,.28); }
 .tag-red { background:rgba(239,68,68,.09); color:var(--red); border-color:rgba(239,68,68,.28); }
 .tag-gray { background:var(--bg-mid); color:var(--text-dim); border-color:var(--border-mid); }
+
+/* ── RF list ── */
 .rf-list { display:flex; flex-direction:column; gap:8px; }
 .rf-item { display:flex; align-items:flex-start; gap:12px; padding:12px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); }
-.rf-id { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--primary); letter-spacing:.08em; flex-shrink:0; padding-top:2px; min-width:38px; }
+.rf-id { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--primary); letter-spacing:.08em; flex-shrink:0; padding-top:2px; min-width:38px; }
 .rf-body { flex:1; }
-.rf-title { font-size:18px; font-weight:600; color:var(--text); line-height:1.4; }
-.rf-desc { font-size:16px; color:var(--text-dim); margin-top:4px; line-height:1.6; }
+.rf-title { font-size:17px; font-weight:600; color:var(--text); line-height:1.4; }
+.rf-desc { font-size:15px; color:var(--text-dim); margin-top:4px; line-height:1.6; }
 .rf-priority { flex-shrink:0; }
-.data-table { width:100%; border-collapse:collapse; font-size:16px; }
-.data-table th { text-align:left; padding:11px 14px; font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); border-bottom:2px solid var(--border-mid); background:var(--bg-mid); }
+
+/* ── Data table ── */
+.data-table { width:100%; border-collapse:collapse; font-size:15px; }
+.data-table th { text-align:left; padding:11px 14px; font-family:var(--mono); font-size:13px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); border-bottom:2px solid var(--border-mid); background:var(--bg-mid); }
 .data-table td { padding:13px 14px; color:var(--text-dim); border-bottom:1px solid var(--border); vertical-align:top; line-height:1.6; }
 .data-table td:first-child { color:var(--text); font-weight:500; }
 .data-table tr:last-child td { border-bottom:none; }
 .data-table tr:hover td { background:var(--bg-mid); }
+
+/* ── Metric cards ── */
 .metric-row { display:flex; gap:12px; flex-wrap:wrap; }
 .metric-card { flex:1; min-width:110px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow); }
-.metric-label { font-size:15px; color:var(--text-muted); margin-bottom:8px; line-height:1.4; }
-.metric-value { font-size:28px; font-weight:700; color:var(--text); line-height:1; }
-.metric-arrow { font-size:15px; color:var(--green); margin-top:6px; font-weight:500; }
+.metric-label { font-size:16px; color:var(--text-muted); margin-bottom:8px; line-height:1.4; }
+.metric-value { font-size:30px; font-weight:700; color:var(--text); line-height:1; }
+.metric-arrow { font-size:16px; color:var(--green); margin-top:6px; font-weight:500; }
+
+/* ── OKRs ── */
 .okr-block { margin-bottom:14px; }
-.okr-obj { font-size:16px; font-weight:600; color:var(--primary); margin-bottom:8px; display:flex; align-items:center; gap:7px; }
-.okr-num { font-family:var(--mono); font-size:11px; background:var(--primary-soft); color:var(--primary); border:1px solid var(--primary-border); border-radius:4px; padding:1px 6px; }
+.okr-obj { font-size:17px; font-weight:600; color:var(--primary); margin-bottom:8px; display:flex; align-items:center; gap:7px; }
+.okr-num { font-family:var(--mono); font-size:12px; background:var(--primary-soft); color:var(--primary); border:1px solid var(--primary-border); border-radius:4px; padding:1px 6px; }
 .kr-list { display:flex; flex-direction:column; gap:6px; padding-left:16px; }
 .kr-item { font-size:15px; color:var(--text-dim); line-height:1.6; padding-left:10px; border-left:2px solid var(--border-mid); }
 .kr-item b { color:var(--text); font-weight:600; }
-.gantt { width:100%; border-collapse:collapse; font-size:13px; }
-.gantt th { padding:7px 8px; font-family:var(--mono); font-size:10px; color:var(--text-muted); font-weight:500; letter-spacing:.08em; border-bottom:2px solid var(--border-mid); text-align:center; background:var(--bg-mid); }
+
+/* ── Gantt ── */
+.gantt { width:100%; border-collapse:collapse; font-size:14px; }
+.gantt th { padding:7px 8px; font-family:var(--mono); font-size:11px; color:var(--text-muted); font-weight:500; letter-spacing:.08em; border-bottom:2px solid var(--border-mid); text-align:center; background:var(--bg-mid); }
 .gantt th:first-child { text-align:left; }
 .gantt td { padding:7px 8px; border-bottom:1px solid var(--border); }
 .gantt td:first-child { color:var(--text); font-weight:500; }
-.gantt-bar { height:20px; border-radius:4px; background:var(--primary); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:600; color:white; letter-spacing:.05em; }
+.gantt-bar { height:20px; border-radius:4px; background:var(--primary); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:white; letter-spacing:.05em; }
 .gantt-bar.green { background:var(--green); color:white; }
 .gantt-bar.orange { background:var(--accent); color:white; }
 .gantt-bar.gray { background:#CBD5E1; color:#475569; }
+
+/* ── Step list ── */
 .step-list { display:flex; flex-direction:column; gap:10px; }
 .step-item { display:flex; align-items:flex-start; gap:14px; padding:14px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); }
-.step-num { font-family:var(--mono); font-size:13px; font-weight:700; color:var(--primary); flex-shrink:0; padding-top:1px; min-width:24px; }
-.step-body .step-title { font-size:18px; font-weight:600; color:var(--text); margin-bottom:4px; }
+.step-num { font-family:var(--mono); font-size:14px; font-weight:700; color:var(--primary); flex-shrink:0; padding-top:1px; min-width:24px; }
+.step-body .step-title { font-size:17px; font-weight:600; color:var(--text); margin-bottom:4px; }
 .step-body .step-desc { font-size:15px; color:var(--text-dim); line-height:1.6; }
-/* ── Team Grid (modelo Aucatek) ── */
+
+/* ── Team grid ── */
 .team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:10px; }
-.team-grid-centered { display:flex; justify-content:center; gap:15px; margin:0 0 24px 0; }
-.team-card { background:white; border:1px solid #eee; border-radius:12px; padding:15px; box-shadow:0 4px 12px rgba(0,0,0,0.05); flex:1; max-width:240px; text-align:left; transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1); cursor:pointer; position:relative; z-index:1; }
-.team-card:hover { transform:scale(1.1); z-index:100; box-shadow:0 10px 25px rgba(0,0,0,0.15); background:white; }
-.team-card:hover .team-sub { color:#333; font-size:13px; }
-.team-card:hover .team-role { letter-spacing:1px; }
-.card-header { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
-.team-role { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
-.team-name { font-weight:700; font-size:14px; color:#333; }
-.team-sub { font-size:12px; color:#666; line-height:1.4; }
+.team-grid-centered { display:flex; justify-content:center; gap:15px; margin:0 0 20px 0; flex-wrap:wrap; }
+.team-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:15px; box-shadow:var(--shadow); flex:1; max-width:230px; text-align:left; transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1); cursor:pointer; position:relative; z-index:1; }
+.team-card:hover { transform:scale(1.05); z-index:100; box-shadow:var(--shadow-md); background:#FFFFFF; border-color:var(--primary-border); }
+.card-header { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.team-role { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); font-family:var(--mono); margin-bottom:2px; }
+.team-name { font-weight:700; font-size:15px; color:var(--text); }
+.team-sub { font-size:13px; color:var(--text-dim); line-height:1.4; }
+
+/* ── Checks ── */
 .check-list { display:flex; flex-direction:column; gap:8px; }
 .check-item { display:flex; gap:9px; align-items:flex-start; font-size:16px; }
 .check-icon { flex-shrink:0; margin-top:1px; }
-.check-text { color:var(--text-dim); line-height:1.6; }
+.check-text { color:var(--text-dim); line-height:1.6; font-size:15px; }
 .check-text b { color:var(--text); font-weight:600; }
+
+/* ── Budget ── */
 .budget-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border); font-size:16px; }
 .budget-row:last-child { border-bottom:none; }
 .budget-label { color:var(--text-dim); }
 .budget-value { color:var(--text); font-weight:500; font-family:var(--mono); }
 .budget-total .budget-label { color:var(--text); font-weight:600; }
-.budget-total .budget-value { color:var(--primary); font-size:15px; }
-.slide-cover { justify-content:flex-end; }
+.budget-total .budget-value { color:var(--primary); font-size:16px; }
+
+/* ── Cover slide ── */
+.slide-cover { justify-content:flex-start; }
 .cover-bg { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
-.cover-glow { position:absolute; top:-20%; right:-10%; width:60vw; height:60vh; background:radial-gradient(ellipse,rgba(37,99,235,0.06) 0%,transparent 70%); }
-.cover-body { position:relative; z-index:1; padding:0 48px 48px; }
-.cover-tag { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
+.cover-glow { position:absolute; top:-20%; right:-10%; width:60vw; height:60vh; background:radial-gradient(ellipse,rgba(45,80,22,0.05) 0%,transparent 70%); }
+.cover-body {
+  position:relative; z-index:1;
+  padding:28px 48px 28px 80px;   /* padding-left: 80px per requirement */
+  display:flex; flex-direction:column; max-width:900px; flex:1; justify-content:center;
+}
+.cover-tag { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
 .cover-tag::before { content:''; display:block; width:20px; height:1px; background:var(--text-muted); }
 .cover-h1 { font-family:var(--title); font-size:clamp(32px,5vw,58px); font-weight:700; line-height:1.1; letter-spacing:-.025em; color:var(--text); margin-bottom:8px; }
 .cover-h1 em { font-style:italic; color:var(--primary); }
 .cover-h1 span { display:block; font-size:clamp(16px,2.2vw,24px); color:var(--text-dim); font-weight:400; }
-.cover-sub { font-size:15px; color:var(--text-dim); max-width:520px; line-height:1.7; margin-bottom:28px; }
+.cover-sub { font-size:16px; color:var(--text-dim); max-width:600px; line-height:1.7; margin-bottom:28px; }
 .cover-team { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:28px; }
-.cover-member { display:flex; align-items:center; gap:7px; padding:6px 12px; background:var(--bg-card); border:1px solid var(--border-mid); border-radius:6px; font-size:13px; color:var(--text-dim); box-shadow:var(--shadow); }
+.cover-member { display:flex; align-items:center; gap:7px; padding:6px 12px; background:var(--bg-card); border:1px solid var(--border-mid); border-radius:6px; font-size:14px; color:var(--text-dim); box-shadow:var(--shadow); }
 .cover-footer { display:flex; align-items:center; justify-content:space-between; padding-top:20px; border-top:1px solid var(--border); }
-.cover-footer-left { font-size:13px; color:var(--text-muted); }
-.cover-footer-right { font-size:12px; color:var(--primary); font-family:var(--mono); font-weight:500; }
-.bottom-nav { display:flex; align-items:center; justify-content:space-between; padding:12px 40px; border-top:1px solid var(--border); flex-shrink:0; background:var(--bg-card); }
-.nav-btn { display:flex; align-items:center; gap:6px; padding:9px 20px; background:var(--bg-mid); border:1px solid var(--border-mid); border-radius:6px; color:var(--text-dim); font-family:var(--sans); font-size:15px; cursor:pointer; transition:all .15s ease; font-weight:500; }
+.cover-footer-left { font-size:14px; color:var(--text-muted); }
+.cover-footer-right { font-size:13px; color:var(--primary); font-family:var(--mono); font-weight:500; }
+
+.cover-logo {
+    /* El valor que tenés ahora es muy alto (ej. 170px) */
+    max-height: 200px; /* <--- Bajalo a este valor o incluso 100px */
+    width: auto;       /* Esto mantiene la proporción */
+    margin-bottom: 5px;
+    align-self: flex-start; /* Asegura que se alinee a la izquierda si usas flex */
+}
+
+/* ── Bottom nav — always pinned ── */
+.bottom-nav {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 40px;
+  border-top:1px solid var(--border);
+  flex-shrink:0;
+  background:var(--bg-card);
+  position:absolute; bottom:0; width:100%;
+  z-index:10;
+}
+.nav-btn { display:flex; align-items:center; gap:6px; padding:9px 20px; background:var(--bg-mid); border:1px solid var(--border-mid); border-radius:6px; color:var(--text-dim); font-family:var(--sans); font-size:16px; cursor:pointer; transition:all .15s ease; font-weight:500; }
 .nav-btn:hover:not(:disabled) { background:var(--bg-card); color:var(--text); box-shadow:var(--shadow); }
 .nav-btn:disabled { opacity:.3; cursor:default; }
 .nav-btn.primary { background:var(--primary); border-color:var(--primary); color:#FFFFFF; font-weight:600; }
-.nav-btn.primary:hover { background:rgba(37,99,235,0.85); }
+.nav-btn.primary:hover { background:rgba(45,80,22,0.82); }
 .nav-dots { display:flex; gap:5px; align-items:center; }
 .nav-dot { width:6px; height:6px; border-radius:50%; background:var(--border-mid); cursor:pointer; transition:all .2s ease; border:none; }
 .nav-dot.active { background:var(--primary); width:16px; border-radius:3px; }
 .nav-dot:hover:not(.active) { background:var(--text-muted); }
-.kbd-hint { position:fixed; bottom:60px; right:16px; font-size:10px; color:var(--text-muted); font-family:var(--mono); pointer-events:none; opacity:1; transition:opacity 2s; }
+
+/* ── Slide body needs bottom padding to clear fixed nav ── */
+.slide-body { padding-bottom: 72px; }
+
+/* ── Keyboard hint ── */
+.kbd-hint { position:fixed; bottom:72px; right:16px; font-size:12px; color:var(--text-muted); font-family:var(--mono); pointer-events:none; opacity:1; transition:opacity 2s; }
 .kbd-hint.hidden { opacity:0; }
-.slide-close { align-items:center; justify-content:center; text-align:center; }
-/* ── Quote Bubbles ── */
+
+/* ── Close slide ── */
+.slide-close { align-items:stretch; justify-content:stretch; }
+.slide-close-inner { flex:1; display:flex; align-items:center; justify-content:center; position:relative; padding-bottom:60px; }
+.close-card {
+  position:relative; z-index:1; text-align:center;
+  background:var(--bg-card); border:1px solid var(--primary-border);
+  border-radius:20px; padding:48px 56px;
+  box-shadow:var(--shadow-md);
+  max-width:540px; width:100%;
+}
+.close-card-tag { font-family:var(--mono); font-size:11px; color:var(--text-muted); letter-spacing:.14em; text-transform:uppercase; margin-bottom:20px; }
+.close-card-logo { max-height:70px; width:auto; margin-bottom:28px; opacity:.9; }
+.close-card-thanks { font-family:var(--title); font-size:clamp(40px,6vw,64px); font-weight:300; letter-spacing:-.03em; color:var(--primary); font-style:italic; margin-bottom:10px; }
+.close-card-sub { font-size:clamp(18px,2.5vw,26px); font-weight:300; color:var(--text-dim); letter-spacing:-.02em; margin-bottom:14px; }
+.close-card-foot { font-size:13px; color:var(--text-muted); }
+
+/* ── Quote bubbles ── */
 .quote-bubble {
-  position: relative;
-  background: var(--primary-soft);
-  border: 1px solid var(--primary-border);
-  border-radius: 14px;
-  padding: 10px 15px;
-  font-size: 15px;
-  font-style: italic;
-  color: var(--text);
-  line-height: 1.4;
-  max-width: 75%;
-  margin-bottom: 12px;
+  position:relative; background:var(--primary-soft); border:1px solid var(--primary-border);
+  border-radius:14px; padding:10px 15px; font-size:15px; font-style:italic;
+  color:var(--text); line-height:1.4; max-width:75%; margin-bottom:12px;
 }
 .quote-bubble::after {
-  content: '';
-  position: absolute;
-  bottom: -10px; left: 28px;
-  width: 0; height: 0;
-  border-left: 10px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 10px solid var(--primary-border);
+  content:''; position:absolute; bottom:-10px; left:28px;
+  width:0; height:0; border-left:10px solid transparent;
+  border-right:6px solid transparent; border-top:10px solid var(--primary-border);
 }
 .quote-bubble::before {
-  content: '';
-  position: absolute;
-  bottom: -8px; left: 29px;
-  width: 0; height: 0;
-  border-left: 9px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 9px solid var(--primary-soft);
-  z-index: 1;
+  content:''; position:absolute; bottom:-8px; left:29px;
+  width:0; height:0; border-left:9px solid transparent;
+  border-right:5px solid transparent; border-top:9px solid var(--primary-soft); z-index:1;
 }
 .quote-attribution {
-  font-size: 12px; font-style: normal; font-weight: 600;
-  color: var(--text-muted); font-family: var(--mono);
-  letter-spacing: .06em; margin-top: 4px; padding-left: 4px; margin-bottom: 20px;
+  font-size:13px; font-style:normal; font-weight:600; color:var(--text-muted);
+  font-family:var(--mono); letter-spacing:.06em; margin-top:4px; padding-left:4px; margin-bottom:20px;
 }
-/* ── Roadmap / Timeline ── */
+
+/* ── Roadmap ── */
 .roadmap-wrapper { display:flex; flex-direction:column; gap:0; flex:1; }
 .roadmap-track { display:flex; align-items:stretch; gap:0; }
 .roadmap-spine { display:flex; flex-direction:column; align-items:center; flex-shrink:0; width:44px; }
 .roadmap-node { width:14px; height:14px; border-radius:50%; flex-shrink:0; border:2px solid; position:relative; z-index:2; margin-top:4px; }
 .roadmap-node.done { background:var(--primary); border-color:var(--primary); }
-.roadmap-node.active { background:#FFFFFF; border-color:var(--accent); box-shadow:0 0 0 3px rgba(249,115,22,0.18); }
+.roadmap-node.active { background:#FFFFFF; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
 .roadmap-node.pending { background:var(--bg); border-color:var(--border-mid); }
 .roadmap-line { flex:1; width:2px; background:var(--border); margin:0 auto; }
 .roadmap-line.done { background:var(--primary); opacity:.3; }
@@ -207,64 +264,91 @@ h2.slide-h2 span { color:var(--primary); }
 .roadmap-card.active { border-left:3px solid var(--accent); }
 .roadmap-card.pending { border-left:3px solid var(--border-mid); }
 .roadmap-card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:5px; }
-.roadmap-month { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+.roadmap-month { font-family:var(--mono); font-size:13px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
 .roadmap-month.done { color:var(--primary); }
 .roadmap-month.active { color:var(--accent); }
 .roadmap-month.pending { color:var(--text-muted); }
-.roadmap-status { font-family:var(--mono); font-size:9px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; padding:2px 7px; border-radius:3px; border:1px solid; }
+.roadmap-status { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; padding:2px 7px; border-radius:3px; border:1px solid; }
 .roadmap-status.done { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
-.roadmap-status.active-now { background:rgba(249,115,22,0.11); color:var(--accent); border-color:var(--accent-border); font-weight:700; }
+.roadmap-status.active-now { background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border); font-weight:700; }
 .roadmap-status.pending { background:var(--bg); color:var(--text-muted); border-color:var(--border-mid); }
-.roadmap-title { font-size:14px; font-weight:600; color:var(--text); margin-bottom:7px; line-height:1.4; }
+.roadmap-title { font-size:15px; font-weight:600; color:var(--text); margin-bottom:7px; line-height:1.4; }
 .roadmap-items { display:flex; flex-direction:column; gap:4px; }
-.roadmap-item { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--text-dim); line-height:1.5; }
+.roadmap-item { display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--text-dim); line-height:1.5; }
 .roadmap-item-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; margin-top:5px; }
 .roadmap-item-dot.done { background:var(--primary); }
 .roadmap-item-dot.active { background:var(--accent); }
 .roadmap-item-dot.pending { background:var(--border-mid); }
-.roadmap-footnote { font-family:var(--mono); font-size:10px; color:var(--text-muted); letter-spacing:.04em; border-top:1px solid var(--border); padding-top:10px; margin-top:2px; }
-/* ── Rol badges ── */
+.roadmap-footnote { font-family:var(--mono); font-size:11px; color:var(--text-muted); letter-spacing:.04em; border-top:1px solid var(--border); padding-top:10px; margin-top:2px; }
+
+/* ── Scope badges ── */
 .rol-verde { background:rgba(34,197,94,.09); border:1px solid rgba(34,197,94,.28); border-radius:12px; padding:16px 18px; }
 .rol-rojo { background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.22); border-radius:12px; padding:16px 18px; }
-@media (max-width:700px) { .slide-body{padding:20px 20px 14px;} .topbar,.bottom-nav{padding:10px 20px;} .cover-body{padding:0 20px 36px;} .two-col{grid-template-columns:1fr;} .metric-row{flex-wrap:wrap;} }
-/* ── Partners estilo Aucatek ── */
-.partners-section-label { font-size:11px; letter-spacing:1.5px; font-weight:800; color:#bbb; margin-top:20px; padding-bottom:10px; border-bottom:1px solid #f0f0f0; text-align:left; text-transform:uppercase; }
-.partners-container { display:flex; justify-content:center; gap:12px; margin-top:14px; }
-.partner-card { background:#f9f9f9; border:1px solid #eee; border-radius:10px; padding:22px 15px; flex:1; max-width:190px; display:flex; flex-direction:column; align-items:center; text-align:center; transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1); cursor:pointer; position:relative; z-index:1; }
-.partner-card:hover { transform:scale(1.1); z-index:100; box-shadow:0 10px 25px rgba(0,0,0,0.15); background:white; border-color:#ddd; }
-.partner-card:hover .p-desc { color:#333; font-size:13px; }
-.partner-card:hover .p-modal { letter-spacing:1px; }
-.p-avatar { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; margin-bottom:12px; color:white; }
-.p-avatar.ado { background:#ff6b00; }
-.p-avatar.electro { background:#2563EB; }
-.p-avatar.multi { background:#6f42c1; }
-.p-name { font-weight:700; color:#222; font-size:14px; margin-bottom:4px; }
-.p-modal { font-size:10px; font-weight:800; text-transform:uppercase; margin-bottom:10px; letter-spacing:0.5px; }
-.p-modal.ado { color:#ff6b00; }
-.p-modal.electro { color:#2563EB; }
-.p-modal.multi { color:#6f42c1; }
-.p-desc { font-size:11px; color:#888; line-height:1.3; }
-/* Clases legacy sin usar pero mantenidas para no romper nada */
-.partner-avatar { display:none; }
-.partner-name { display:none; }
-.partner-modal { display:none; }
-.partner-desc { display:none; }
-/* ── Horas Hombre Cards ── */
+
+/* ── Partners — unified with AucaTek style ── */
+.partners-section-label {
+  font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--text-muted); margin-bottom:10px;
+  padding-top:10px; border-top:1px solid var(--border);
+}
+.partners-container {
+  display:flex; flex-direction:row; gap:10px; flex-wrap:wrap;
+}
+.partner-card {
+  flex:1; min-width:130px; background:var(--bg-card); border:1px solid var(--border);
+  border-radius:12px; padding:14px 12px; display:flex; flex-direction:column;
+  align-items:center; text-align:center; gap:5px; box-shadow:var(--shadow);
+  transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1); cursor:pointer; position:relative; z-index:1;
+}
+.partner-card:hover {
+  transform:scale(1.05); z-index:10;
+  box-shadow:0 10px 28px rgba(45,80,22,0.14); background:#FFFFFF; border-color:var(--primary-border);
+}
+.p-avatar {
+  width:44px; height:44px; border-radius:50%; display:flex; align-items:center;
+  justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;
+  border:1px solid; margin-bottom:4px; overflow:hidden;
+}
+.p-avatar.ado { background:var(--accent-soft); color:var(--accent); border-color:var(--accent-border); }
+.p-avatar.electro { background:var(--primary-soft); color:var(--primary); border-color:var(--primary-border); }
+.p-avatar.multi { background:rgba(22,163,74,.10); color:var(--green); border-color:rgba(22,163,74,.30); }
+.p-avatar img { width:100%; height:100%; object-fit:cover; }
+.p-name { font-size:13px; font-weight:600; color:var(--text); line-height:1.3; }
+.p-modal { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+.p-modal.ado { color:var(--accent); }
+.p-modal.electro { color:var(--primary); }
+.p-modal.multi { color:var(--green); }
+.p-desc { font-size:12px; color:var(--text-muted); line-height:1.4; }
+
+/* ── Avatar photo (team cards) ── */
+.avatar-photo {
+  width:72px; height:72px; border-radius:50%; overflow:hidden;
+  border:2px solid var(--primary-border); flex-shrink:0;
+}
+.avatar-photo img { width:100%; height:100%; object-fit:cover; }
+
+/* ── Horas hombre ── */
 .horas-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
-.horas-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; box-shadow:var(--shadow); transition:transform .2s cubic-bezier(0.25,0.8,0.25,1), box-shadow .2s ease; cursor:default; position:relative; z-index:1; }
-.horas-card:hover { transform:scale(1.1); box-shadow:0 10px 25px rgba(37,99,235,0.15); z-index:100; }
+.horas-card {
+  background:var(--bg-card); border:1px solid var(--border); border-radius:10px;
+  padding:10px 14px; display:flex; align-items:center; gap:10px; box-shadow:var(--shadow);
+  transition:transform .2s ease, box-shadow .2s ease; cursor:default; position:relative; z-index:1;
+}
+.horas-card:hover { transform:scale(1.05); box-shadow:var(--shadow-md); z-index:100; }
 .horas-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex-shrink:0; border:1px solid; }
 .horas-body { flex:1; min-width:0; }
-.horas-name { font-size:11px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.horas-role { font-size:10px; color:var(--text-muted); font-family:var(--mono); margin-top:1px; }
+.horas-name { font-size:13px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.horas-role { font-size:12px; color:var(--text-muted); font-family:var(--mono); margin-top:1px; }
 .horas-nums { text-align:right; flex-shrink:0; }
-.horas-total { font-size:12px; font-weight:700; color:var(--primary); font-family:var(--mono); }
-.horas-rate { font-size:10px; color:var(--text-muted); font-family:var(--mono); }
+.horas-total { font-size:14px; font-weight:700; color:var(--primary); font-family:var(--mono); }
+.horas-rate { font-size:11px; color:var(--text-muted); font-family:var(--mono); }
 .horas-bubble { background:var(--accent-soft); border:1px solid var(--accent-border); border-radius:10px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center; margin-top:2px; }
 .horas-bubble-left { display:flex; flex-direction:column; gap:2px; }
-.horas-bubble-label { font-size:10px; font-weight:600; color:var(--accent); font-family:var(--mono); letter-spacing:.08em; text-transform:uppercase; }
-.horas-bubble-sub { font-size:10px; color:var(--text-muted); font-family:var(--mono); }
-.horas-bubble-value { font-size:18px; font-weight:700; color:var(--accent); font-family:var(--mono); }
+.horas-bubble-label { font-size:11px; font-weight:600; color:var(--accent); font-family:var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.horas-bubble-sub { font-size:11px; color:var(--text-muted); font-family:var(--mono); }
+.horas-bubble-value { font-size:20px; font-weight:700; color:var(--accent); font-family:var(--mono); }
+
+@media (max-width:700px) { .slide-body{padding:20px 20px 72px;} .topbar,.bottom-nav{padding:10px 20px;} .cover-body{padding:20px 20px 40px 20px;} .two-col{grid-template-columns:1fr;} .metric-row{flex-wrap:wrap;} }
 </style>
 </head>
 <body>
@@ -281,23 +365,41 @@ h2.slide-h2 span { color:var(--primary); }
     <a class="back-btn" href="index.html">← Volver al inicio</a>
     <span class="slide-counter">01 / 12</span>
   </div>
+
   <div class="cover-bg"><div class="cover-glow"></div></div>
+
   <div style="flex:1"></div>
   <div class="cover-body">
+    <!-- Logo ajustado: max-height acotado para no empujar la nav -->
+    <img src="podesta.png" alt="Altos de Podestá" class="cover-logo">
+
     <div class="cover-tag">Caso 02 · Barrio Altos de Podestá</div>
-    <h1 class="cover-h1"><em>BarrioAcceso</em><span>Sistema de Control de Acceso Inteligente</span></h1>
-    <p class="cover-sub">Cámara IP + ALPR (OCR de patentes) + ESP32 · Verificación automática en menos de 5 segundos · Tres roles: Guardia, Propietario y Administrador · Demo funcional operativa.</p>
+
+    <h1 class="cover-h1">
+      <em>Barrio Acceso</em>
+      <span>Sistema de Control de Acceso Inteligente</span>
+    </h1>
+
+    <p class="cover-sub">
+      Diseñado para redefinir los estándares de seguridad residencial en complejos de alta gama.
+      Este sistema integra reconocimiento inteligente de vehículos y gestión de accesos automatizada
+      mediante una arquitectura robusta de alta disponibilidad: garantizando un flujo vehicular fluido,
+      control absoluto de perímetros y una interfaz intuitiva para la administración integral de la comunidad.
+    </p>
+
     <div class="cover-team">
       <div class="cover-member"><div class="avatar av-blue" style="width:24px;height:24px;font-size:9px">EM</div>Ezequiel Morgado</div>
       <div class="cover-member"><div class="avatar av-orange" style="width:24px;height:24px;font-size:9px">CS</div>Camilo Spinelli</div>
       <div class="cover-member"><div class="avatar av-green" style="width:24px;height:24px;font-size:9px">SH</div>Sofía Hermosilla</div>
       <div class="cover-member"><div class="avatar av-gray" style="width:24px;height:24px;font-size:9px">VM</div>Violeta Martini</div>
     </div>
+
     <div class="cover-footer">
       <span class="cover-footer-left">Instituto Leonardo Murialdo · Mayo 2026</span>
       <span class="cover-footer-right">7° Informática A</span>
     </div>
   </div>
+
   <div class="bottom-nav">
     <button class="nav-btn" disabled>← Anterior</button>
     <div class="nav-dots"></div>
@@ -313,20 +415,19 @@ h2.slide-h2 span { color:var(--primary); }
     <span class="slide-counter">02 / 12</span>
   </div>
   <div class="slide-body">
-    <div class="section-label">Usuario entrevistado</div>
+    <div class="section-label">Relevamiento de campo</div>
     <h2 class="slide-h2">¿Quién tiene el <span>problema</span>?</h2>
     <div class="two-col" style="margin-bottom:14px">
       <div class="card">
         <div class="card-label">Contacto Principal</div>
         <div class="person-row" style="margin-bottom:10px">
-          <div class="avatar av-blue">AN</div>
-          <div class="person-info"><div class="name">Ariel Nero - Altos de Podestá</div><div class="role">Barrio cerrado · Av. Márquez 2521, Pablo Podestá</div></div>
+          <div class="person-info"><div class="name">Ariel Nero — Altos de Podestá</div><div class="role">Barrio cerrado · Av. Márquez 2521, Pablo Podestá</div></div>
         </div>
         <div class="divider" style="margin:10px 0 8px"></div>
         <div style="display:flex;flex-direction:column;gap:5px;font-size:12px">
           <div style="display:flex;justify-content:space-between"><span style="color:var(--text-muted)">Rol en el barrio</span><span style="color:var(--text-dim)">Administrador de la junta vecinal</span></div>
           <div style="display:flex;justify-content:space-between"><span style="color:var(--text-muted)">Referentes</span><span style="color:var(--text-dim)">Vecinos del barrio</span></div>
-          <div style="display:flex;justify-content:space-between"><span style="color:var(--text-muted)">Modalidades que participan</span><span class="tag tag-green" style="font-size:10px">Informática-Electrónica-ADO-Multimedios</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--text-muted)">Modalidades</span><span class="tag tag-green" style="font-size:10px">Informática · Electrónica · ADO · Multimedios</span></div>
         </div>
       </div>
       <div class="card">
@@ -341,13 +442,13 @@ h2.slide-h2 span { color:var(--primary); }
     </div>
     <div class="check-list" style="margin-bottom:14px">
       <div class="check-item"><span class="check-icon" style="color:var(--primary)">○</span><span class="check-text"><b>El usuario fue entrevistado por primera vez el día 23 de abril con una duración de 50 minutos.</b></span></div>
-      <div class="check-item"><span class="check-icon" style="color:var(--text-muted)">○</span><span class="check-text">Diagnóstico de situación actual: El usuario explicó la necesidad de obtener una solución al problema de las personas que entran sin autorización previa.</span></div>
+      <div class="check-item"><span class="check-icon" style="color:var(--text-muted)">○</span><span class="check-text">Diagnóstico de situación actual: el usuario explicó la necesidad de obtener una solución al problema de las personas que entran sin autorización previa.</span></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:0;margin-top:4px">
       <div class="quote-bubble">"Mi mayor problema hoy es que no tengo control sobre las visitas; quiero que sean los mismos vecinos quienes validen a sus invitados mediante la App, para que la seguridad solo tenga que intervenir si detectamos algo sospechoso."</div>
       <div class="quote-bubble">"Los días de lluvia o cuando hay ferias en la plaza, la fila de autos llega hasta la avenida porque el registro manual es lentísimo; automatizar el ingreso de los residentes nos liberaría el acceso principal en horas pico."</div>
       <div class="quote-bubble">"Necesito que cuando ocurra un incidente, yo pueda entrar al sistema y saber exactamente qué guardia estaba de turno y qué patente dejó pasar, sin depender de si alguien se olvidó de anotar en el cuaderno."</div>
-      <div class="quote-attribution">— Ariel Nero, Dueño y Administrador de la Junta Vecinal.</div>
+      <div class="quote-attribution">— Ariel Nero, Administrador de la Junta Vecinal.</div>
     </div>
   </div>
   <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
@@ -361,10 +462,10 @@ h2.slide-h2 span { color:var(--primary); }
     <span class="slide-counter">03 / 12</span>
   </div>
   <div class="slide-body">
-    <div class="section-label">Síntomas → Causas raíz</div>
+    <div class="section-label">Diagnóstico del Problema</div>
     <h2 class="slide-h2">Lo que el cliente dice vs. <span>lo que realmente es</span></h2>
     <table class="data-table">
-      <thead><tr><th>Síntoma (Lo que dice Ariel y su equipo administrativo)</th><th>Causa raíz</th><th>Solución técnica</th></tr></thead>
+      <thead><tr><th>Síntoma (Lo que dice el equipo administrativo)</th><th>Causa raíz</th><th>Solución técnica</th></tr></thead>
       <tbody>
         <tr><td>"En hora pico hay cola de 4 minutos"</td><td>El proceso manual toma 1–2 min por vehículo; no hay validación automática</td><td>RF01 — ALPR: verificación automática en &lt; 5 seg</td></tr>
         <tr><td>"No sabemos quién entró ni cuándo"</td><td>Registro en papel sin trazabilidad digital ni auditoría</td><td>RF02 — Historial digital con timestamp por cada evento</td></tr>
@@ -386,7 +487,7 @@ h2.slide-h2 span { color:var(--primary); }
     <span class="slide-counter">04 / 12</span>
   </div>
   <div class="slide-body">
-    <div class="section-label">Línea de base — Estado actual sin BarrioAcceso</div>
+    <div class="section-label">Línea de Base Cuantificada</div>
     <h2 class="slide-h2">Métricas actuales <span>→ objetivos</span></h2>
     <div class="metric-row" style="margin-bottom:16px">
       <div class="metric-card"><div class="metric-label">Tiempo por vehículo</div><div class="metric-value">40s–2m</div><div class="metric-arrow">→ objetivo: 5 seg</div></div>
@@ -406,7 +507,7 @@ h2.slide-h2 span { color:var(--primary); }
       </div>
       <div class="card">
         <div class="person-row" style="margin-bottom:8px"><div class="avatar av-orange" style="width:30px;height:30px;font-size:10px">AD</div><div class="person-info"><div class="name" style="font-size:15px">Administrador</div><div class="role">Control total</div></div></div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.5">Dashboard completo · gestión de propietarios · Gestión de morosos y suspensiones en tiempo real · historial total · estadísticas.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.5">Dashboard completo · gestión de propietarios · suspensiones en tiempo real · historial total · estadísticas.</div>
       </div>
     </div>
   </div>
@@ -421,10 +522,10 @@ h2.slide-h2 span { color:var(--primary); }
     <span class="slide-counter">05 / 12</span>
   </div>
   <div class="slide-body">
-    <div class="section-label">RF — Qué hace el sistema</div>
+    <div class="section-label">Arquitectura del Sistema</div>
     <h2 class="slide-h2">Requerimientos <span>funcionales</span></h2>
     <div class="rf-list">
-      <div class="rf-item"><span class="rf-id">RF01</span><div class="rf-body"><div class="rf-title">Verificación automática de patentes (ALPR)</div><div class="rf-desc">Procesamiento y consulta en < 3 seg · resultado: VERDE (propietario activo), VERDE QR (visita válida), ROJO (suspendido/desconocido)</div></div><div class="rf-priority"><span class="tag tag-red" style="font-size:10px">Alta</span></div></div>
+      <div class="rf-item"><span class="rf-id">RF01</span><div class="rf-body"><div class="rf-title">Verificación automática de patentes (ALPR)</div><div class="rf-desc">Procesamiento y consulta en &lt; 3 seg · resultado: VERDE (propietario activo), VERDE QR (visita válida), ROJO (suspendido/desconocido)</div></div><div class="rf-priority"><span class="tag tag-red" style="font-size:10px">Alta</span></div></div>
       <div class="rf-item"><span class="rf-id">RF02</span><div class="rf-body"><div class="rf-title">Historial de accesos con registro automático</div><div class="rf-desc">Cada evento: timestamp · patente · nombre · tipo de acceso · resultado. Auditable por admin (total) y propietario (solo los propios)</div></div><div class="rf-priority"><span class="tag tag-red" style="font-size:10px">Alta</span></div></div>
       <div class="rf-item"><span class="rf-id">RF03</span><div class="rf-body"><div class="rf-title">Panel del guardia optimizado para uso bajo presión</div><div class="rf-desc">Input de patente central · resultado muy visible · botón limpiar · log del día visible sin navegar · modo oscuro / alto contraste</div></div><div class="rf-priority"><span class="tag tag-red" style="font-size:10px">Alta</span></div></div>
       <div class="rf-item"><span class="rf-id">RF04</span><div class="rf-body"><div class="rf-title">Sistema de QR temporal para visitas</div><div class="rf-desc">Propietario genera QR con nombre, patente, fecha y hora límite · Generación y envío automático de invitación vía WhatsApp · admin puede revocar en tiempo real</div></div><div class="rf-priority"><span class="tag tag-red" style="font-size:10px">Alta</span></div></div>
@@ -444,7 +545,7 @@ h2.slide-h2 span { color:var(--primary); }
     <span class="slide-counter">06 / 12</span>
   </div>
   <div class="slide-body">
-    <div class="section-label">RNF — Cómo lo hace</div>
+    <div class="section-label">Alcance y Restricciones</div>
     <h2 class="slide-h2">Requerimientos <span>no funcionales</span></h2>
     <div class="rf-list" style="margin-bottom:14px">
       <div class="rf-item"><span class="rf-id">RNF01</span><div class="rf-body"><div class="rf-title">Interfaz HCI optimizada: accesibilidad WCAG AA</div><div class="rf-desc">Modo oscuro / alto contraste para operación nocturna · botones mín. 44px · fuente legible sin zoom · un elemento de acción principal por pantalla</div></div><span class="tag tag-blue" style="font-size:10px;flex-shrink:0">HCI</span></div>
@@ -487,7 +588,7 @@ h2.slide-h2 span { color:var(--primary); }
     <span class="slide-counter">07 / 12</span>
   </div>
   <div class="slide-body">
-    <div class="section-label">Objectives & Key Results</div>
+    <div class="section-label">Objetivos y Resultados Clave</div>
     <h2 class="slide-h2">Métricas de éxito: <span>Transformando Datos en Seguridad</span></h2>
     <div class="two-col">
       <div style="display:flex;flex-direction:column;gap:12px">
@@ -507,107 +608,114 @@ h2.slide-h2 span { color:var(--primary); }
 <!-- ══ SLIDE 8 — EQUIPO ══ -->
 <div class="slide" id="slide-8">
   <div class="topbar">
-    <div class="topbar-left"><span class="topbar-logo">Gestión — Equipo</span><div class="topbar-sep"></div><span class="topbar-title">Roles y responsabilidades</span></div>
+    <div class="topbar-left">
+      <span class="topbar-logo">Gestión — Equipo</span>
+      <div class="topbar-sep"></div>
+      <span class="topbar-title">Roles y responsabilidades</span>
+    </div>
     <a class="back-btn" href="index.html">← Inicio</a>
     <span class="slide-counter">08 / 12</span>
   </div>
   <div class="slide-body">
-    <div class="section-label">Equipo · 7mo Informática A · ILM 2026</div>
+    <div class="section-label">Equipo de Trabajo</div>
     <h2 class="slide-h2">Roles y <span>responsabilidades</span></h2>
 
+    <!-- Equipo principal -->
     <div class="team-grid-centered">
-
       <div class="team-card">
         <div class="card-header">
-          <div class="avatar av-blue" style="width:36px;height:36px;font-size:12px">EM</div>
+          <div class="avatar-photo"><img src="ezequiel.png" alt="EM" style="object-position:center 35%"></div>
           <div>
-            <div class="team-name">Ezequiel Morgado</div>
-            <div class="team-role" style="color:#2563EB">Project Manager &amp; Dev Backend</div>
+            <div class="team-role">Ezequiel Morgado</div>
+            <div class="team-name">Project Manager & Dev Backend</div>
           </div>
         </div>
-        <div class="team-sub">Gestión del repositorio GitHub, arquitectura de APIs, integración del motor OCR (Tesseract/OpenALPR) y lógica de servidores.</div>
+        <div class="team-sub">Planificación del GANTT, Desarrollo de la API y lógica del ESP32.</div>
       </div>
-
       <div class="team-card">
         <div class="card-header">
-          <div class="avatar av-green" style="width:36px;height:36px;font-size:12px">SH</div>
+          <div class="avatar-photo"><img src="sofia.png" alt="SH"></div>
           <div>
-            <div class="team-name">Sofía Hermosilla</div>
-            <div class="team-role" style="color:#22C55E">Developer Frontend</div>
+            <div class="team-role">Sofía Hermosilla</div>
+            <div class="team-name">Developer Frontend</div>
           </div>
         </div>
-        <div class="team-sub">Interfaz HCI para guardia (modo oscuro), panel de administrador y generación de QRs para propietarios.</div>
+        <div class="team-sub">Diseño del prototipo de alta fidelidad y la UX en Figma.</div>
       </div>
-
       <div class="team-card">
         <div class="card-header">
-          <div class="avatar av-orange" style="width:36px;height:36px;font-size:12px">CS</div>
+          <div class="avatar-photo"><img src="camilo.png" alt="CS"></div>
           <div>
-            <div class="team-name">Camilo Spinelli</div>
-            <div class="team-role" style="color:#F97316">Especialista Hardware</div>
+            <div class="team-role">Camilo Spinelli</div>
+            <div class="team-name">Especialista en Hardware</div>
           </div>
         </div>
-        <div class="team-sub">Integración del ESP32 con la cámara Dahua, control de relevos para la barrera y montaje del gabinete IP65.</div>
+        <div class="team-sub">Diseño del esquema eléctrico, PCB e integración de sensores.</div>
       </div>
-
       <div class="team-card">
         <div class="card-header">
-          <div class="avatar av-gray" style="width:36px;height:36px;font-size:12px">VM</div>
+          <div class="avatar-photo"><img src="violeta.png" alt="VM"></div>
           <div>
-            <div class="team-name">Violeta Martini</div>
-            <div class="team-role" style="color:#64748B">Especialista BD</div>
+            <div class="team-role">Violeta Martini</div>
+            <div class="team-name">Base de Datos</div>
           </div>
         </div>
-        <div class="team-sub">Modelado SQL para auditoría de ingresos, gestión de morosos y sincronización local-nube.</div>
+        <div class="team-sub">Modelo de datos relacional, backups y auditoría de registros.</div>
       </div>
-
     </div>
 
-    <div class="partners-section-label">Partners — Otras Modalidades</div>
+    <!-- Partners -->
+    <div class="partners-section-label">Colaboradores de otras modalidades</div>
     <div class="partners-container">
       <div class="partner-card">
-        <div class="p-avatar ado">SC</div>
-        <div class="p-name">Santiago Cusato</div>
-        <div class="p-modal ado">Modalidad ADO</div>
-        <div class="p-desc">Marketing, Branding y Comunicación Institucional</div>
-      </div>
-      <div class="partner-card">
-        <div class="p-avatar ado">CR</div>
+        <div class="p-avatar ado" style="overflow:hidden">
+          <img src="cala.png" alt="CR">
+        </div>
         <div class="p-name">Catalina La Regina</div>
         <div class="p-modal ado">Modalidad ADO</div>
-        <div class="p-desc">Gestión de Costos y Suministros (BOM &amp; Procurement)</div>
+        <div class="p-desc">Marco Legal, Comercial y Relacion con el cliente</div>
       </div>
       <div class="partner-card">
-        <div class="p-avatar ado">AC</div>
-        <div class="p-name">Ariana Corbo</div>
+        <div class="p-avatar ado" style="overflow:hidden">
+          <img src="ado2.png" alt="AD2">
+        </div>
+        <div class="p-name">Santiago Cusato</div>
         <div class="p-modal ado">Modalidad ADO</div>
-        <div class="p-desc">Marco Legal, Comercial y Relación con el Cliente</div>
+        <div class="p-desc">Gestión de Costos y Suministros (BOM &amp; Procurement).</div>
       </div>
       <div class="partner-card">
-        <div class="p-avatar electro">SV</div>
+        <div class="p-avatar electro" style="overflow:hidden">
+          <img src="villarosa.png" alt="SV">
+        </div>
         <div class="p-name">Santiago Villarosa</div>
         <div class="p-modal electro">Modalidad Electrónica</div>
-        <div class="p-desc">Especialista en Hardware y Potencia</div>
+        <div class="p-desc">Especialista en Hardware y Potencia.</div>
       </div>
       <div class="partner-card">
-        <div class="p-avatar electro">FS</div>
+        <div class="p-avatar electro" style="overflow:hidden">
+          <img src="sparta.png" alt="FS">
+        </div>
         <div class="p-name">Federico Sparta</div>
         <div class="p-modal electro">Modalidad Electrónica</div>
         <div class="p-desc">Especialista en Adquisición de Datos e Instrumentación</div>
       </div>
       <div class="partner-card">
-        <div class="p-avatar multi">IM</div>
+        <div class="p-avatar multi" style="overflow:hidden">
+          <img src="marticorena.png" alt="IM">
+        </div>
         <div class="p-name">Ignacio Marticorena</div>
         <div class="p-modal multi">Modalidad Multimedios</div>
-        <div class="p-desc">Identidad Visual y Branding del Producto</div>
+        <div class="p-desc">Especialista en Identidad Visual y Branding.</div>
       </div>
     </div>
-
   </div>
-  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="goPrev()">← Anterior</button>
+    <div class="nav-dots"></div>
+    <button class="nav-btn primary" onclick="goNext()">Siguiente →</button>
+  </div>
 </div>
 
-<!-- ══ SLIDE 9 — PRESUPUESTO ══ -->
 <div class="slide" id="slide-9">
   <div class="topbar">
     <div class="topbar-left">
@@ -618,119 +726,78 @@ h2.slide-h2 span { color:var(--primary); }
     <a class="back-btn" href="index.html">← Inicio</a>
     <span class="slide-counter">09 / 12</span>
   </div>
-
+  
   <div class="slide-body">
-    <div class="section-label">Tech stack y costos</div>
+    <div class="section-label">Análisis de Costos</div>
     <h2 class="slide-h2">BOM y <span>factibilidad económica</span></h2>
     
     <div class="two-col">
-      <!-- COLUMNA IZQUIERDA: HARDWARE -->
       <div>
         <div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Hardware (BOM)</div>
-        <div class="rf-list">
-          <div class="rf-item" style="padding:8px 12px">
-            <span class="rf-id" style="font-size:9px;min-width:46px">Cámara</span>
-            <div class="rf-body"><div class="rf-title" style="font-size:12px">Dahua IPC-HFW1230S1P (Bullet IP 2MP)</div></div>
-            <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$85.000</span>
+        <div class="rf-list" style="margin-bottom:20px">
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Cámara</span><div class="rf-body"><div class="rf-title" style="font-size:12px">Dahua IPC-HFW1230S1P (Bullet IP 2MP)</div></div><span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$85.000</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Control</span><div class="rf-body"><div class="rf-title" style="font-size:12px">ESP32 + ENC28J60 (control de barrera)</div></div><span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$22.000</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Server</span><div class="rf-body"><div class="rf-title" style="font-size:12px">Mini-PC Usada (Servidor Local LPR)</div></div><span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$95.000</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Barrera</span><div class="rf-body"><div class="rf-title" style="font-size:12px">Relevo eléctrico para barrera existente</div></div><span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$7.000</span></div>
+          <div class="rf-item" style="padding:8px 12px"><span class="rf-id" style="font-size:9px;min-width:46px">Gabinete</span><div class="rf-body"><div class="rf-title" style="font-size:12px">Gabinete estanco IP65 para exterior</div></div><span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$18.000</span></div>
+          <div style="margin-top:8px;padding:8px 12px;background:var(--primary-soft);border:1px solid var(--primary-border);border-radius:8px">
+            <div class="budget-row budget-total" style="border:none;padding:0;display:flex;justify-content:space-between;align-items:center;">
+              <span class="budget-label" style="font-weight:700;font-size:12px;color:var(--primary)">Total BOM estimado</span>
+              <span class="budget-value" style="font-family:var(--mono);font-weight:700;color:var(--primary)">$227.000</span>
+            </div>
           </div>
-          
-          <div class="rf-item" style="padding:8px 12px">
-            <span class="rf-id" style="font-size:9px;min-width:46px">Control</span>
-            <div class="rf-body"><div class="rf-title" style="font-size:12px">ESP32 + ENC28J60 (control de barrera)</div></div>
-            <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$22.000</span>
-          </div>
-          
-          <div class="rf-item" style="padding:8px 12px">
-            <span class="rf-id" style="font-size:9px;min-width:46px">Server</span>
-            <div class="rf-body"><div class="rf-title" style="font-size:12px">Mini-PC Usada (Servidor Local LPR)</div></div>
-            <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$95.000</span>
-          </div>
-          
-          <div class="rf-item" style="padding:8px 12px">
-            <span class="rf-id" style="font-size:9px;min-width:46px">Barrera</span>
-            <div class="rf-body"><div class="rf-title" style="font-size:12px">Relevo eléctrico para barrera existente</div></div>
-            <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$7.000</span>
-          </div>
-          
-          <div class="rf-item" style="padding:8px 12px">
-            <span class="rf-id" style="font-size:9px;min-width:46px">Gabinete</span>
-            <div class="rf-body"><div class="rf-title" style="font-size:12px">Gabinete estanco IP65 para exterior</div></div>
-            <span style="font-size:11px;color:var(--text-dim);font-family:var(--mono)">$18.000</span>
-          </div>
+        </div>
 
-          <!-- CUADRO NARANJA INTEGRADOR -->
-          <div style="margin-top:8px;padding:8px 12px;background:var(--accent-soft);border:1px solid var(--accent-border);border-radius:8px">
-            <div class="budget-row budget-total" style="border:none;padding:0"><span class="budget-label">Total BOM estimado</span><span class="budget-value">$227.000</span></div>
+        <div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Infraestructura de Red (Hosting)</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div style="padding:12px; background:white; border:1px solid var(--primary-border); border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.02)">
+            <div style="font-size:9px; font-weight:700; color:var(--primary); margin-bottom:4px; letter-spacing:0.5px">TESTEO</div>
+            <div style="font-size:12px; font-weight:700; margin-bottom:2px">Servidor ILM</div>
+            <div style="font-size:10px; color:var(--text-sub); line-height:1.2">Entorno local para validación de OCR y latencia.</div>
+          </div>
+          <div style="padding:12px; background:white; border:1px solid var(--primary-border); border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.02)">
+            <div style="font-size:9px; font-weight:700; color:var(--accent); margin-bottom:4px; letter-spacing:0.5px">PRODUCCIÓN</div>
+            <div style="font-size:12px; font-weight:700; margin-bottom:2px">Hostinger / DonWeb</div>
+            <div style="font-size:10px; color:var(--text-sub); line-height:1.2">Despliegue externo para gestión remota 24/7.</div>
           </div>
         </div>
       </div>
 
-      <!-- COLUMNA DERECHA: SOFTWARE Y PROYECCIÓN -->
       <div>
         <div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Software stack</div>
-        <div class="rf-list" style="margin-bottom:12px">
-          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:12px">Frontend: HTML5 + CSS3 + JS vanilla</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:12px">Backend: PHP + MySQL (XAMPP/Local)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:12px">BD: MySQL (MariaDB)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:12px">OCR: Librería Local (Tesseract / OpenALPR)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
-          <div class="rf-item" style="padding:8px 12px"><div class="rf-body"><div class="rf-title" style="font-size:12px">Hosting: Self-Hosted (Cloudflare Tunnel)</div></div><span class="tag tag-green" style="font-size:10px">Free</span></div>
+        <div class="rf-list" style="margin-bottom:15px">
+          <div class="rf-item" style="padding:6px 12px"><div class="rf-body"><div class="rf-title" style="font-size:11px">Frontend: HTML5 + CSS3 + JS vanilla</div></div><span class="tag tag-green" style="font-size:9px">Free</span></div>
+          <div class="rf-item" style="padding:6px 12px"><div class="rf-body"><div class="rf-title" style="font-size:11px">Backend: PHP + MySQL (XAMPP/Local)</div></div><span class="tag tag-green" style="font-size:9px">Free</span></div>
+          <div class="rf-item" style="padding:6px 12px"><div class="rf-body"><div class="rf-title" style="font-size:11px">BD: MySQL (MariaDB)</div></div><span class="tag tag-green" style="font-size:9px">Free</span></div>
+          <div class="rf-item" style="padding:6px 12px"><div class="rf-body"><div class="rf-title" style="font-size:11px">OCR: Librería Local (Tesseract / OpenALPR)</div></div><span class="tag tag-green" style="font-size:9px">Free</span></div>
         </div>
-        <div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Horas hombre estimadas</div>
-        <div class="horas-grid">
-          <div class="horas-card">
-            <div class="horas-avatar av-blue" style="width:32px;height:32px;font-size:10px">EM</div>
-            <div class="horas-body">
-              <div class="horas-name">Ezequiel Morgado</div>
-              <div class="horas-role">Project Manager</div>
-            </div>
-            <div class="horas-nums">
-              <div class="horas-total">$22.720</div>
-              <div class="horas-rate">Valor x hora</div>
-            </div>
+        
+        <div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Equipo y Valor Hora</div>
+        <div class="horas-grid" style="gap:8px">
+          <div class="horas-card" style="padding:8px">
+            <div class="horas-avatar av-blue" style="width:28px;height:28px;font-size:9px">EM</div>
+            <div class="horas-body"><div class="horas-name" style="font-size:11px">Ezequiel Morgado</div><div class="horas-role" style="font-size:9px">Project Manager</div></div>
+            <div class="horas-nums"><div class="horas-total" style="font-size:11px">$22.720</div></div>
           </div>
-          <div class="horas-card">
-            <div class="horas-avatar av-blue" style="width:32px;height:32px;font-size:10px">EM</div>
-            <div class="horas-body">
-              <div class="horas-name">Ezequiel Morgado</div>
-              <div class="horas-role">Backend</div>
-            </div>
-            <div class="horas-nums">
-              <div class="horas-total">$22.010</div>
-              <div class="horas-rate">Valor x hora</div>
-            </div>
+          <div class="horas-card" style="padding:8px">
+            <div class="horas-avatar av-blue" style="width:28px;height:28px;font-size:9px">EM</div>
+            <div class="horas-body"><div class="horas-name" style="font-size:11px">Ezequiel Morgado</div><div class="horas-role" style="font-size:9px">Backend</div></div>
+            <div class="horas-nums"><div class="horas-total" style="font-size:11px">$22.720</div></div>
           </div>
-          <div class="horas-card">
-            <div class="horas-avatar av-green" style="width:32px;height:32px;font-size:10px">SH</div>
-            <div class="horas-body">
-              <div class="horas-name">Sofía Hermosilla</div>
-              <div class="horas-role">Frontend</div>
-            </div>
-            <div class="horas-nums">
-              <div class="horas-total">$17.750</div>
-              <div class="horas-rate">Valor x hora</div>
-            </div>
+          <div class="horas-card" style="padding:8px">
+            <div class="horas-avatar av-green" style="width:28px;height:28px;font-size:9px">SH</div>
+            <div class="horas-body"><div class="horas-name" style="font-size:11px">Sofia Hermosilla</div><div class="horas-role" style="font-size:9px">Frontend</div></div>
+            <div class="horas-nums"><div class="horas-total" style="font-size:11px">$17.750</div></div>
           </div>
-          <div class="horas-card">
-            <div class="horas-avatar av-orange" style="width:32px;height:32px;font-size:10px">CS</div>
-            <div class="horas-body">
-              <div class="horas-name">Camilo Spinelli</div>
-              <div class="horas-role">Hardware</div>
-            </div>
-            <div class="horas-nums">
-              <div class="horas-total">$24.140</div>
-              <div class="horas-rate">Valor x hora</div>
-            </div>
+          <div class="horas-card" style="padding:8px">
+            <div class="horas-avatar av-orange" style="width:28px;height:28px;font-size:9px">CS</div>
+            <div class="horas-body"><div class="horas-name" style="font-size:11px">Camilo Spinelli</div><div class="horas-role" style="font-size:9px">Hardware</div></div>
+            <div class="horas-nums"><div class="horas-total" style="font-size:11px">$24.140</div></div>
           </div>
-          <div class="horas-card">
-            <div class="horas-avatar av-gray" style="width:32px;height:32px;font-size:10px">VM</div>
-            <div class="horas-body">
-              <div class="horas-name">Violeta Martini</div>
-              <div class="horas-role">Base de Datos</div>
-            </div>
-            <div class="horas-nums">
-              <div class="horas-total">$22.720</div>
-              <div class="horas-rate">Valor x hora</div>
-            </div>
+          <div class="horas-card" style="padding:8px">
+            <div class="horas-avatar av-gray" style="width:28px;height:28px;font-size:9px">VM</div>
+            <div class="horas-body"><div class="horas-name" style="font-size:11px">Violeta Martini</div><div class="horas-role" style="font-size:9px">Data & DB</div></div>
+            <div class="horas-nums"><div class="horas-total" style="font-size:11px">$22.720</div></div>
           </div>
         </div>
       </div>
@@ -752,11 +819,9 @@ h2.slide-h2 span { color:var(--primary); }
     <span class="slide-counter">10 / 12</span>
   </div>
   <div class="slide-body">
-    <div class="section-label">Cronograma de desarrollo</div>
+    <div class="section-label">Planificación del Proyecto</div>
     <h2 class="slide-h2">Roadmap <span>Abril — Junio</span></h2>
     <div class="roadmap-wrapper">
-
-      <!-- ABRIL — FINALIZADO -->
       <div class="roadmap-track">
         <div class="roadmap-spine">
           <div class="roadmap-node done"></div>
@@ -770,13 +835,11 @@ h2.slide-h2 span { color:var(--primary); }
           <div class="roadmap-title">Relevamiento, selección de hardware y arquitectura de datos</div>
           <div class="roadmap-items">
             <div class="roadmap-item"><div class="roadmap-item-dot done"></div><span>Relevamiento de necesidades en Altos de Podestá y entrevista con la administración.</span></div>
-            <div class="roadmap-item"><div class="roadmap-item-dot done"></div><span>Selección y presupuestación de hardware: Cámara IP Dahua 2MP (Serie Entry) y controladores ESP32</span></div>
+            <div class="roadmap-item"><div class="roadmap-item-dot done"></div><span>Selección y presupuestación de hardware: Cámara IP Dahua 2MP (Serie Entry) y controladores ESP32.</span></div>
             <div class="roadmap-item"><div class="roadmap-item-dot done"></div><span>Definición de arquitectura de base de datos relacional para auditoría e ingresos.</span></div>
           </div>
         </div>
       </div>
-
-      <!-- MAYO — EN CURSO -->
       <div class="roadmap-track">
         <div class="roadmap-spine">
           <div class="roadmap-node active"></div>
@@ -795,8 +858,6 @@ h2.slide-h2 span { color:var(--primary); }
           </div>
         </div>
       </div>
-
-      <!-- JUNIO — OBJETIVO -->
       <div class="roadmap-track">
         <div class="roadmap-spine">
           <div class="roadmap-node pending"></div>
@@ -810,7 +871,7 @@ h2.slide-h2 span { color:var(--primary); }
           <div class="roadmap-items">
             <div class="roadmap-item"><div class="roadmap-item-dot pending"></div><span>Implementación de jerarquía de roles en la App (Residente / Seguridad / Admin).</span></div>
             <div class="roadmap-item"><div class="roadmap-item-dot pending"></div><span>Dashboard web de administración con historial de logs exportable.</span></div>
-            <div class="roadmap-item"><div class="roadmap-item-dot pending"></div><span>Pruebas de estrés y validación en entorno real (Altos de Podestá)</span></div>
+            <div class="roadmap-item"><div class="roadmap-item-dot pending"></div><span>Pruebas de estrés y validación en entorno real (Altos de Podestá).</span></div>
           </div>
         </div>
       </div>
@@ -827,15 +888,15 @@ h2.slide-h2 span { color:var(--primary); }
     <span class="slide-counter">11 / 12</span>
   </div>
   <div class="slide-body">
-    <div class="section-label">Pendientes inmediatos</div>
+    <div class="section-label">Pendientes Inmediatos</div>
     <h2 class="slide-h2">Qué hacemos <span>ahora</span></h2>
     <div class="step-list" style="margin-bottom:14px">
       <div class="step-item"><span class="step-num">01</span><div class="step-body"><div class="step-title">Acuerdo de Implementación con la Administración</div><div class="step-desc">Presentar la demo funcional con el objetivo de obtener la conformidad final sobre el plan de trabajo y coordinar los tiempos de instalación del hardware en el acceso principal.</div></div></div>
       <div class="step-item"><span class="step-num">02</span><div class="step-body"><div class="step-title">Adquisición y Testing de Equipamiento Crítico</div><div class="step-desc">Proceder con la compra de la cámara Dahua, la Mini-PC y el controlador ESP32 según el presupuesto estimado. Se realizarán pruebas de laboratorio previas para asegurar que todo el hardware interactúe correctamente antes de llevarlo a la guardia.</div></div></div>
-      <div class="step-item"><span class="step-num">03</span><div class="step-body"><div class="step-title">Estandarización de Desarrollo y Control de Versiones</div><div class="step-desc">Consolidar el repositorio central en GitHub con acceso para todo el equipo. Esto permitirá un flujo de trabajo organizado por ramas (backend/frontend/hardware) para asegurar la integridad del código en cada avance</div></div></div>
+      <div class="step-item"><span class="step-num">03</span><div class="step-body"><div class="step-title">Estandarización de Desarrollo y Control de Versiones</div><div class="step-desc">Consolidar el repositorio central en GitHub con acceso para todo el equipo. Esto permitirá un flujo de trabajo organizado por ramas (backend/frontend/hardware) para asegurar la integridad del código en cada avance.</div></div></div>
       <div class="step-item"><span class="step-num">04</span><div class="step-body"><div class="step-title">Gestión de Calidad y Seguimiento de Hitos</div><div class="step-desc">Establecer una rutina de seguimiento semanal para auditar el cumplimiento de cada rol. El objetivo es garantizar que no se avance al siguiente hito técnico sin haber cerrado y validado el anterior, asegurando la robustez del sistema final.</div></div></div>
     </div>
-    <div class="card accent-border"><div style="font-size:13px;color:var(--text-dim);line-height:1.7"><b style="color:var(--accent)">Por decisión del equipo</b> el sistema completo debe estar validado por la administración del barrio antes de instalar cualquier tipo de hardware. <b style="color:var(--text)"></b></div></div>
+    <div class="card accent-border"><div style="font-size:13px;color:var(--text-dim);line-height:1.7"><b style="color:var(--accent)">Por decisión del equipo</b> el sistema completo debe estar validado por la administración del barrio antes de instalar cualquier tipo de hardware.</div></div>
   </div>
   <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn primary" onclick="goNext()">Siguiente →</button></div>
 </div>
@@ -847,18 +908,27 @@ h2.slide-h2 span { color:var(--primary); }
     <a class="back-btn" href="index.html">← Inicio</a>
     <span class="slide-counter">12 / 12</span>
   </div>
+  
   <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
     <div class="cover-bg"><div class="cover-glow"></div></div>
+    
     <div style="position:relative;z-index:1;text-align:center;padding:0 40px">
-      <div style="font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px">BarrioAcceso · Barrio Altos de Podestá · Caso 2</div>
-      <div style="font-size:clamp(40px,6vw,68px);font-weight:300;letter-spacing:-.03em;font-style:italic;color:var(--primary);margin-bottom:10px">Gracias</div>
-      <div style="font-size:clamp(20px,3vw,32px);font-weight:300;color:var(--text-dim);letter-spacing:-.02em;margin-bottom:14px">Preguntas y consultas</div>
-      <div style="font-size:13px;color:var(--text-dim);margin-bottom:24px">Instituto Leonardo Murialdo · 7mo Informática A · Mayo 2026</div>
+      
+      <!-- LOGO DE AUCATEK PARA CIERRE -->
+      <img src="podesta.png" alt="AucaTek Logo" style="width: 250px; margin-bottom: 50px; opacity: 0.9;">
+
+      <div style="font-family:var(--mono);font-size:11px;color:var(--white-faint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px">Barrio Acceso · Altos de Podestá · Caso 2</div>
+      <div style="font-size:clamp(40px,6vw,68px);font-weight:300;letter-spacing:-.03em;color:var(--white);font-style:italic;color:var(--accent);margin-bottom:10px">Gracias</div>
+      <div style="font-size:clamp(20px,3vw,32px);font-weight:300;color:var(--white-dim);letter-spacing:-.02em;margin-bottom:14px">Preguntas y consultas</div>
+      <div style="font-size:13px;color:var(--white-dim);margin-bottom:24px">Instituto Leonardo Murialdo · 7mo Informática A · Mayo 2026</div>
+      
       <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+        <!-- Aquí podrías agregar algún botón de contacto o redes si quisieras -->
       </div>
     </div>
   </div>
-  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn" disabled>Siguiente →</button></div>
+  
+  <div class="bottom-nav"><button class="nav-btn" onclick="goPrev()">← Anterior</button><div class="nav-dots"></div><button class="nav-btn disabled" disabled>Siguiente →</button></div>
 </div>
 
 </div>
